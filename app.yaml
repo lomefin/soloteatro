@@ -1,0 +1,31 @@
+application: soloteatroapp
+version: 20120523
+runtime: python
+api_version: 1
+
+handlers:
+- url: /remote_api
+  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
+  login: admin
+- url: /css
+  static_dir: web/stylesheets
+- url: /img/
+  static_dir: web/images
+- url: /js/
+  static_dir: web/scripts
+- url: /static/
+  static_dir: static/
+- url: /admin/(\D*?)/.*
+  script: modules/admin/admin.py
+- url: /noticias/.*
+  script: modules/news/news.py
+- url: /obras/generos/.*
+  script: modules/plays/plays.py
+- url: /(obras|categorias)/.*
+  script: modules/plays/plays.py  
+- url: /(\D*?)/.*  
+  script: modules/\1/\1.py
+- url: /articles/.*
+  script: modules/posts/posts.py
+- url: /.*
+  script: modules/default/index.py

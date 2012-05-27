@@ -1,0 +1,139 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+<div class="row">
+	<div class="span12">
+		<h1>Obras</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="span9 offset3">
+		<form class="form-horizontal">
+		  <fieldset>
+		    <legend>Datos de la Obra</legend>
+		    
+		    <div class="control-group">
+		      <label class="control-label" for="play_name">Nombre del montaje</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="play_name">
+		        <p class="help-block">Ej. El rucio de los cuchillos, Art, Invasión.</p>
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="play_company">Nombre de la compañía</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="play_company" />
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="play_genre">Género</label>
+		      <div class="controls">
+		        <select class="input-xlarge" id="play_genre">
+		        	<option>Drama</option>
+		        	<option>Comedia</option>
+		        	<option>Impro</option>
+		        	<option>Musical</option>
+		        	<option>Experimental</option>
+		        	<option>Familiar</option>
+		        </select>
+		        <p class="help-block">Elige de la lista</p>
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="play_description">Argumento de la obra</label>
+		      <div class="controls">
+		       	<textarea class="input-xxlarge" id="play_description" rows="5"></textarea>
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="play_starts_at">Inicio de la temporada</label>
+		      <div class="controls">
+		      	<input class="input-xlarge" type="date" id="play_starts_at" />
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="play_ends_at">Fin de la temporada</label>
+		      <div class="controls">
+		      	<input class="input-xlarge" type="date" id="play_ends_at" />
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="play_schedule">Funciones</label>
+		      <div class="controls">
+		      	<input class="input-xlarge" type="date" id="play_schedule" />
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="play_venue">Teatro</label>
+		      <div class="controls">
+		      	<select class="input-xlarge" id="play_venue">
+		        	<option>Drama</option>
+		        	<option>Comedia</option>
+		        	<option>Impro</option>
+		        	<option>Musical</option>
+		        	<option>Experimental</option>
+		        	<option>Familiar</option>
+		        </select>
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="play_tickets">Entradas</label>
+		      <div class="controls">
+		       	<textarea class="input-xlarge" id="play_tickets" rows="5"></textarea>
+		       	<p class="help-block">Coloca a cada tipo de entrada en una línea aparte.</p>
+		      </div>
+		    </div>
+
+		    </fieldset>
+		    <fieldset>
+		    	<legend>Ficha Técnica</legend>
+		    <div class="control-group">
+		      <label class="control-label" for="play_text">Dramaturgia</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="play_text">
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="play_director">Dirección</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="play_director">
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="play_cast">Elenco</label>
+		      <div class="controls">
+		        <textarea  class="input-xlarge" id="play_cast" rows="7"></textarea>
+		        <p class="help-block">Coloca a cada miembro del elenco en una línea aparte.</p>
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="play_staff">Equipo Técnico</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="play_staff">
+		        <p class="help-block">Ej. Diseño, fotografía, técnicos, productor, etc.</p>
+		      </div>
+		    </div>
+		  
+		</form>
+	</div>
+</div>
+
+{% endblock content %}
+{% block js_activities %}
+<script type="text/javascript"> 
+	$(document).ready(function() {
+      $("#play_description").markItUp(mySettings);
+   	});
+	
+</script> 
+{% endblock js_activities %}

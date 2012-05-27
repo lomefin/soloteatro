@@ -1,0 +1,62 @@
+{% extends "../../../templates/admin_template.html" %}
+{% block content %}
+<div class="row">
+	<div class="span12">
+		<h1>Teatros</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="span9 offset3">
+		<form class="form-horizontal">
+		  <fieldset>
+		    <legend>Información del Teatro</legend>
+		    
+		    <div class="control-group">
+		      <label class="control-label" for="theatre_name">Nombre del teatro</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="theatre_name">
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="theatre_address">Dirección del teatro</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="theatre_address" />
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="theatre_phone">Teléfono de reserva</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="theatre_phone" />
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="theatre_url">Página web</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="theatre_url" />
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="theatre_parking">Estacionamiento</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="theatre_parking" />
+		        <p class="help-block">Ej. Parquímetro, estacionamiento pagado, a la propina, estacionamiento propio.</p>
+		      </div>
+		    </div>
+
+		</form>
+	</div>
+</div>
+
+{% endblock content %}
+{% block js_activities %}
+<script type="text/javascript"> 
+	$(document).ready(function() {
+      $("#play_description").markItUp(mySettings);
+   	});
+	
+</script> 
+{% endblock js_activities %}
