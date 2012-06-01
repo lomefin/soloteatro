@@ -49,7 +49,7 @@
       <div class="span10">
 
         <header class="jumbotron ">
-          <div class="inner">
+          <div class="innerno">
             <div class="row">
             <div class="span4">
               <img src="http://www.soloteatro.cl/i/logo_soloteatro.jpg" alt="SoloTeatro.cl" />
@@ -78,24 +78,28 @@
                     <a href="./obras/genero/comedia">Comedia</a>
                   </li>
                   <li class="">
-                    <a href="./obras/genero/impro">Impro</a>
-                  </li>
-                  <li class="">
-                    <a href="./obras/genero/musical">Musical</a>
-                  </li>
-                  <li class="">
-                    <a href="./obras/genero/experimental">Experimental</a>
-                  </li>
-                   <li class="">
                     <a href="./obras/genero/familiar">Familiar</a>
                   </li>
+                  <li class="">
+                    <a href="./obras/genero/musical">Impro</a>
+                  </li>
+                  <li class="">
+                    <a href="./obras/genero/experimental">Fisico</a>
+                  </li>
+                   <li class="">
+                    <a href="./obras/genero/familiar">Musical</a>
+                  </li>
+                  <li class="">
+                    <a href="./obras/genero/familiar">Marionetas</a>
+                  </li>
+                  <li class="">
+                    <a href="./obras/genero/familiar">Callejero</a>
+                  </li>
+                  <li class="">
+                    <a href="./obras/genero/familiar">Otras</a>
+                  </li>
                   <li class="divider-vertical"></li>
-                  <li class="">
-                    <a href="./obras/especial/gratis">Gratis</a>
-                  </li>
-                  <li class="">
-                    <a href="./obras/especial/proximas">Próximamente</a>
-                  </li>
+                  
                 </ul>
                 <form class="navbar-search pull-right" action="">
                   <input type="text" class="search-query span12" placeholder="Buscar">
@@ -120,45 +124,25 @@
 
       {% endblock %}
       
-        <div class="navbar navigation">
-          <div class="navbar-inner">
-            <div class="nav-collapse collapse">
-              {%block lower_menu %}
-              <ul class="nav">
-                <li class="">
-                  <a href="./obras/genero/drama">Quienes Somos</a>
-                </li>
-                <li class="">
-                  <a href="./obras/genero/comedia">Archivo</a>
-                </li>
-                <li class="">
-                  <a href="./obras/genero/impro">Ingresa tu obra</a>
-                </li>
-                <li class="">
-                  <a href="./obras/genero/musical">Promociones</a>
-                </li>
-                <li class="">
-                  <a href="./obras/genero/experimental">Teatros</a>
-                </li>
-                 <li class="">
-                  <a href="./obras/genero/familiar">Links amigos</a>
-                </li>
-                <li class="">
-                  <a href="./obras/especial/gratis">Contacto</a>
-                </li>
-              </ul>
-              {%endblock lower_menu%}
-            </div>
-          </div>
-        </div>
+        
       
-        <footer class="footer">
-            
-            <p>Aquí debería ir la publicidad!</p>
-          </footer>
-      </div>
+      <footer class="footer">
+        <p class="pull-right"><a href="#">Vuelta al comienzo</a></p>
+        <p>
+          <a href="/content/who">Quienes Somos</a>
+          <a href="/archive">Archivo</a>
+          <a href="./obras/genero/familiar">Links amigos</a>
+          <a href="./obras/genero/experimental">Teatros</a>
+        </p>
+        <p>
+          <a href="./obras/genero/musical">Promociones</a>
+          <a href="./obras/especial/gratis">Contacto</a>
+          <a href="./obras/genero/impro">Ingresa tu obra</a>
+        </p>
+      </footer>
     </div>
   </div>
+</div>
 
   <!-- Le javascript
   ================================================== -->

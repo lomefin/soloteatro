@@ -18,19 +18,25 @@ class STVenue(STModel):
 	name = db.StringProperty()
 	address = db.StringProperty()
 	location = db.GeoPtProperty()
+	telephone = db.StringProperty()
+
+class STMontage(STModel):
+	name = db.StringProperty()
+	director = db.StringProperty()
+	slug = db.StringProperty()
 
 class STSeason(STModel):
-	name = db.StringProperty()
+	
 	start = db.DateTimeProperty()
 	end = db.DateTimeProperty()
 	prices = db.StringListProperty()
 	venue = db.ReferenceProperty(STVenue,collection_name='seasons')
+	montage = db.ReferenceProperty(STMontage,collection_name='seasons')
 	genre = db.StringProperty()
 
 	#Technical Sheet
 	writer = db.StringProperty()
 	cast = db.StringListProperty()
-	director = db.StringProperty()
 	producer = db.StringProperty()
 	technical_team = db.StringListProperty()
 

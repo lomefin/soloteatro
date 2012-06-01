@@ -5,25 +5,56 @@
 <div class="row-fluid">
   <div class="span12">
     <div class="row-fluid" style="background-color:#eee">
-      <div class="span6">
+      <div class="span4">
         <img src="http://farm8.staticflickr.com/7032/6656569609_19f022287f_d.jpg" class="span12"/>
       </div>
-      <div class="span6">
+      <div class="span4">
         <h1>Carmen</h1>
         <p>
         Los soldados observan de forma curiosa a la gente que va pasando por la plaza mientras que esperan el próximo cambio de guardia. Llega Micaela buscando a su novio el cabo Don José a lo que Morales y el resto de soldados le indican que no está en la compañía pero que llegará en el siguiente turno para, después, pedirle que espere junto a ellos a lo que ella responde que volverá cuando se produzca el cambio ("Je reviendrai quand la garde montante va remplacer la garde descendant").
+      </div>
+      <div class="span4">
+        <h1>Aqui puede ir un calendario!</h1>
       </div>
     </div>
   </div>
 </div>
 <div class="divider"></div>
-<div class="navbar">
-    <div class="navbar-inner">
-      <div class="container">
-        <a class="brand" href="#">Noticias</a>
-      </div>
-    </div><!-- /navbar-inner -->
+<div class="navbar navigation">
+  <div class="navbar-inner">
+    <div class="nav-collapse collapse">
+      {%block lower_menu %}
+      <ul class="nav">
+        <li class="">
+          <a href="/obras/especial/popular">Populares</a>
+        </li>
+        <li class="">
+          <a href="/obras/especial/votada">Comentadas</a>
+        </li>
+        <li class="">
+          <a href="./obras/especial/gratis">Gratis</a>
+        </li>
+        <li class="">
+          <a href="./obras/especial/proximas">Próximamente</a>
+        </li>
+        <li class="">
+          <a href="/obras/especial/ultima">PUM</a>
+        </li>
+        <li class="">
+          <a href="/obras/especial/ultima">Se Acaba</a>
+        </li>
+         <li class="">
+          <a href="/obras/especial/ahora">Teatro Ahora</a>
+        </li>
+        <li class="">
+          
+        </li>
+      </ul>
+      {%endblock lower_menu%}
+    </div>
   </div>
+</div>
+
 <div class="row-fluid">
   <div class="span3">
     <div class="row-fluid" style="background-color:#eee">
