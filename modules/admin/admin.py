@@ -5,8 +5,8 @@ from modules.admin.theatres import *
 
 def main():
   application = webapp.WSGIApplication([('/admin/plays/add', AddPlay),
-  										('/admin/theatres/add', AddTheatre),
-  										('/admin/theatres/view', ViewTheatre),
+  										('/admin/venues/add', AddVenue),
+  										('/admin/venues/(.*)', ViewVenue),
   										('.*',lib.errors.NotFoundHandler),
   										],
                                        debug=True)
