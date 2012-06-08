@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2007 Google Inc.
+# Copyright 2012 Leonardo Luarte.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,9 +18,15 @@ from lib.imports import *
 
 
 
-class LLApp(webapp.RequestHandler):
-	def __init__(self,routes=[],debug=False):
+class LLApp():
+	def __init__(self,routes=[],debug=True):
+		
+		logging.getLogger().setLevel(logging.DEBUG)
+
 		default_routes = [('.*',lib.errors.NotFoundHandler),]
+
 		routes.extend(default_routes)
+
 		application = webapp.WSGIApplication(routes,debug=debug)
+
   		util.run_wsgi_app(application)

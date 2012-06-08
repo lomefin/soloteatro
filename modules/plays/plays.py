@@ -21,7 +21,9 @@ from modules.plays.plays_by_genre import *
 			
 
 def main():
-  LLApp([('/obras/genero/([a-zA-Z]*)', PlaysByGenre),],debug=True)
+  
+  logging.debug("Entering main cycle")
+  LLApp([('/obras/genero/([a-zA-Z]*)', PlaysByGenre),])
   #application = webapp.WSGIApplication([('/obras/genero/([a-zA-Z]*)', PlaysByGenre),
   #										('.*',lib.errors.NotFoundHandler),
   #										],
@@ -29,8 +31,8 @@ def main():
   #util.run_wsgi_app(application)
 
 
-#if __name__ == '__main__':
-#  main()
+if __name__ == '__main__':
+  main()
 
 
 # def main():
