@@ -1,5 +1,5 @@
 application: soloteatroapp
-version: 20120523
+version: 20120608
 runtime: python
 api_version: 1
 
@@ -23,9 +23,5 @@ handlers:
   script: modules/plays/plays.py
 - url: /(obras|categorias)/.*
   script: modules/plays/plays.py  
-- url: /(\D*?)/.*  
-  script: modules/\1/\1.py
-- url: /articles/.*
-  script: modules/posts/posts.py
 - url: /.*
   script: modules/default/index.py

@@ -20,13 +20,12 @@ from lib.imports import *
 
 class LLApp():
 	def __init__(self,routes=[],debug=True):
-		
+
+		#Setting up logging		
 		logging.getLogger().setLevel(logging.DEBUG)
 
+		#Setting routes and launching
 		default_routes = [('.*',lib.errors.NotFoundHandler),]
-
 		routes.extend(default_routes)
-
 		application = webapp.WSGIApplication(routes,debug=debug)
-
   		util.run_wsgi_app(application)

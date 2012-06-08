@@ -6,6 +6,8 @@ import string
 import sys
 import logging
 
+from lib import appengine_launch
+
 from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util

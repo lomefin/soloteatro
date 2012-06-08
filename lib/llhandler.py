@@ -91,7 +91,11 @@ class LLDefaultHandler(webapp.RequestHandler):
 			pass
 		
 		path = os.path.join(self.base_directory(), 'views/'+pagename+'.html')
-		self.response.out.write(template.render(path, template_values))
+		template_file = open(path) 
+		compiled_template = template.Template(template_file.read()) 
+		template_file.close()  
+		self.response.out.write(compiled_template.render(template.Context(template_values)))
+		
 		
 	def render_specific(self,pagename,template_values=None):
 		#self.wr(os.path.dirname(__file__))
