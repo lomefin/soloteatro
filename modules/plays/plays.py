@@ -21,15 +21,16 @@ from modules.plays.plays_by_genre import *
 			
 
 def main():
-  application = webapp.WSGIApplication([('/obras/genero/([a-zA-Z]*)', PlaysByGenre),
-  										('.*',lib.errors.NotFoundHandler),
-  										],
-                                       debug=True)
-  util.run_wsgi_app(application)
+  LLApp([('/obras/genero/([a-zA-Z]*)', PlaysByGenre),],debug=True)
+  #application = webapp.WSGIApplication([('/obras/genero/([a-zA-Z]*)', PlaysByGenre),
+  #										('.*',lib.errors.NotFoundHandler),
+  #										],
+  #                                     debug=True)
+  #util.run_wsgi_app(application)
 
 
-if __name__ == '__main__':
-  main()
+#if __name__ == '__main__':
+#  main()
 
 
 # def main():

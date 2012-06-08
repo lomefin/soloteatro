@@ -20,3 +20,4 @@ from lib import llhandler
 from lib import slugify
 from lib import markdown2
 from lib import llhandler
+from lib import llapp
