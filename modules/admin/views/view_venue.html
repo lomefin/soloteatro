@@ -1,21 +1,21 @@
-{% extends "../../../templates/admin_template.html" %}
+{% extends "admin_template.html" %}
 {% block content %}
 
-<div class="row">
+<div class="row-fluid">
 	<div class="span12">
 		<div class="page-header">
-			<h1>{{theatre.name}}Teatro del Puente <small> {{theatre.address}}Parque forestal s/n, entre puentes Purísima y Pio Nono</small></h1>
+			<h1>{{venue.name}} <small> {{venue.address}}</small></h1>
 		</div>
 	</div>
 </div>
-<div class="row">
+<div class="row-fluid">
 	<div class="span3">
 		<p>Teléfono</p>
-		<p><a href="tel:+5691776638"> +569 177 6638</a></p>
+		<p><a href="tel:{{venue.telephone}}"> {{venue.telephone}}</a></p>
 		<p>Página web</p>
-		<a href="{{theatre.url}}">{{theatre.url}}http://www.teatrodelpuente.cl</a></p>
+		<a href="{{venue.url}}">{{venue.url}}</a></p>
 		<p>Estacionamiento</p>
-		<p>Parquímetro, estacionamiento pagado.</p>
+		<p>{{venue.parking}}</p>
 	</div>
 	<div class="span9">
 		<div id="map_canvas" style="width:100%; height:300px;"></div>

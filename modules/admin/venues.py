@@ -7,6 +7,21 @@ class AddVenue(llhandler.LLHandler):
 	def internal_get(self):
 		self.render('add_venue',template_values={})
 
+	def internal_post(self):
+
+		venue = STVenue()
+		venue.name = self.param('venue_name')
+		venue.address = self.param('venue_address')
+		venue.telephone = self.param('venue_telephone')
+		venue.url = self.param('venue_url')
+		venue.parking = self.param('venue_parking')
+
+		logging.debug("Put on object")
+		key = venue.put()
+		time.sleep(1)
+		venue = STVenue.get(key)
+		self.redirect('/admin/venues/'+str(venue.slug))
+
 class ViewVenue(llhandler.LLHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
@@ -15,4 +30,6 @@ class ViewVenue(llhandler.LLHandler):
 		self.internal_get(venue_code)
 
 	def internal_get(self,venue_code):
-		self.render('view_venue',template_values={})
+		logging.debug("Looking for " + venue_code)
+		venue = STVenue.all().filter('slug =',venue_code).get()
+		self.render('view_venue',template_values={'venue':venue})

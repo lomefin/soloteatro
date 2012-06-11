@@ -1,0 +1,74 @@
+{% extends "admin_template.html" %}
+{% block content %}
+<div class="row-fluid">
+	<div class="span12">
+		<h1>Agregar un montaje</h1>
+		<div class="alert">
+		  <button class="close" data-dismiss="alert">×</button>
+		  <p><strong>Atenci&oacute;n!</strong> Recuerda que est&aacute;s agregando un <strong>montaje</strong>, si el montaje ya existe te recomiendo que agregues una nueva <strong><a href="/admin/season/add">Temporada</a></strong> del montaje.</p>
+		  <p>Puedes revisar esta lista de montajes para asegurar que no est&aacute;, de encontrarse y ser solamente una nueva temporada hazle click al boton <em>Nueva temporada de este montaje</em>.</p>
+		  <form class="form-inline">
+		  	<input type="text" /><input type="submit" class="btn-primary" value="Nueva temporada de este montaje" />
+		  </form>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span9 offset3">
+		<form class="form-horizontal" method="post" >
+		  <fieldset>
+		    <legend>Datos del Montaje</legend>
+		    
+		    <div class="control-group">
+		      <label class="control-label" for="montage_name">Nombre del montaje</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="montage_name" name="montage_name">
+		        <p class="help-block">Ej. El rucio de los cuchillos, Art, Invasión.</p>
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="montage_director">Dirección</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="montage_director" name="montage_director">
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="montage_genre">Género</label>
+		      <div class="controls">
+		        <select class="input-xlarge" id="montage_genre" name="montage_genre">
+		        	<option>Drama</option>
+		        	<option>Comedia</option>
+		        	<option>Impro</option>
+		        	<option>Musical</option>
+		        	<option>Experimental</option>
+		        	<option>Familiar</option>
+		        </select>
+		        <p class="help-block">Elige de la lista</p>
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="montage_description">Argumento de la obra</label>
+		      <div class="controls">
+		       	<textarea class="input-xxlarge" id="montage_description" name="montage_description" rows="5"></textarea>
+		      </div>
+		    </div>
+		    <div class="form-actions">
+		    	<input type="submit" value="Agregar Montaje" class="btn btn-primary" />
+		    	<input type="reset" value="Limpiar" class="btn btn-warning" value=""/>
+		    </div>
+		</form>
+	</div>
+</div>
+
+{% endblock content %}
+{% block js_activities %}
+<script type="text/javascript"> 
+	$(document).ready(function() {
+      $("#montage_description").markItUp(mySettings);
+   	});
+	
+</script> 
+{% endblock js_activities %}

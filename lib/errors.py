@@ -42,6 +42,6 @@ class NotFoundHandler(llhandler.LLHandler):
 
 	def render_specific(self,pagename,template_values=None):
 		#self.wr(os.path.dirname(__file__))
-		path = os.path.join(self.base_directory(), '../templates/'+pagename+'.html')
+		path = os.path.join(self.base_directory(), pagename+'.html')
 		#self.wr(path)
 		self.response.out.write(template.render(path, template_values))

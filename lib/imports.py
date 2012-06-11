@@ -5,7 +5,7 @@ import lib
 import string
 import sys
 import logging
-
+import time
 from lib import appengine_launch
 
 from google.appengine.api import users
@@ -19,7 +19,7 @@ from model.models import *
 
 from lib.llapp import LLApp
 from lib import errors
-from lib import slugify
+from lib.slugify import *
 from lib import markdown2
 from lib import llhandler
 

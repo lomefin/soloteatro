@@ -1,17 +1,13 @@
 from lib.imports import *
 from modules.admin.plays import *
-from modules.admin.theatres import *
-
+from modules.admin.venues import *
+from modules.admin.montages import *
 
 def main():
-  application = webapp.WSGIApplication([('/admin/plays/add', AddPlay),
-  										('/admin/venues/add', AddVenue),
-  										('/admin/venues/(.*)', ViewVenue),
-  										('.*',lib.errors.NotFoundHandler),
-  										],
-                                       debug=True)
-  util.run_wsgi_app(application)
+  LLApp([
+  		('/admin/montages/add', AddMontage),
+  		('/admin/montages/', ListMontages),
+  		('/admin/plays/add', AddPlay),
+  		('/admin/venues/add', AddVenue),
+  		('/admin/venues/(.*)', ViewVenue),])
 
-
-if __name__ == '__main__':
-  main()

@@ -99,7 +99,7 @@ class LLDefaultHandler(webapp.RequestHandler):
 		
 	def render_specific(self,pagename,template_values=None):
 		#self.wr(os.path.dirname(__file__))
-		path = os.path.join(self.base_directory(), '../../templates/'+pagename)
+		path = os.path.join(self.base_directory(), pagename)
 		#self.wr(path)
 		self.response.out.write(template.render(path, template_values))
 	

@@ -20,4 +20,4 @@ from modules.plays.plays_by_genre import *
 
 
 def main():
-  LLApp([('/obras/genero/([a-zA-Z]*)', PlaysByGenre),])
+  LLApp([('/obras/generos/([a-zA-Z]*)', PlaysByGenre),])
