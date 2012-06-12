@@ -7,6 +7,7 @@ def main():
   LLApp([
   		('/admin/montages/add', AddMontage),
   		('/admin/montages/', ListMontages),
+  		('/admin/montages/(.*)',ViewMontage),
   		('/admin/plays/add', AddPlay),
   		('/admin/venues/add', AddVenue),
   		('/admin/venues/(.*)', ViewVenue),])

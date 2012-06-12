@@ -37,7 +37,14 @@ class NotFoundHandler(llhandler.LLHandler):
 		return os.path.dirname(__file__)
 	
 	def get(self):
-		self.render_specific('not_found')
+		template_values = {}
+		path = os.path.join(self.base_directory(), '../templates/not_found.html')
+		template_file = open(path) 
+		compiled_template = template.Template(template_file.read()) 
+		template_file.close()  
+		self.response.out.write(compiled_template.render(template.Context(template_values)))
+
+		
 		self.response.set_status(404)
 
 	def render_specific(self,pagename,template_values=None):
@@ -45,3 +52,5 @@ class NotFoundHandler(llhandler.LLHandler):
 		path = os.path.join(self.base_directory(), pagename+'.html')
 		#self.wr(path)
 		self.response.out.write(template.render(path, template_values))
+		
+
