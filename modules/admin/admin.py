@@ -12,3 +12,5 @@ def main():
   		('/admin/venues/add', AddVenue),
   		('/admin/venues/(.*)', ViewVenue),])
 
+if __name__ == "__main__":
+  main()

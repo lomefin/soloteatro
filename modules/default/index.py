@@ -12,3 +12,6 @@ class DefaultHandler(llhandler.LLHandler):
 
 def main():
   LLApp([('/', DefaultHandler)])
+
+if __name__ == "__main__":
+  main()

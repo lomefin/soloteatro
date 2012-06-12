@@ -1,25 +1,20 @@
 ﻿{% extends "main_template.html" %}
 
 {% block content %}
-
-<div class="row-fluid" style="display:none">
-  <div class="span12">
-    <div class="row-fluid" style="background-color:#eee">
-      <div class="span4">
-        <img src="http://farm8.staticflickr.com/7032/6656569609_19f022287f_d.jpg" class="span12"/>
-      </div>
-      <div class="span4">
-        <h1>Carmen</h1>
-        <p>
-        Los soldados observan de forma curiosa a la gente que va pasando por la plaza mientras que esperan el próximo cambio de guardia. Llega Micaela buscando a su novio el cabo Don José a lo que Morales y el resto de soldados le indican que no está en la compañía pero que llegará en el siguiente turno para, después, pedirle que espere junto a ellos a lo que ella responde que volverá cuando se produzca el cambio ("Je reviendrai quand la garde montante va remplacer la garde descendant").</p>
-      </div>
-      <div class="span4">
-        <h1>Aqui puede ir un calendario!</h1>
-      </div>
-    </div>
+<div class="row-fluid greeter hidden-desktop">
+  <div class="span4">
+    <img src="http://farm8.staticflickr.com/7032/6656569609_19f022287f_d.jpg" alt="">
+  </div>
+  <div class="span4">
+    <h1>Carmen</h1>
+    <p>Los soldados observan de forma curiosa a la gente que va pasando por la plaza mientras que esperan el próximo cambio de guardia. Llega Micaela buscando a su novio el cabo Don José a lo que Morales y el resto de soldados le indican que no está en la compañía pero que llegará en el siguiente turno para, después, pedirle que espere junto a ellos a lo que ella responde que volverá cuando se produzca el cambio ("Je reviendrai quand la garde montante va remplacer la garde descendant").
+    </p>
+  </div>
+  <div class="span4">
+    <h1>Aqui va el calendario</h1>
   </div>
 </div>
-<div class="row-fluid greeter" >
+<div class="row-fluid greeter visible-desktop" >
   <div class="span8">
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
@@ -94,11 +89,10 @@
   <div class="span3">
     <div class="row-fluid" style="background-color:#eee">
       <div class="span6">
-        <p>Día nacional del teatro</p>
-        <p>Bien celebrado con ballet!</p>
+        <img src="http://blastmagazine.com/wp-content/uploads/2010/10/MethodGun13-100x100.jpg" />
       </div>
-      <div class="span6">
-        <img src="http://a5.mzstatic.com/us/r30/Music/v4/5c/fb/a2/5cfba201-05f5-dd4f-ccc0-2f1d278a573e/Ballet.100x100-75.jpg" style="float:right" />
+      <div class="span6" >
+        <p>La XV Muestra Nacional de Dramaturgia</p>
       </div>
     </div>  
   </div>
@@ -115,10 +109,10 @@
   <div class="span3">
     <div class="row-fluid" style="background-color:#eee">
       <div class="span6">
-        <p>Teatro on fire!</p>
+        <img src="http://blastmagazine.com/wp-content/uploads/2010/10/MethodGun13-100x100.jpg" />
       </div>
-      <div class="span6">
-        <img src="http://www.gowanusyourfaceoff.com/wp-content/plugins/igit-related-posts-with-thumb-images-after-posts/timthumb.php?src=/wp-content/uploads/2012/03/fire1-290x290.jpg&w=100&h=100&zc=1" style="float:right"/>
+      <div class="span6" >
+        <p>La XV Muestra Nacional de Dramaturgia</p>
       </div>
     </div>  
   </div>
@@ -129,6 +123,7 @@
   </div>
   
 </div>
+<div class="divider"></div>
 {% endblock content %}
 {% block js_activities %}
 <script>
