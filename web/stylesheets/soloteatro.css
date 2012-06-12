@@ -55,7 +55,29 @@
 	font-size: xx-large;
 	vertical-align:center;
 }
+.greeter
+{
+	background-color:#eee;
+	padding-top: 20px;
+}
 .navbar .nav .active > a, .navbar .nav .active > a:hover 
 {
 	background-color: #C3681F
 }
+.carousel
+{
+	background-color:#eee
+}
+.carousel img
+{
+	max-height: 333px;
+}
+.carousel-caption
+{
+	top: 0;
+	margin-left: 500px;
+	background-color:#eee;
+	color: #333;
+}
+.carousel-caption p {color: #333;}
+.carousel-control {top: 90%;}
