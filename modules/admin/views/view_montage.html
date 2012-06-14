@@ -10,12 +10,14 @@
 </div>
 <div class="row-fluid">
 	<div class="span6">
-		<h2><small>Director </small>{{montage.director}}</h2>
-		<h2><small>Género </small>{{montage.genre}}</h2>
 		<div>{{montage.description}}</div>
+    <h2>Ficha Técnica</h2>
+    <h3><small>Director </small>{{montage.director}}</h3>
+		<h3><small>Género </small>{{montage.genre}}</h3>
+		
 	</div>
 	<div class="span6">
-		<img src="http://www.dummyimage.com/474x300" alt="imagen para rellenar"/>
+		<img src="http://www.dummyimage.com/720x300" alt="imagen para rellenar"/>
 	</div>
   
 </div>
@@ -27,16 +29,16 @@
     {% empty %}
       <div class="alert">
         <button class="close" data-dismiss="alert">×</button>
-        <p>Actualmente, este montaje no tiene ninguna temporada. Si quieres agregarle una puedes ir al <a href="/admin/season/add">Administrador de Temporadas</a> o agregar una temporada a este montaje <a href="/admin/season/add/to/{{montage.slug}}">directamente</a>.</p>
+        <p>Actualmente, este montaje no tiene ninguna temporada. Si quieres agregarle una puedes ir al <a href="/admin/seasons/add">Administrador de Temporadas</a> o agregar una temporada a este montaje <a href="/admin/montages/{{montage.slug}}/seasons/add">directamente</a>.</p>
       </div>
     {% endfor %}
   </div>
   <div class="span4">
     <h2>Opciones</h2>
     
-      <a href="/admin/season/add/to/{{montage.slug}}" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i> Temporada</a> <br />
-      <a href="/admin/montage/{{montage.slug}}/pictures/add" class="btn btn-large"><i class="icon-plus-sign"></i> Imagen</a><br />
-      <a href="/admin/montage/{{montage.slug}}/videos/add" class="btn btn-large"><i class="icon-plus-sign"></i> Video</a>  
+      <a href="/admin/montages/{{montage.slug}}/seasons/add" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i> Temporada</a> <br />
+      <a href="/admin/montages/{{montage.slug}}/pictures/add" class="btn btn-large"><i class="icon-plus-sign"></i> Imagen</a><br />
+      <a href="/admin/montages/{{montage.slug}}/videos/add" class="btn btn-large"><i class="icon-plus-sign"></i> Video</a>  
     
   </div>
 </div>

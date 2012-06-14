@@ -23,6 +23,7 @@ class LLDefaultHandler(webapp.RequestHandler):
 		self.flash = None
 		self.flash_type = 'normalFlash'
 		self.log_count = 1
+		self.values = {}
 		#self.auth_check()
 	
 	def set_flash(self,flash,flash_type='info'):
@@ -66,11 +67,18 @@ class LLDefaultHandler(webapp.RequestHandler):
 		
 		
 		return True
+
+	def set(self,key,value):
+
+		if not self.values:
+			self.values = {}
+		self.values[key] = value
+
 			
 	def render(self,pagename,template_values=None):
 		
 		if not template_values:
-			template_values = {}
+			template_values = self.values
 			
 		try:
 			self.read_flash()
@@ -117,6 +125,15 @@ class LLDefaultHandler(webapp.RequestHandler):
 	def param(self,param_name):
 		return self.request.get(param_name)
 	
+	def get_or_404(self,data):
+
+		if data is not None:
+			logging.debug("Data is not None")
+			return data
+
+		logging.info("The requested data is None, sending 404 error.")		
+
+
 	def get(self):
 		self.auth_check()
 		self.internal_get()

@@ -20,7 +20,7 @@
 
 .navbar
 {}
-	.navbar .navbar-inner
+	.navbar.soloteatro .navbar-inner
 	{
 		background-color: #db7221; 
 		background-image: none;
@@ -30,7 +30,7 @@
 {
 	margin-top: 2em;
 }
-	.navbar.navigation .navbar-inner
+	.navbar.navigation.soloteatro .navbar-inner
 	{
 		background-color: #00aff0;
 		background-image: none;
@@ -66,18 +66,26 @@
 }
 .carousel
 {
-	background-color:#eee
+	background-color:#eee;
+	color: white;
 }
+.carousel h1
+{
+	font-size: 20px;
+}
+.carousel p
+{
+	font-size: 1em;
+}
+.carousel .carousel-inner img { margin: 0px auto;}
 .carousel img
 {
-	max-height: 333px;
+	max-height: 300px;
 }
 .carousel-caption
 {
-	top: 0;
-	margin-left: 500px;
-	background-color:#eee;
-	color: #333;
+	background-color:rgba(0,0,0,0.5);
+
 }
-.carousel-caption p {color: #333;}
-.carousel-control {top: 90%;}
+/*.carousel-caption p {color: #333;}
+.carousel-control {top: 90%;}*/

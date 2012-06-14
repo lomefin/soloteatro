@@ -1,0 +1,122 @@
+{% extends "admin_template.html" %}
+{% block content %}
+<div class="row-fluid">
+	<div class="span12">
+		<h1>Agregar una temporada a {{montage.name}} de {{montage.director}}</h1>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span9 offset3">
+		<form class="form-horizontal" method="post" >
+		  	<fieldset>
+			    <legend>Datos de la Temporada</legend>
+			    <!--
+			   
+		prices = db.StringListProperty()
+		
+		#Technical Sheet
+		writer = db.StringProperty()
+		cast = db.StringListProperty()
+		producer = db.StringProperty()
+		technical_team = db.StringListProperty()
+	-->
+			 	<div class="control-group">
+			      <label class="control-label" for="season_venue">Teatro</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" id="season_venue" name="season_venue">
+			      </div>
+			      <p class="help-block">Elige un teatro de la lista, si no existe, crealo y vuelve a intentar. Si es teatro itinerante, estas cagado.</p>
+			    </div>
+
+			    <div class="control-group">
+			      <label class="control-label" for="season_start">Fecha inicio temporada</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" id="season_start" name="season_start">
+			      </div>
+			    </div>
+
+			    <div class="control-group">
+			      <label class="control-label" for="season_end">Fecha fin temporada</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" id="season_end" name="season_end">
+			      </div>
+			    </div>
+			</fieldset>
+			<fieldset>
+			    <legend>Ficha Técnica</legend>
+
+			    <div class="control-group">
+			      <label class="control-label" for="season_cast">Elenco</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" id="season_cast" name="season_cast">
+			      </div>
+			    </div>
+
+			    <div class="control-group">
+			      <label class="control-label" for="season_producer">Productor</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" id="season_producer" name="season_producer">
+			      </div>
+			    </div>
+
+			    <div class="control-group">
+			      <label class="control-label" for="season_technical_team">Equipo Técnico</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" id="season_technical_team" name="season_technical_team">
+			      </div>
+			    </div>
+			 </fieldset>
+			 <fieldset>
+			    <legend>Presentaciones y Precios</legend>
+			    <div class="control-group">
+			      	<label class="control-label" for="season_technical_team">Presentaciones</label>
+			      	<div class="controls">
+			        	<input type="date"  placeholder="Fecha" />
+			        	<input type="time"  placeholder="Hora" />
+			        	<a class="btn"><i class="icon-plus-sign"></i>Agregar función</a>
+			      	</div>
+			      	<div class="controls">
+			      		<input type="text" class="input-xlarge" id="season_technical_team" name="season_technical_team">
+			      	</div>
+			      	<p class="help-block">Hay que colocar la fecha y hora de cada presentación que se realizará.</p>
+			    </div>
+			    <div class="control-group">
+			      <label class="control-label" for="season_prices">Precios</label>
+			      <div class="controls">
+			       	<textarea class="input-xlarge" id="season_prices" name="season_prices" rows="5"></textarea>
+			      </div>
+			      <p class="help-block">Coloca cada tipo de precio en una línea, ejemplo: "Jueves populares: $1000","Adulto mayor: $2500".</p>
+			    </div>
+			</fieldset>
+			<div class="form-actions">
+		    	<input type="submit" value="Agregar Montaje" class="btn btn-primary" />
+		    	<input type="reset" value="Limpiar" class="btn btn-warning" value=""/>
+	    	</div>
+		</form>
+	</div>
+</div>
+
+{% endblock content %}
+{% block js_activities %}
+<script type="text/javascript"> 
+	$(function() {
+		$( "#season_start" ).datepicker({
+			defaultDate: "+1w",
+			changeMonth: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				$( "#season_end" ).datepicker( "option", "minDate", selectedDate );
+			}
+		});
+		$( "#season_end" ).datepicker({
+			defaultDate: "+1w",
+			changeMonth: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				$( "#season_start" ).datepicker( "option", "maxDate", selectedDate );
+			}
+		});
+	});
+	
+</script> 
+{% endblock js_activities %}

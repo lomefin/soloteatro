@@ -15,7 +15,9 @@ class AddVenue(llhandler.LLHandler):
 		venue.telephone = self.param('venue_telephone')
 		venue.url = self.param('venue_url')
 		venue.parking = self.param('venue_parking')
-
+		venue.twitter = self.param('venue_twitter')
+		venue.facebook = self.param('venue_facebook')
+		
 		logging.debug("Put on object")
 		key = venue.put()
 		time.sleep(1)

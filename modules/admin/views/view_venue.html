@@ -10,12 +10,11 @@
 </div>
 <div class="row-fluid">
 	<div class="span3">
-		<p>Teléfono</p>
-		<p><a href="tel:{{venue.telephone}}"> {{venue.telephone}}</a></p>
-		<p>Página web</p>
-		<a href="{{venue.url}}">{{venue.url}}</a></p>
-		<p>Estacionamiento</p>
-		<p>{{venue.parking}}</p>
+		{%if venue.telephone %}<h3><small>Teléfono</small> <a href="tel:{{venue.telephone}}"> {{venue.telephone}}</a></h3> {%endif%}
+		{%if venue.url%}<h3><small>Página web</small>	<a href="{{venue.url}}">{{venue.url}}</a></h3>{% endif %}
+		{%if venue.parking%}<h3><small>Estacionamiento</small> {{venue.parking}}</h3>{%endif%}
+    {%if venue.twitter%}<h3><small>Twitter </small> <a href="http://www.twitter.com/#!/{{venue.twitter}}">@{{venue.twitter}}</a></h3>{%endif%}
+    {%if venue.facebook%}<h3><small>Facebook </small> {{venue.facebook}}</h3>{%endif%}
 	</div>
 	<div class="span9">
 		<div id="map_canvas" style="width:100%; height:300px;"></div>

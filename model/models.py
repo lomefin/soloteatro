@@ -22,6 +22,8 @@ class STVenue(STModel):
 	parking = db.StringProperty()
 	url = db.StringProperty()
 	slug = SlugProperty(name)
+	twitter = db.StringProperty()
+	facebook = db.StringProperty()
 
 class STMontage(STModel):
 	name = db.StringProperty()
@@ -29,6 +31,7 @@ class STMontage(STModel):
 	genre = db.StringProperty()
 	slug = db.StringProperty()
 	description = db.TextProperty()
+	writer = db.StringProperty()
 
 
 class STSeason(STModel):
@@ -43,7 +46,6 @@ class STSeason(STModel):
 	repetition = db.IntegerProperty()
 
 	#Technical Sheet
-	writer = db.StringProperty()
 	cast = db.StringListProperty()
 	producer = db.StringProperty()
 	technical_team = db.StringListProperty()
