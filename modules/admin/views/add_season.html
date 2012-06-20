@@ -67,25 +67,40 @@
 			    </div>
 			 </fieldset>
 			 <fieldset>
-			    <legend>Presentaciones y Precios</legend>
+			    <legend>Presentaciones y horarios</legend>
+			    <p class="help-block">Elige las fechas en que presentarás tu temporada. Luego elige a la hora que harás la presentación.</p>
 			    <div class="control-group">
-			      	<label class="control-label" for="season_technical_team">Presentaciones</label>
+			      	<label class="control-label" for="play_dates">Fecha presentaciones</label>
 			      	<div class="controls">
-			        	<input type="date"  placeholder="Fecha" />
-			        	<input type="time"  placeholder="Hora" />
-			        	<a class="btn"><i class="icon-plus-sign"></i>Agregar función</a>
+			      		<input type="text" id="play_dates" />
 			      	</div>
+			      	<label class="control-label" for="play_time">Hora presentaciones</label>
 			      	<div class="controls">
-			      		<input type="text" class="input-xlarge" id="season_technical_team" name="season_technical_team">
+		      			<input type="time" id="play_time" />
 			      	</div>
-			      	<p class="help-block">Hay que colocar la fecha y hora de cada presentación que se realizará.</p>
 			    </div>
-			    <div class="control-group">
-			      <label class="control-label" for="season_prices">Precios</label>
-			      <div class="controls">
-			       	<textarea class="input-xlarge" id="season_prices" name="season_prices" rows="5"></textarea>
-			      </div>
-			      <p class="help-block">Coloca cada tipo de precio en una línea, ejemplo: "Jueves populares: $1000","Adulto mayor: $2500".</p>
+			    
+			</fieldset>
+			<fieldset>
+				<legend>Presentaciones</legend>
+			    <p class="help-block">Elige las fechas y horas para cada presentación de tu temporada.</p>
+			    <div id="datetime_chooser_container">
+				    <div class="control-group" id="datetime_chooser1">
+				      	<label class="control-label" for="play_date_1">Fecha presentaciones</label>
+				      	<div class="controls">
+				      		<input type="text" id="play_date_1" />
+				      	</div>
+				    </div>
+			    </div>
+			</fieldset>
+			<fieldset>
+				<legend>Precios</legend>
+				<div class="control-group">
+			    	<label class="control-label" for="season_prices">Precios</label>
+			      	<div class="controls">
+			       		<textarea class="input-xlarge" id="season_prices" name="season_prices" rows="5"></textarea>
+			      	</div>
+			    	<p class="help-block">Coloca cada tipo de precio en una línea, ejemplo: "Jueves populares: $1000", "Adulto mayor: $2500".</p>
 			    </div>
 			</fieldset>
 			<div class="form-actions">
@@ -98,7 +113,61 @@
 
 {% endblock content %}
 {% block js_activities %}
+
+<style type="text/css">@import "/js/datepick/jquery.datepick.css";</style> 
+<script type="text/javascript" src="/js/datepick/jquery.datepick.js"></script>
+<script type="text/javascript" src="/js/datepick/jquery.datepick-es.js"></script>
+<script src="/js/timepicker/jquery.ui.timepicker.js"></script>
+<style type="text/css">@import "/js/timepicker/jquery.ui.timepicker.css";</style> 
+<script src="/js/will_pickdate/will_pickdate.js"></script>
+<script src="/js/will_pickdate/jquery.mousewheel.js"></script>
+<style type="text/css">@import "/js/will_pickdate/style.css";</style> 
 <script type="text/javascript"> 
+	
+	var datetime_chooser_count = 1;
+	startWillSelect = function(picker,renderDate)
+	{
+
+		var a = $("#"+picker).will_pickdate({
+			timePicker: true,
+  			format: 'j F Y @ h:iA',
+  			//minDate : {date:renderDate,format:'Y-m-d H:i:s'},
+  			inputOutputFormat: 'Y-m-d H:i:s',
+  			days:               ['Domingo', 'Lunes', 'Martes', 'Miércoles','Jueves', 'Viernes', 'Sábado'],
+			months:             ['enero', 'febrero', 'marzo', 'abril', 'mayo','junio', 'julio', 'agosto', 'septiembre', 'octubre','noviembre', 'diciembre'],
+			onSelect: function(renderDate)
+			{
+				var datetime_chooser_container = $('#datetime_chooser_container');
+				var renderDate = $('#play_date_'+datetime_chooser_count).val();
+				var datetime_chooser = $('<div class="control-group" id="datetime_chooser'+ (++datetime_chooser_count) +'">')
+				datetime_chooser.append($('<label class="control-label" for="play_date_'+datetime_chooser_count+'">Fecha presentaciones</label>'))
+				var controls = $('<div class="controls">').append($('<input type="text" id="play_date_'+datetime_chooser_count+'" />'));
+				datetime_chooser.append(controls);
+				datetime_chooser_container.append(datetime_chooser);
+
+				startWillSelect("play_date_"+datetime_chooser_count,renderDate);
+			}
+		});
+	}
+	startMultiCalendar = function()
+	{
+		$('#play_dates').datepick({ 
+    		multiSelect: 999, monthsToShow: 3, 
+    	});
+	}
+	startTimePicker = function()
+	{
+		$('#play_time').timepicker({
+			hourText: 'Horas',
+			minuteText: 'Minutos',
+			minutes: {
+        		starts: 0,                // First displayed minute
+        		ends: 55,                 // Last displayed minute
+        		interval: 15               // Interval of displayed minutes
+    		}, 
+    	});
+	}
+
 	$(function() {
 		$( "#season_start" ).datepicker({
 			defaultDate: "+1w",
@@ -116,6 +185,11 @@
 				$( "#season_start" ).datepicker( "option", "maxDate", selectedDate );
 			}
 		});
+		
+		startMultiCalendar();
+		startTimePicker();
+		startWillSelect("play_date_1");
+
 	});
 	
 </script> 
