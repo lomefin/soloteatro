@@ -146,7 +146,10 @@ class LLDefaultHandler(webapp.RequestHandler):
 		return self.retrieve_or_404(data)
 
 
-	def get(self):
+	def get(self,*args):
+		logging.info("Arguments")
+		for arg in args:
+			logging.info(arg)
 		self.auth_check()
 		self.internal_get()
 	
