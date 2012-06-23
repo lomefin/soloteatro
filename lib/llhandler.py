@@ -134,7 +134,10 @@ class LLDefaultHandler(webapp.RequestHandler):
 		logging.info("The requested data is None, sending 404 error.")		
 
 
-	def get(self):
+	def get(self,*args):
+		logging.info("Arguments")
+		for arg in args:
+			logging.info(arg)
 		self.auth_check()
 		self.internal_get()
 	
