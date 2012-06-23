@@ -11,6 +11,7 @@ def main():
   		('/admin/montages/(.*)/seasons/add',AddSeasonToMontage),
   		('/admin/montages/(.*)',ViewMontage),
   		('/admin/seasons/add',AddSeason),
+      ('/admin/seasons/express_add',AddSeasonExpress),
   		('/admin/plays/add', AddPlay),
   		('/admin/venues/add', AddVenue),
   		('/admin/venues/(.*)', ViewVenue),])

@@ -124,14 +124,26 @@ class LLDefaultHandler(webapp.RequestHandler):
 		self.log_count = self.log_count + 1
 	def param(self,param_name):
 		return self.request.get(param_name)
-	
-	def get_or_404(self,data):
 
+	def param_dump(self):
+
+		logging.debug("Parameter dump")
+		for arg in self.request.arguments():
+			logging.debug("|" +str(arg))
+			for element in self.request.get_all(arg):
+				logging.debug("---" + str(element))
+
+	def retrieve_or_404(self,data):
 		if data is not None:
 			logging.debug("Data is not None")
 			return data
 
-		logging.info("The requested data is None, sending 404 error.")		
+		logging.info("The requested data is None, sending 404 error.")	
+	
+	def get_or_404(self,data):
+
+		logging.warn("Deprecated method, use retrieve_or_404")
+		return self.retrieve_or_404(data)
 
 
 	def get(self):

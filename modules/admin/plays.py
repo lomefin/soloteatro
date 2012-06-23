@@ -10,3 +10,5 @@ class AddPlay(llhandler.LLHandler):
 
 	def internal_post(self):
 		pass
+
+
