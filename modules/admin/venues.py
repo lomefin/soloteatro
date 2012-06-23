@@ -28,8 +28,8 @@ class ViewVenue(llhandler.LLHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	
-	def get(self,venue_code):
-		self.internal_get(venue_code)
+	def transitional_get(self,args):
+		self.internal_get(venue_code = args[0])
 
 	def internal_get(self,venue_code):
 		logging.debug("Looking for " + venue_code)

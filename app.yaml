@@ -25,3 +25,9 @@ handlers:
   script: modules/plays/plays.py  
 - url: /.*
   script: modules/default/index.py
+
+error_handlers:
+  - file: templates/error.html
+
+  - error_code: over_quota
+    file: templates/over_quota.html

@@ -74,6 +74,20 @@ class LLDefaultHandler(webapp.RequestHandler):
 			self.values = {}
 		self.values[key] = value
 
+	def error404(self):
+
+		template_values = {}
+		logging.warn("Invokking error 404.  base_directory = " + str(self.base_directory()))
+
+		
+		path = os.path.join(settings.TEMPLATE_DIRS, 'not_found.html')
+		template_file = open(path) 
+		compiled_template = template.Template(template_file.read()) 
+		template_file.close()  
+		self.response.out.write(compiled_template.render(template.Context(template_values)))
+
+		
+		self.response.set_status(404)
 			
 	def render(self,pagename,template_values=None):
 		
@@ -104,7 +118,9 @@ class LLDefaultHandler(webapp.RequestHandler):
 		template_file.close()  
 		self.response.out.write(compiled_template.render(template.Context(template_values)))
 		
-		
+	def base_directory(self):
+		return os.path.dirname(__file__)
+
 	def render_specific(self,pagename,template_values=None):
 		#self.wr(os.path.dirname(__file__))
 		path = os.path.join(self.base_directory(), pagename)
@@ -139,28 +155,43 @@ class LLDefaultHandler(webapp.RequestHandler):
 			return data
 
 		logging.info("The requested data is None, sending 404 error.")	
+		#self.error404()
 	
 	def get_or_404(self,data):
 
 		logging.warn("Deprecated method, use retrieve_or_404")
 		return self.retrieve_or_404(data)
 
+	#This one is in charge of moving from *args to named params, if needed
+	def transitional_get(self,*args):
+		self.internal_get()
+
+	def transitional_post(self,*args):
+		self.internal_post()
 
 	def get(self,*args):
-		logging.info("Arguments")
+		self.auth_check()
+
+		new_args = []
 		for arg in args:
-			logging.info(arg)
-		self.auth_check()
-		self.internal_get()
+			new_args.append(str(arg))
+		args = new_args
+		self.transitional_get(args)
 	
-	def post(self):
+	def post(self,*args):
 		self.auth_check()
-		self.internal_post()
+
+		new_args = []
+		for arg in args:
+			new_args.append(str(arg))
+		args = new_args
+
+		self.transitional_post(args)
 
 class LLHandler(LLDefaultHandler):
 	
 	def auth_check(self):
-		
+		self.session = get_current_session()
 		
 		return True
 		

@@ -17,15 +17,22 @@
 		
 	</div>
 	<div class="span6">
-		<img src="http://www.dummyimage.com/720x300" alt="imagen para rellenar"/>
+		<img src="http://www.dummyimage.com/720x300" alt="imagen para rellenar" class="span12"/>
 	</div>
   
 </div>
+<hr />
 <div class="row-fluid">
   
   <div class="span8">
     <h2>Temporadas de este Montaje</h2>
     {% for season in montage.seasons %}
+      <div>
+        <h3>Temporada {{season.repetition}}</h3>
+        <h4>Del {{season.start|date:"SHORT_DATE_FORMAT"}} al {{season.end|date:"SHORT_DATE_FORMAT"}} </h4>
+        <h4>en <a href="/admin/venues/{{season.venue.slug}}">{{season.venue.name}}</a></h4>
+
+      </div>
     {% empty %}
       <div class="alert">
         <button class="close" data-dismiss="alert">×</button>
@@ -35,13 +42,14 @@
   </div>
   <div class="span4">
     <h2>Opciones</h2>
-    
-      <a href="/admin/montages/{{montage.slug}}/seasons/add" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i> Temporada</a> <br />
-      <a href="/admin/montages/{{montage.slug}}/pictures/add" class="btn btn-large"><i class="icon-plus-sign"></i> Imagen</a><br />
+    <form class="form-inline">
+      <a href="/admin/montages/{{montage.slug}}/seasons/add" class="btn btn-primary btn-large"><i class="icon-plus-sign icon-white"></i> Temporada</a>
+      <a href="/admin/montages/{{montage.slug}}/pictures/add" class="btn btn-large"><i class="icon-plus-sign"></i> Imagen</a>
       <a href="/admin/montages/{{montage.slug}}/videos/add" class="btn btn-large"><i class="icon-plus-sign"></i> Video</a>  
-    
+    </form>
   </div>
 </div>
+<hr />
 {% endblock content %}
 {% block js_activities %}
 

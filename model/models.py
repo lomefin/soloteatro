@@ -51,12 +51,14 @@ class STSeason(STModel):
 	technical_team = db.StringListProperty()
 
 
-class STPlay(STModel):
+class STPresentation(STModel):
 	date = db.DateTimeProperty()
-	season = db.ReferenceProperty(STSeason, collection_name='plays')
+	season = db.ReferenceProperty(STSeason, collection_name='presentations')
 
 class STSeasonMedia(polymodel.PolyModel):
 	season = db.ReferenceProperty(STSeason,collection_name='related_media')
+	montage = db.ReferenceProperty(STMontage,collection_name='related_media')
+	parent_media = db.SelfReferenceProperty(collection_name='related_media')
 
 class STSynopsis(STSeasonMedia):
 	url = db.StringProperty()

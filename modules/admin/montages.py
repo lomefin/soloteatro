@@ -22,12 +22,14 @@ class ViewMontage(llhandler.LLHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	
-	def get(self,slug):
-		self.internal_get(slug)
+	def transitional_get(self, args):
+
+		self.internal_get(args[0])
+		
 
 	def internal_get(self,slug):
 		logging.debug("Looking montage with slug ["+slug+"]")
-		montage = STMontage.all().filter('slug =',slug).get()
+		montage = self.retrieve_or_404(STMontage.all().filter('slug =',slug).get())
 		logging.debug(montage)
 		self.render('view_montage',template_values={'montage':montage})	
 
