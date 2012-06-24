@@ -8,24 +8,101 @@
 		<p>{{current_shows.count}} obras en esta categoria</p>
 	</div>
 </div>
+<h1>Como se podria ver esta sección.</h1>
+<h2>Como Grilla de Fotos</h2>
 <div class="row-fluid">
-	<div class="span9" style="background-color:#333; padding: 10px;">
+	<div class="span9" style="">
 		<ul class="thumbnails">
         {%for season in open_seasons%}
-	        <li class="span{{thumb_sizes|random}}" style="background-color: #eee; margin-top: 10px;">
-	          <div class="thumbnail" >
+	        <li class="span{{thumb_sizes|random}}" style="background-color: #eee; margin: 0px; width: 30%">
+	          <div class="thumbnail"  >
 	            <img src="http://placehold.it/260x180" alt="">
-	            <div class="caption">
+	            <div class="caption" style="height: 2.5em">
 	              <h5>{{season.montage.name}} por {{season.montage.director}}</h5>
 	            </div>
 	          </div>
 	        </li>
 	    {%endfor%}
 	    {%for season in open_seasons%}
-	        <li class="span{{thumb_sizes|random}}" style="background-color: #eee; margin-top: 10px;">
-	          <div class="thumbnail" >
+	        <li class="span{{thumb_sizes|random}}" style="background-color: #eee; margin: 0px; width: 30%">
+	          <div class="thumbnail"  >
 	            <img src="http://placehold.it/260x180" alt="">
-	            <div class="caption">
+	            <div class="caption" style="height: 2.5em">
+	              <h5>{{season.montage.name}} por {{season.montage.director}}</h5>
+	            </div>
+	          </div>
+	        </li>
+	    {%endfor%}
+	    </ul>
+	</div>
+</div>
+<h2>Como Mosaico</h2>
+<div class="row-fluid">
+	<div class="span9" style="">
+		<ul class="thumbnails">
+        {%for season in open_seasons%}
+	        <li class="span{{thumb_sizes|random}}" style="background-color: #eee; margin: 0px; width: 30%;padding:0;">
+	          <div class="thumbnail" style="padding:0;border:0;" >
+	            <img src="http://placehold.it/260x180" alt="">
+	          </div>
+	        </li>
+	    {%endfor%}
+	    {%for season in open_seasons%}
+	        <li class="span{{thumb_sizes|random}}" style="background-color: #eee; margin: 0px; width: 30%;padding:0;">
+	          <div class="thumbnail" style="padding:0;border:0;" >
+	            <img src="http://placehold.it/260x180" alt="">
+	          </div>
+	        </li>
+	    {%endfor%}
+	    </ul>
+	</div>
+</div>
+<h2>Como Mosaico con descripciones</h2>
+<div class="row-fluid">
+	<div class="span9" style="">
+		<ul class="thumbnails">
+        {%for season in open_seasons%}
+	        <li class="span{{thumb_sizes|random}}" style="background-color: #eee; margin: 0px; width: 30%;padding:0; position:relative">
+	          <div class="thumbnail" style="padding:0;border:0;" >
+	            <div class="caption" style="position: absolute; bottom: 30px; left:10px; background-color:rgba(255,255,255,0.3); width:100%;">
+	              <h5>{{season.montage.name}}</h5>
+	            </div>
+	            <img src="http://placehold.it/260x180" alt="">
+	          </div>
+	        </li>
+	    {%endfor%}
+	    {%for season in open_seasons%}
+	        <li class="span{{thumb_sizes|random}}" style="background-color: #eee; margin: 0px; width: 30%;padding:0; position:relative">
+	          <div class="thumbnail" style="padding:0;border:0;" >
+	            <div class="caption" style="position: absolute; bottom: 30px; left:10px; background-color:rgba(255,255,255,0.3); width:100%;">
+	              <h5>{{season.montage.name}}</h5>
+	            </div>
+	            <img src="http://placehold.it/260x180" alt="">
+	          </div>
+	        </li>
+	    {%endfor%}
+	    </ul>
+	</div>
+</div>
+<h2>Como Ensalada de Fotos</h2>
+<div class="row-fluid">
+	<div class="span9" style="">
+		<ul class="thumbnails" style="background-color: #333; padding-top:30px;">
+        {%for season in open_seasons%}
+	        <li class="span{{thumb_sizes|random}}" style="background-color: #eee; margin: 15px; -webkit-transform:rotate({{thumb_rotations|random}}deg);">
+	          <div class="thumbnail"  >
+	            <img src="http://placehold.it/260x180" alt="">
+	            <div class="caption" style="height: 2.5em">
+	              <h5>{{season.montage.name}} por {{season.montage.director}}</h5>
+	            </div>
+	          </div>
+	        </li>
+	    {%endfor%}
+	    {%for season in open_seasons%}
+	        <li class="span{{thumb_sizes|random}}" style="background-color: #eee; margin: 15px; -webkit-transform:rotate({{thumb_rotations|random}}deg);">
+	          <div class="thumbnail"  >
+	            <img src="http://placehold.it/260x180" alt="">
+	            <div class="caption" style="height: 2.5em">
 	              <h5>{{season.montage.name}} por {{season.montage.director}}</h5>
 	            </div>
 	          </div>

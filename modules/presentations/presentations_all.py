@@ -15,4 +15,5 @@ class PresentationList(llhandler.LLHandler):
 		
 		self.set("open_seasons",open_seasons)
 		self.set("thumb_sizes",[3,4,5])
+		self.set("thumb_rotations",[-10,-7,-4,-2,3,6,11])
 		self.render('list_presentations')
