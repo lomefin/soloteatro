@@ -9,31 +9,29 @@
 	</div>
 </div>
 <div class="row-fluid">
-	<div class="span9">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>Nombre</th>
-					<th>Director</th>
-					<th>G&eacute;nero</th>
-					<th>Acciones</th>
-				</tr>
-			</thead>
-			<tbody>
-				{%for season in open_seasons%}
-					<tr>
-						<td style="text-transform:capitalize">{{season.montage.name}}</td>
-						<td style="text-transform:capitalize">{{season.montage.director}}</td>
-						<td style="text-transform:capitalize">{{season.montage.genre}}</td>
-						<td>
-							<a href="/obras/{{montage.slug}}">Ver</a>
-						</td>
-					</tr>
-				{%endfor%}
-			</tbody>
-			<tfoot>
-			</tfoot>
-		</table>
+	<div class="span9" style="background-color:#333; padding: 10px;">
+		<ul class="thumbnails">
+        {%for season in open_seasons%}
+	        <li class="span{{thumb_sizes|random}}" style="background-color: #eee; margin-top: 10px;">
+	          <div class="thumbnail" >
+	            <img src="http://placehold.it/260x180" alt="">
+	            <div class="caption">
+	              <h5>{{season.montage.name}} por {{season.montage.director}}</h5>
+	            </div>
+	          </div>
+	        </li>
+	    {%endfor%}
+	    {%for season in open_seasons%}
+	        <li class="span{{thumb_sizes|random}}" style="background-color: #eee; margin-top: 10px;">
+	          <div class="thumbnail" >
+	            <img src="http://placehold.it/260x180" alt="">
+	            <div class="caption">
+	              <h5>{{season.montage.name}} por {{season.montage.director}}</h5>
+	            </div>
+	          </div>
+	        </li>
+	    {%endfor%}
+	    </ul>
 	</div>
 </div>
 {% endblock content %}

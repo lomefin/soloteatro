@@ -14,5 +14,5 @@ class PresentationList(llhandler.LLHandler):
 		open_seasons = STSeason.all().filter("status = ","Open")
 		
 		self.set("open_seasons",open_seasons)
-
-		self.render('presentations_of_genre')
+		self.set("thumb_sizes",[3,4,5])
+		self.render('list_presentations')
