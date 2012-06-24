@@ -28,7 +28,7 @@ class STVenue(STModel):
 class STMontage(STModel):
 	name = db.StringProperty()
 	director = db.StringProperty()
-	genre = db.StringProperty()
+	genre = db.CategoryProperty()
 	slug = db.StringProperty()
 	description = db.TextProperty()
 	writer = db.StringProperty()
@@ -42,7 +42,7 @@ class STSeason(STModel):
 	venue = db.ReferenceProperty(STVenue,collection_name='seasons')
 	montage = db.ReferenceProperty(STMontage,collection_name='seasons')
 	
-
+	status = db.CategoryProperty()
 	repetition = db.IntegerProperty()
 
 	#Technical Sheet
@@ -115,3 +115,19 @@ class STPicture(STSeasonMedia):
 # 	image_size = db.StringProperty()
 # 	parent_element = db.ReferenceProperty(LLPostedElement,collection_name='images')
 
+class STAccount(STModel):
+
+	system_login = db.StringProperty()
+	system_password = db.StringProperty()
+	
+	email = db.EmailProperty()
+	wants_email = db.BooleanProperty()
+	
+	name = db.StringProperty()
+	surname = db.StringProperty()
+	maiden_name = db.StringProperty()
+	
+	last_entrance = db.DateTimeProperty()
+	active = db.BooleanProperty()
+	
+	is_administrator	= db.BooleanProperty()

@@ -48,10 +48,10 @@ class LLDefaultHandler(webapp.RequestHandler):
 			if self.session.has_key("current_account"):
 				self.current_account = self.session["current_account"]	
 			else:
-				self.current_account = LLAccount.all().filter('email = ',user.email()).get()
+				self.current_account = STAccount.all().filter('email = ',user.email()).get()
 				
 				if not self.current_account:
-					self.current_account = LLAccount()
+					self.current_account = STAccount()
 					self.current_account.email = user.email()
 						#self.current_account.put()
 					#Setting the session data
@@ -198,10 +198,8 @@ class LLHandler(LLDefaultHandler):
 
 
 
-class LLGAEHandler(LLHandler):
-	def __init__(self):
-		self.flash = ''
-		#self.auth_check()
+class LLGAEHandler(LLDefaultHandler):
+	
 		
 	def auth_check(self):
 		user = users.get_current_user()
@@ -214,10 +212,10 @@ class LLGAEHandler(LLHandler):
 			if self.session.has_key("current_account"):
 				self.current_account = self.session["current_account"]	
 			else:
-				self.current_account = LLAccount.all().filter('email = ',user.email()).get()
+				self.current_account = STAccount.all().filter('email = ',user.email()).get()
 				
 				if not self.current_account:
-					self.current_account = LLAccount()
+					self.current_account = STAccount()
 					self.current_account.email = user.email()
 					#self.current_account.put()
 				#Setting the session data
@@ -229,7 +227,8 @@ class LLGAEHandler(LLHandler):
 					time.sleep(1)
 					return True
 				else:
-					self.redirect('/error/403')		
+					return True
+					#self.redirect('/error/403')		
 			
 				
 		else:

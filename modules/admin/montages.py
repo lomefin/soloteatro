@@ -1,6 +1,6 @@
 from lib.imports import *
 
-class AddMontage(llhandler.LLHandler):
+class AddMontage(llhandler.LLGAEHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	
@@ -17,7 +17,7 @@ class AddMontage(llhandler.LLHandler):
 
 		montage.put()
 
-class ViewMontage(llhandler.LLHandler):
+class ViewMontage(llhandler.LLGAEHandler):
 	
 	def base_directory(self):
 		return os.path.dirname(__file__)
@@ -33,7 +33,7 @@ class ViewMontage(llhandler.LLHandler):
 		logging.debug(montage)
 		self.render('view_montage',template_values={'montage':montage})	
 
-class ListMontages(llhandler.LLHandler):
+class ListMontages(llhandler.LLGAEHandler):
 
 	def base_directory(self):
 		return os.path.dirname(__file__)

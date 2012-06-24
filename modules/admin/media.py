@@ -1,6 +1,6 @@
 from lib.imports import *
 
-class AddMediaToSeason(llhandler.LLHandler):
+class AddMediaToSeason(llhandler.LLGAEHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	

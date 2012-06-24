@@ -1,6 +1,6 @@
 from lib.imports import *
 
-class AddPlay(llhandler.LLHandler):
+class AddPlay(llhandler.LLGAEHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	

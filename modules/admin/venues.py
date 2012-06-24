@@ -1,6 +1,6 @@
 from lib.imports import *
 
-class AddVenue(llhandler.LLHandler):
+class AddVenue(llhandler.LLGAEHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	
@@ -24,7 +24,7 @@ class AddVenue(llhandler.LLHandler):
 		venue = STVenue.get(key)
 		self.redirect('/admin/venues/'+str(venue.slug))
 
-class ViewVenue(llhandler.LLHandler):
+class ViewVenue(llhandler.LLGAEHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	

@@ -1,6 +1,6 @@
 from lib.imports import *
 
-class AddSeason(llhandler.LLHandler):
+class AddSeason(llhandler.LLGAEHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	
@@ -11,13 +11,13 @@ class AddSeason(llhandler.LLHandler):
 		montage = STMontage()
 		montage.name = self.param('montage_name')
 		montage.director = self.param('montage_director')
-		montage.genre = self.param('montage_genre')
+		montage.genre = db.Category(self.param('montage_genre'))
 		montage.description = self.param('montage_description')
 		montage.slug = Slugger.slugify(str(montage.name) + " de "+str(montage.director))
 
 		montage.put()
 
-class AddSeasonToMontage(llhandler.LLHandler):
+class AddSeasonToMontage(llhandler.LLGAEHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	
@@ -51,7 +51,7 @@ class AddSeasonToMontage(llhandler.LLHandler):
 		# technical_team = db.StringListProperty()
 		season = STSeason()
 
-class AddSeasonExpress(llhandler.LLHandler):
+class AddSeasonExpress(llhandler.LLGAEHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	
@@ -70,7 +70,7 @@ class AddSeasonExpress(llhandler.LLHandler):
 		montage = STMontage()
 		montage.name = self.param('montage_name')
 		montage.director = self.param('montage_director')
-		montage.genre = self.param('montage_genre')
+		montage.genre = db.Category(self.param('montage_genre'))
 		montage.description = self.param('montage_description')
 		montage.slug = Slugger.slugify(str(montage.name) + " de "+str(montage.director))
 		montage.put()
@@ -84,6 +84,7 @@ class AddSeasonExpress(llhandler.LLHandler):
 		season.start = datetime.datetime.strptime(self.param("season_start"),"%m/%d/%Y")
 		season.end = datetime.datetime.strptime(self.param("season_end"),"%m/%d/%Y")
 		season.repetition = seasons_for_this_montage + 1
+		season.status = db.Category("Open")
 		season.put()
 
 		#Le Plays for that season
