@@ -85,6 +85,7 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 		season.end = datetime.datetime.strptime(self.param("season_end"),"%m/%d/%Y")
 		season.repetition = seasons_for_this_montage + 1
 		season.status = db.Category("Open")
+		season.genre = montage.genre
 		season.put()
 
 		#Le Plays for that season

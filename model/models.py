@@ -33,6 +33,9 @@ class STMontage(STModel):
 	description = db.TextProperty()
 	writer = db.StringProperty()
 
+	def __str__(self):
+		return "Montage " + slug
+
 
 class STSeason(STModel):
 	
@@ -44,12 +47,14 @@ class STSeason(STModel):
 	
 	status = db.CategoryProperty()
 	repetition = db.IntegerProperty()
-
+	genre = db.CategoryProperty()
 	#Technical Sheet
 	cast = db.StringListProperty()
 	producer = db.StringProperty()
 	technical_team = db.StringListProperty()
 
+	def __str__(self):
+		return "Season " + montage.slug + ", repetition" + str(repetition)
 
 class STPresentation(STModel):
 	date = db.DateTimeProperty()

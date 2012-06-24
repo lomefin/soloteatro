@@ -13,8 +13,10 @@ class PresentationsByGenre(llhandler.LLHandler):
 	def internal_get(self,genre):
 
 		logging.debug("Showing presentations of " + genre)
-		current_shows = STSeason.all().filter("status = ","open").filter("genre = ",genre)
+
+		open_seasons = STSeason.all().filter("status = ","Open").filter("genre = ",genre)
+		
 		self.set("genre",genre)
-		self.set("current_shows",current_shows)
+		self.set("open_seasons",open_seasons)
 
 		self.render('presentations_of_genre')
