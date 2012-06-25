@@ -22,3 +22,8 @@ indexes:
   - name: is_active
   - name: date_created
     direction: desc
+
+- kind: STSeason
+  properties:
+  - name: status
+  - name: genre

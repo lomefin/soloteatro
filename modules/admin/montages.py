@@ -13,7 +13,7 @@ class AddMontage(llhandler.LLGAEHandler):
 		montage.director = self.param('montage_director')
 		montage.genre = self.param('montage_genre')
 		montage.description = self.param('montage_description')
-		montage.slug = Slugger.slugify(str(montage.name) + " de "+str(montage.director))
+		montage.slug = Slugger.slugify(montage.name + " de "+montage.director)
 
 		montage.put()
 

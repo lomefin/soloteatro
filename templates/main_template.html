@@ -71,33 +71,11 @@
               <div class="nav-collapse">
                 {% block menu_content %}
                 <ul class="nav">
+                  {% for genre in active_genres %}
                   <li class="">
-                    <a href="./obras/genero/drama">Drama</a>
+                    <a href="/obras/genero/{{genre}}">{{genre}}</a>
                   </li>
-                  <li class="active">
-                    <a href="./obras/genero/comedia">Comedia</a>
-                  </li>
-                  <li class="">
-                    <a href="./obras/genero/familiar">Familiar</a>
-                  </li>
-                  <li class="">
-                    <a href="./obras/genero/musical">Impro</a>
-                  </li>
-                  <li class="">
-                    <a href="./obras/genero/experimental">Fisico</a>
-                  </li>
-                   <li class="">
-                    <a href="./obras/genero/familiar">Musical</a>
-                  </li>
-                  <li class="">
-                    <a href="./obras/genero/familiar">Marionetas</a>
-                  </li>
-                  <li class="">
-                    <a href="./obras/genero/familiar">Callejero</a>
-                  </li>
-                  <li class="">
-                    <a href="./obras/genero/familiar">Otras</a>
-                  </li>
+                  {% endfor %}
                   <li class="divider-vertical"></li>
                   
                 </ul>
@@ -124,20 +102,16 @@
 
       {% endblock %}
       
-        
       
       <footer class="footer">
-        <p class="pull-right"><a href="#">Vuelta al comienzo</a></p>
-        <p>
-          <a href="/content/who">Quienes Somos</a>
-          <a href="/archive">Archivo</a>
-          <a href="./obras/genero/familiar">Links amigos</a>
-          <a href="./obras/genero/experimental">Teatros</a>
-        </p>
-        <p>
-          <a href="./obras/genero/musical">Promociones</a>
-          <a href="./obras/especial/gratis">Contacto</a>
-          <a href="./obras/genero/impro">Ingresa tu obra</a>
+        <p style="text-align: right">
+          <a href="/contenido/quienes-somos">Quienes Somos</a>
+          <!--a href="/archive">Archivo</a-->
+          <a href="/contenido/links">Links amigos</a>
+          <a href="/teatros/">Teatros</a>
+          <!--a href="/obras/genero/musical">Promociones</a-->
+          <a href="/contacto/">Contacto</a>
+          <!--a href="/contact/ingresar-obra">Ingresa tu obra</a-->
         </p>
       </footer>
     </div>

@@ -72,7 +72,7 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 		montage.director = self.param('montage_director')
 		montage.genre = db.Category(self.param('montage_genre'))
 		montage.description = self.param('montage_description')
-		montage.slug = Slugger.slugify(str(montage.name) + " de "+str(montage.director))
+		montage.slug = Slugger.slugify(montage.name + " de "+montage.director)
 		montage.put()
 		
 		seasons_for_this_montage = montage.seasons.count()

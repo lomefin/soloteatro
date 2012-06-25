@@ -25,6 +25,7 @@ from lib import errors
 from lib.slugify import *
 from lib import markdown2
 from lib import llhandler
+from lib.sthandler import STHandler
 from lib import constants
 from root_dir import *
 

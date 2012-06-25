@@ -3,7 +3,7 @@
 from lib.imports import *
 
 
-class PresentationDetails(llhandler.LLHandler):
+class PresentationDetails(STHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 

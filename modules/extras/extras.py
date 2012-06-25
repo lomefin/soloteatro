@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2012 Leonardo Luarte, 2007 Google Inc.
+# Copyright 2012 Leonardo Luarte
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,23 +15,13 @@
 # limitations under the License.
 #
 from lib.imports import *
+from modules.extras.cache_flush import CacheFlush
 
-class DefaultHandler(STHandler):
-	
-	def base_directory(self):
-		return os.path.dirname(__file__)
-	
-	def internal_get(self):
-		
-		rand_seasons = db.GqlQuery("SELECT * FROM STSeason WHERE status = 'Open' LIMIT 3")
-		self.set("rand_seasons",rand_seasons)
-		self.render('index',template_values={})
 
 def main():
-  LLApp([('/', DefaultHandler)])
-
+  LLApp([('/options/flush_cache', CacheFlush),
+  		
+  	])
+ 
 if __name__ == "__main__":
   main()
-
-
-
