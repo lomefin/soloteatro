@@ -203,12 +203,12 @@ class LLGAEHandler(LLDefaultHandler):
 		
 	def auth_check(self):
 		user = users.get_current_user()
-		
+		logging.debug("Current user is "+ str(user))
 		if user:
 			
 			self.session = get_current_session()
 			self.current_account = None
-			
+			self.set("current_user",user)
 			if self.session.has_key("current_account"):
 				self.current_account = self.session["current_account"]	
 			else:
@@ -227,6 +227,8 @@ class LLGAEHandler(LLDefaultHandler):
 					time.sleep(1)
 					return True
 				else:
+					self.session["current_account"] = self.current_account
+					time.sleep(1)
 					return True
 					#self.redirect('/error/403')		
 			

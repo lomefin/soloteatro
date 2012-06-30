@@ -25,8 +25,13 @@ handlers:
   script: modules/presentations/presentations.py
 - url: /(obras|categorias)/.*
   script: modules/presentations/presentations.py  
+- url: /logout
+  script: modules/extras/extras.py
+- url: /contenido/.*
+  script: modules/content/content.py
 - url: /.*
   script: modules/default/index.py
+
 
 error_handlers:
   - file: templates/error.html

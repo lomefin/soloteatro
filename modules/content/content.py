@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright 2007 Google Inc.
+# Copyright 2012 Leonardo Luarte
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,34 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import cgi
-import datetime
-import os
-import lib
-
-from google.appengine.api import users
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp import util
-from google.appengine.ext import db
-from google.appengine.api import datastore_errors
-from google.appengine.ext.webapp import template
-from lib import llhandler
-from lib import errors
-class LinksIndexHandler(llhandler.LLHandler):
-	
-	def base_directory(self):
-		return os.path.dirname(__file__)
-	
-	def internal_get(self):
-		self.render('about')
-
-
+from lib.imports import *
+from modules.display_content import Content
 
 def main():
-  application = webapp.WSGIApplication([('/content/', LinksIndexHandler),('.*',errors.NotFoundHandler)],
-                                       debug=True)
-  util.run_wsgi_app(application)
-
-
-if __name__ == '__main__':
+  LLApp([('/contenido/(quienes-somos|links)', DisplayContent),
+  	])
+ 
+if __name__ == "__main__":
   main()

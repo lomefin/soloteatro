@@ -71,11 +71,14 @@
                   <li class="">
                     <a href="/admin/venues/add">Agregar Teatros</a>
                   </li>
-                  
+                  {% if current_user %}
+                  <li class="">
+                    {{current_user}}
+                    <a href="/logout">Salir</a>
+                  </li>
+                  {% endif %}
                 </ul>
-                <form class="navbar-search pull-right" action="">
-                  <input type="text" class="search-query span12" placeholder="Buscar"  data-provide="typeahead" name="lookup" id="lookup">
-                </form>
+                
                 {%endblock menu_content%}
               </div><!-- /.nav-collapse -->
             </div>

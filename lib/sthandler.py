@@ -25,13 +25,14 @@ class STHandler(llhandler.LLHandler):
 
 	def show_actives_genres_in_menu(self):
 
-		if(self.session):
-			if(self.session.has_key('active_genres')):
-				self.set('active_genres',self.session['active_genres'])
-				logging.debug("Active Genres List Recycled")
-			if (self.session.has_key('active_seasons')):
-				self.set('active_seasons',self.session['active_seasons'])
-				return	
+		#Optimization for current presentations, use when DB load goes up.
+		# if(self.session):
+		# 	if(self.session.has_key('active_genres')):
+		# 		self.set('active_genres',self.session['active_genres'])
+		# 		logging.debug("Active Genres List Recycled")
+		# 	if (self.session.has_key('active_seasons')):
+		# 		self.set('active_seasons',self.session['active_seasons'])
+		# 		return	
 
 
 

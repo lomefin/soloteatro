@@ -16,11 +16,11 @@
 #
 from lib.imports import *
 from modules.extras.cache_flush import CacheFlush
-
+from modules.extras.logout import Logout
 
 def main():
   LLApp([('/options/flush_cache', CacheFlush),
-  		
+  		('/logout',Logout),
   	])
  
 if __name__ == "__main__":
