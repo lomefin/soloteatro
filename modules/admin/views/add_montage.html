@@ -22,7 +22,10 @@
 		    <div class="control-group">
 		      <label class="control-label" for="montage_name">Nombre del montaje</label>
 		      <div class="controls">
-		        <input type="text" class="input-xlarge" id="montage_name" name="montage_name">
+		        <input type="text" class="input-xlarge" id="montage_name" name="montage_name"
+		        data-provide="typeahead" data-items="4" 
+		        data-source="[{%for montage in open_montages%}\"{{montage.name}}\"{%endfor%}]"
+		        >
 		        <p class="help-block">Ej. El rucio de los cuchillos, Art, Invasión.</p>
 		      </div>
 		    </div>
@@ -73,9 +76,6 @@
 {% endblock content %}
 {% block js_activities %}
 <script type="text/javascript"> 
-	$(document).ready(function() {
-      $("#montage_description").markItUp(mySettings);
-   	});
-	
+	$('#montage_name').typeahead()
 </script> 
 {% endblock js_activities %}

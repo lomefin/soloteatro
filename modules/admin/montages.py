@@ -5,6 +5,9 @@ class AddMontage(llhandler.LLGAEHandler):
 		return os.path.dirname(__file__)
 	
 	def internal_get(self):
+		#open_montages_names = db.GqlQuery("SELECT STMontage.name FROM STMontage WHERE status = :1",'Open')
+		open_montages = STMontage.all().filter('status =','Open').get()
+		self.set('open_montages',open_montages)
 		self.render('add_montage',template_values={})
 
 	def internal_post(self):
