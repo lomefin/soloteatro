@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 from lib.imports import *
-from modules.display_content import Content
+from modules.content.display_content import DisplayContent
 
 def main():
   LLApp([('/contenido/(quienes-somos|links)', DisplayContent),

@@ -61,9 +61,12 @@ class STSeasonMedia(polymodel.PolyModel):
 	season = db.ReferenceProperty(STSeason,collection_name='related_media')
 	montage = db.ReferenceProperty(STMontage,collection_name='related_media')
 	parent_media = db.SelfReferenceProperty(collection_name='related_media')
+	description = db.StringProperty()
 
-class STSynopsis(STSeasonMedia):
-	url = db.StringProperty()
+class STVideo(STSeasonMedia):
+	video_id = db.StringProperty()
+	provider = db.StringProperty()
+	failsafe_url = db.StringProperty()
 
 class STInterview(STSeasonMedia):
 	byline = db.StringProperty()

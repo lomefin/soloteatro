@@ -4,25 +4,66 @@ class AddMediaToSeason(llhandler.LLGAEHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	
-	def get(self, *args):
+	def transitional_get(self, args):
 
-		for arg in args:
-			logging.debug("ARG:\t" + str(arg))
-		self.auth_check()
-		self.internal_get(montage_slug,season_numeral)
+		self.internal_get(args[0],args[1])
 
-	def internal_get(montage_slug,season_numeral):
+	def internal_get(self,montage_slug,season_numeral):
 
 		montage = self.get_or_404(STMontage.all().filter('slug =',montage_slug).get())
+		self.set('montage',montage)
+		season = montage.seasons.filter('repetition =',season_numeral)
+		self.set('season',season)
+		self.render('add_media')
 
-		self.render('add_montage',template_values={})
 
-	def internal_post(self):
-		montage = STMontage()
-		montage.name = self.param('montage_name')
-		montage.director = self.param('montage_director')
-		montage.genre = self.param('montage_genre')
-		montage.description = self.param('montage_description')
-		montage.slug = Slugger.slugify(str(montage.name) + " de "+str(montage.director))
 
-		montage.put()
+class AddMediaToLatestSeason(llhandler.LLGAEHandler):
+	def base_directory(self):
+		return os.path.dirname(__file__)
+	
+	def transitional_get(self, args):
+
+		self.internal_get(args[0])
+
+	def internal_get(self,montage_slug):
+
+		montage = self.get_or_404(STMontage.all().filter('slug =',montage_slug).get())
+		self.set('montage',montage)
+		season = montage.seasons.order('-repetition').get()
+		self.set('season',season)
+		self.render('add_media')
+
+
+
+class AddVideoToSeason(llhandler.LLGAEHandler):
+
+	def base_directory(self):
+		return os.path.dirname(__file__)
+	
+	def transitional_post(self, args):
+
+		self.internal_post(args[0])
+
+	def internal_post(self, season_key):
+
+		season_key = db.Key(encoded=season_key)
+		season = STSeason.get(season_key)
+		logging.debug(season_key)
+		montage = season.montage
+		
+
+		video = STVideo()
+		video.season = season.key()
+		video.montage = montage.key()
+
+		video.video_id = self.param('youtube_id')
+		provider = db.StringProperty('youtube')
+		failsafe_url = db.StringProperty('http://www.youtube.com/embed/'+self.param('youtube_id'))
+
+		video.put()
+
+		self.set_flash('El video ha sido agregado a la temporada')
+		self.redirect('/admin/montages/'+montage.slug)
+
+		

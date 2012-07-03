@@ -1,0 +1,135 @@
+{% extends "admin_template.html" %}
+{% block content %}
+
+<section id="media-select">
+	<div class="page-header">
+		<h1>Agregar contenido multimedial</h1>
+		<p>Elige el tipo de contenido que quieres agregar</p>
+	</div>
+	<div class="row">
+		<div class="span4"><a><h2><i class="icon-camera"></i>Fotos</a></h2><p>Pueden ser fotos sueltas o desde Flickr.</p></div>
+		<div class="span4"><a><h2><i class="icon-film"></i>Videos</a></h2><p>Pueden ser videos de YouTube.</p></div>
+		<div class="span4"><a><h2><i class="icon-list-alt"></i>Entrevistas</a></h2><p>Estas las escribes tu, pero no llevan imagenes dentro de la entrevista.</p></div>
+	</div>
+</section>
+
+
+<section id="upload-video-youtube">
+	<div class="page-header">
+		<h2>Vincular a video de Youtube</h2>
+	</div>
+	<div class="row">
+		<div class="span4">
+			<h3>Instrucciones</h3>
+			<ol>
+				<li>Coloca el código del video en el formulario de abajo</li>
+				<li>Haz click en <strong>probar</strong> y revisa que el video esté OK en la derecha</li>
+				<li>Si todo está OK, has click en guardar</li>
+			</ol>
+			<form class="well form-inline">
+				<input type="text"  id="youtube_url" name="youtube_url" value=""/><span id="youtube_test" class="btn">Probar</span>
+			</form>
+			<form method="post" action="/admin/media/video/{{season.key}}" id="save_youtube_video" style="display:none">
+				<label for="youtube_description">Descripción:</label><input type="text" name="youtube_description" />
+				<button class="btn btn-primary" ><i class="icon-plus icon-white"></i>Agregar</button>
+				<input type="hidden" name="youtube_id" id="youtube_id"/>
+			</form>
+		</div>
+		<div class="span8" id="youtube_preview">
+			<iframe width="640" height="360" src="http://www.youtube.com/embed/ayh1LD-sNn8" frameborder="0" allowfullscreen></iframe>
+		</div>
+	</div>
+</section>
+
+<div class="row">
+	<div class="span9 offset3">
+		<form class="form-horizontal" method="post" >
+		  <fieldset>
+		    <legend>Agregar Fotos</legend>
+		    
+		    <div class="control-group">
+		      <label class="control-label" for="montage_name">Nombre del montaje</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="montage_name" name="montage_name"
+		        data-provide="typeahead" data-items="4" 
+		        data-source="[{%for montage in open_montages%}\"{{montage.name}}\"{%endfor%}]"
+		        >
+		        <p class="help-block">Ej. El rucio de los cuchillos, Art, Invasión.</p>
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="montage_writer">Dramaturgo</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="montage_writer" name="montage_writer">
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="montage_director">Director</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="montage_director" name="montage_director">
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="montage_genre">Género</label>
+		      <div class="controls">
+		        <select class="input-xlarge" id="montage_genre" name="montage_genre">
+		        	<option>Drama</option>
+		        	<option>Comedia</option>
+		        	<option>Impro</option>
+		        	<option>Musical</option>
+		        	<option>Experimental</option>
+		        	<option>Familiar</option>
+		        </select>
+		        <p class="help-block">Elige de la lista</p>
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="montage_description">Argumento de la obra</label>
+		      <div class="controls">
+		       	<textarea class="input-xxlarge" id="montage_description" name="montage_description" rows="5"></textarea>
+		      </div>
+		    </div>
+		    <div class="form-actions">
+		    	<input type="submit" value="Agregar Montaje" class="btn btn-primary" />
+		    	<input type="reset" value="Limpiar" class="btn btn-warning" value=""/>
+		    </div>
+		</form>
+	</div>
+</div>
+
+{% endblock content %}
+{% block js_activities %}
+<script type="text/javascript"> 
+	
+	$(function() {
+	    $('#youtube_test').click(function(){ 
+	    	
+	    	var content = $('#youtube_url').val();
+	    	var re = /http:\/\/www.youtube.com\/watch\?(.*)/
+	    	var get_vars = re.exec(content)[1].split('&');
+	    	var youtube_id = '';
+	    	for (v in get_vars)
+	    	{
+	    		params = get_vars[v].split('=');
+	    		if(params[0] == 'v')
+	    		{
+	    			youtube_id = params[1];
+	    		}
+	    	}
+	    	var preview = $('#youtube_preview');
+	    	preview.empty();
+	    	var iframe = $('<iframe width="640" height="360" frameborder="0">');
+	    	iframe.attr('src','http://www.youtube.com/embed/'+youtube_id);
+	    	$('#youtube_id').val(youtube_id);
+	    	preview.append(iframe);
+	    	$('#save_youtube_video').show();
+	    	return false;
+	    });
+	    
+	});
+</script> 
+{% endblock js_activities %}

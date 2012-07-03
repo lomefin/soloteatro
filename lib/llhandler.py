@@ -21,7 +21,7 @@ from lib.imports import *
 class LLDefaultHandler(webapp.RequestHandler):
 	def __init__(self):
 		self.flash = None
-		self.flash_type = 'normalFlash'
+		self.flash_type = 'success'
 		self.log_count = 1
 		self.values = {}
 		#self.auth_check()
@@ -35,7 +35,7 @@ class LLDefaultHandler(webapp.RequestHandler):
 		if(self.session):
 			if(self.session.has_key('flash')):
 				self.flash = self.session.pop('flash',default=None)
-				self.flash_type = self.session.pop('flash_type',default='normalFlash')
+				self.flash_type = self.session.pop('flash_type',default='success')
 			
 	
 	def auth_check(self):

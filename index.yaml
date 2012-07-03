@@ -25,5 +25,11 @@ indexes:
 
 - kind: STSeason
   properties:
+  - name: montage
+  - name: repetition
+    direction: desc
+
+- kind: STSeason
+  properties:
   - name: status
   - name: genre
