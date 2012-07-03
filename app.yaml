@@ -1,5 +1,5 @@
-application: soloteatroapp
-version: 20120624
+application: soloteatrohrd
+version: development
 runtime: python
 api_version: 1
 
