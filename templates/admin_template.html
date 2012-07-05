@@ -53,13 +53,16 @@
           {% block menu_content %}
           <ul class="nav">
             <li class="">
-              <a href="/admin/seasons/express_add">Agregar Temporada Express</a>
+              <a href="/admin/seasons/express_add">Agregar Nueva Obra</a>
             </li>
-            <li class="">
+            <!--li class="">
               <a href="/admin/montages/add">Agregar Montaje</a>
             </li>
             <li class="">
               <a href="/admin/seasons/add">Agregar Temporadas</a>
+            </li-->
+            <li class="">
+              <a href="/admin/montages/">Lista Montajes</a>
             </li>
             <li class="">
               <a href="/admin/venues/add">Agregar Teatros</a>
@@ -67,6 +70,8 @@
             {% if current_user %}
             <li class="">
               {{current_user}}
+            </li>
+            <li class="">
               <a href="/logout">Salir</a>
             </li>
             {% endif %}
@@ -99,20 +104,7 @@
       
         
       
-    <footer class="footer">
-      <p class="pull-right"><a href="#">Vuelta al comienzo</a></p>
-      <p>
-        <a href="/content/who">Quienes Somos</a>
-        <a href="/archive">Archivo</a>
-        <a href="./obras/genero/familiar">Links amigos</a>
-        <a href="./obras/genero/experimental">Teatros</a>
-      </p>
-      <p>
-        <a href="./obras/genero/musical">Promociones</a>
-        <a href="./obras/especial/gratis">Contacto</a>
-        <a href="./obras/genero/impro">Ingresa tu obra</a>
-      </p>
-    </footer>
+    
   </div>
 </div>
 

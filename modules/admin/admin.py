@@ -4,7 +4,7 @@ from modules.admin.venues import *
 from modules.admin.montages import *
 from modules.admin.seasons import *
 from modules.admin.media import *
-
+from modules.admin.reports import *
 def main():
   LLApp([
   		('/admin/montages/add', AddMontage),
@@ -19,6 +19,7 @@ def main():
   		('/admin/venues/add', AddVenue),
   		('/admin/venues/(.*)', ViewVenue),
       ('/admin/media/video/(\S*)',AddVideoToSeason),
+      ('/admin/',ShowReports),
       ])
 
 if __name__ == "__main__":

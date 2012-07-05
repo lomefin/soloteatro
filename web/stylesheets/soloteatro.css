@@ -20,6 +20,10 @@
 
 .navbar
 {}
+	.navbar.soloteatro
+	{
+		margin-top: 10px;
+	}
 	.navbar.soloteatro .navbar-inner
 	{
 		background-color: #db7221; 
@@ -30,6 +34,12 @@
 	{
 		text-transform: capitalize;
 	}
+
+body
+{ 
+	background-image: url(http://subtlepatterns.com/patterns/light_wool.png);
+}
+
 
 .navbar.navigation
 {
@@ -63,7 +73,7 @@ gap { margin-top:9px; margin-bottom:9px;}
 }
 .greeter
 {
-	background-color:#eee;
+	background-color:#fff;
 	padding-top: 20px;
 }
 .navbar .nav .active > a, .navbar .nav .active > a:hover 
@@ -106,3 +116,64 @@ gap { margin-top:9px; margin-bottom:9px;}
 /*.carousel-caption p {color: #333;}
 .carousel-control {top: 90%;}*/
 section{ margin-bottom: 1.5em;}
+
+footer.footer
+{
+	background-color: rgba(200,200,200,0.25);
+}
+
+a.brand
+{
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+
+.day-names .day-name
+{
+	margin: 1px;
+	width: 12.5%;
+	height: 20px;
+	background-color: #DB7221;
+	-webkit-border-radius: 10px;
+	padding: 0.5;
+	text-align: center;
+	font-size: 14pt;
+	padding-top: 5px;
+	color: white;
+}
+
+.week .day
+{
+	cursor: pointer;
+	margin: 1px;
+	width: 12.5%;
+	height: 20px;
+	background-color: rgba(255,255,255,0.9);
+	-webkit-border-radius: 10px;
+	border: solid 1px rgba(0,0,0,0.1);
+	padding: 0.5;
+	text-align: center;
+	font-size: 14pt;
+	padding-top: 5px;
+	color: black;
+}
+.week .day:hover
+{
+	background-color: rgba(0,85,128,0.2);
+	-webkit-animation:myfirst 0.5s;
+}	
+	@-webkit-keyframes myfirst /* Safari and Chrome */
+	{
+		from {background:rgba(0,85,128,0);}
+		to {background:rgba(0,85,128,0.2);}
+	}
+
+.week .day.today
+{
+	border: #DB7221 2px solid;
+	padding-top: 4px;
+}
+.week .day.other-month
+{
+	color: #aaa ;
+}

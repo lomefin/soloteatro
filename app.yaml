@@ -17,11 +17,13 @@ handlers:
   static_dir: static/
 - url: /admin/(\D*?)/.*
   script: modules/admin/admin.py
+- url: /admin/
+  script: modules/admin/admin.py
 - url: /options/.*
   script: modules/extras/extras.py
 - url: /noticias/.*
   script: modules/news/news.py
-- url: /obras/genero/.*
+- url: /obras/genero/(.*)
   script: modules/presentations/presentations.py
 - url: /(obras|categorias)/.*
   script: modules/presentations/presentations.py  

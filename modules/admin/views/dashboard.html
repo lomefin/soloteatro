@@ -1,0 +1,75 @@
+{% extends "admin_template.html" %}
+{% block content %}
+<section id="">
+	<div class="page-header">
+		<h1>Administrador SoloTeatro</h1>
+		<small>Un montón de datos interesantes, inventados.</small>
+	</div>
+	<div class="row">
+		<div class="span4">
+			<h2><i class="icon-signal"></i>Géneros</h2>
+			<div id="pie"></div>
+			<p>Distribución de los géneros de las obras en cartelera.</p>
+		</div>
+	</div>
+</section>
+
+{% endblock content %}
+
+{% block js_activities %}
+<script src="/js/highcharts/highcharts.js"></script>
+
+<script>
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'pie',
+			plotBackgroundColor: 'transparent',
+			plotBorderWidth: null,
+			plotShadow: false
+		},
+		title: {
+			text: ''
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.point.name +'</b>: '+ this.percentage +' %';
+			}
+		},
+		plotOptions: {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: false,
+					color: '#000000',
+					connectorColor: '#000000',
+					formatter: function() {
+						return '';
+					}
+				},
+				showInLegend: true
+			}
+		},
+		series: [{
+			type: 'pie',
+			name: 'Géneros en cartelera',
+			data: [
+				['Drama',   45.0],
+				['Comedia',       26.8],
+				{
+					name: 'Impro',
+					y: 12.8,
+					sliced: true,
+					selected: true
+				},
+				['StandUp',    8.5],
+				['Fisico',     6.2],
+				['Marionetas',   0.7]
+			]
+		}]
+	});
+});
+</script>
+{% endblock js_activities %}

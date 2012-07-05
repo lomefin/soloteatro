@@ -21,7 +21,7 @@ from modules.presentations.presentation_details import *
 
 
 def main():
-  LLApp([('/obras/genero/([a-zA-Z]*)', PresentationsByGenre),
+  LLApp([('/obras/genero/(.*)', PresentationsByGenre),
   		('/obras/',PresentationList),
   		('/obras/((\S*?))',PresentationDetails)
   	])

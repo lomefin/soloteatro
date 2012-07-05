@@ -28,6 +28,7 @@ class STVenue(STModel):
 class STMontage(STModel):
 	name = db.StringProperty()
 	director = db.StringProperty()
+	company = db.StringProperty()
 	genre = db.CategoryProperty()
 	slug = db.StringProperty()
 	description = db.TextProperty()

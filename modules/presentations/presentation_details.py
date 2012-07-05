@@ -14,10 +14,10 @@ class PresentationDetails(STHandler):
 	def internal_get(self,montage_slug):
 
 		montage = STMontage.all().filter("slug =",montage_slug).get()
+		current_season = montage.seasons.order('repetition').get()
 		
-		seasons = sorted(montage.seasons , key=lambda season: season.repetition)
 
-		current_season = seasons[0]
+		#current_season = seasons[0]
 
 
 		self.set("season",current_season)
