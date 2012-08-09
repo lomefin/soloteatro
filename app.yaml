@@ -26,7 +26,9 @@ handlers:
 - url: /obras/genero/(.*)
   script: modules/presentations/presentations.py
 - url: /(obras|categorias)/.*
-  script: modules/presentations/presentations.py  
+  script: modules/presentations/presentations.py 
+- url: /teatros/(.*)
+  script: modules/venues/venues.py 
 - url: /logout
   script: modules/extras/extras.py
 - url: /contenido/.*
