@@ -33,7 +33,6 @@ class ViewMontage(llhandler.LLGAEHandler):
 	def internal_get(self,slug):
 		logging.debug("Looking montage with slug ["+slug+"]")
 		montage = self.retrieve_or_404(STMontage.all().filter('slug =',slug).get())
-		logging.debug(montage)
 		self.render('view_montage',template_values={'montage':montage})	
 
 class ListMontages(llhandler.LLGAEHandler):

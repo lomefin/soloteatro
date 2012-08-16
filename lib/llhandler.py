@@ -24,6 +24,7 @@ class LLDefaultHandler(webapp.RequestHandler):
 		self.flash_type = 'success'
 		self.log_count = 1
 		self.values = {}
+		self.logger = logging.getLogger(__name__)
 		#self.auth_check()
 	
 	def set_flash(self,flash,flash_type='info'):

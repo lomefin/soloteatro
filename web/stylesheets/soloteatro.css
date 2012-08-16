@@ -40,7 +40,7 @@ body
 	background-image: url(http://subtlepatterns.com/patterns/light_wool.png);
 }
 
-span.panelLink
+.carousel span.panelLink
 { 
   position:absolute; 
   width:100%;
@@ -55,6 +55,11 @@ span.panelLink
      make sure you have an empty gif */
   background-image: url('empty.gif');
 } 
+.carousel .carousel-control
+{
+	z-index:2;
+}
+
 
 .navbar.navigation
 {
@@ -191,4 +196,8 @@ a.brand
 .week .day.other-month
 {
 	color: #aaa ;
+}
+.week .day.has-shows
+{
+	border: solid 1px rgba(0,0,0,0.3);
 }

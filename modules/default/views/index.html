@@ -54,10 +54,10 @@
         <div class="span1 day-name" >Sa</div>
         <div class="span1 day-name" >Do</div>
       </div>
-      {% for week in calendar_weeks%}
+      {% for week in calendar_presentations%}
       <div id="" class="row-fluid week">
         {%for day in week %}
-        <div class="span1 day {%if not day.current_month%}other-month{%endif%}">{{day.day}}</div>
+        <div class="span1 day {%if not day.current_month%}other-month{%endif%} {%if day.has_shows%}has-shows{%endif%}">{{day.day}}</div>
         {%endfor%}
       </div>
       {% endfor %}

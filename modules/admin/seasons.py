@@ -102,6 +102,8 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 			if showtime is not None:
 				presentation = STPresentation()
 				presentation.date = datetime.datetime.combine(single_date,showtime)
+				presentation.day  = single_date
+				presentation.time = showtime
 				presentation.season = season.key()
 				logging.debug("Will schedule a presentation for" + str(presentation.date))
 				presentation.put()

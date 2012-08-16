@@ -3,6 +3,7 @@ from lib.imports import *
 
 class STHandler(llhandler.LLHandler):
 	
+
 	def get(self,*args):
 		self.auth_check()
 
@@ -11,6 +12,7 @@ class STHandler(llhandler.LLHandler):
 			new_args.append(str(arg))
 		args = new_args
 		self.show_actives_genres_in_menu()
+		self.show_presentations_on_calendar()
 		self.transitional_get(args)
 	
 	def post(self,*args):
@@ -21,7 +23,39 @@ class STHandler(llhandler.LLHandler):
 			new_args.append(str(arg))
 		args = new_args
 		self.show_actives_genres_in_menu()
+		self.show_presentations_on_calendar()
 		self.transitional_post(args)
+
+	def calculate_presentations_on_calendar(self):
+		calendar_start_date = datetime.date.today() - datetime.timedelta(days = datetime.date.today().isoweekday()-1)
+		calendar_end_date = calendar_start_date + datetime.timedelta(weeks=4)
+		calendar_end_date = calendar_end_date + datetime.timedelta(days = 7 - calendar_end_date.isoweekday())
+		
+		current_date = calendar_start_date
+		month_weeks = []
+		current_month = datetime.date.today().month
+		self.logger.info("Calculation presentations for caledar")
+		while(current_date <= calendar_end_date):
+			week = []
+			for i in range(7):
+				current_day = {'day':current_date.day,'current_month':current_month == current_date.month}
+				presentations_that_day = STPresentation.all().filter('day =',current_date)
+				if presentations_that_day.count(1) > 0:
+					current_day['has_shows'] = 1
+				current_date += datetime.timedelta(days=1)
+				week.append(current_day)
+			month_weeks.append(week)
+		return month_weeks
+
+	def show_presentations_on_calendar(self):
+		
+
+		if self.session and False: #While there is low load.
+			if not self.session['calendar_presentations']:
+				self.session['calendar_presentations'] = self.calculate_presentations_on_calendar()
+			self.set("calendar_presentations",self.session['calendar_presentations'])
+		else:
+			self.set("calendar_presentations",self.calculate_presentations_on_calendar())
 
 	def show_actives_genres_in_menu(self):
 

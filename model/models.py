@@ -5,6 +5,7 @@ from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 from google.appengine.ext import db
+from google.appengine.ext import blobstore
 from google.appengine.api import datastore_errors
 from google.appengine.ext.webapp import template
 
@@ -56,6 +57,8 @@ class STSeason(STModel):
 
 class STPresentation(STModel):
 	date = db.DateTimeProperty()
+	day  = db.DateTimeProperty()
+	time = db.TimeProperty()
 	season = db.ReferenceProperty(STSeason, collection_name='presentations')
 
 class STSeasonMedia(polymodel.PolyModel):
@@ -76,50 +79,9 @@ class STInterview(STSeasonMedia):
 class STPicture(STSeasonMedia):
 	url = db.StringProperty()
 
-###Old stuff down there
-
-
-# class LLCategory(LLModel):
-# 	name = db.StringProperty()
-
-# class LLPostedElement(polymodel.PolyModel):
-# 	format = db.StringProperty()
-# 	date_created = db.DateTimeProperty(auto_now_add=True) 
-# 	is_active = db.BooleanProperty(default=True)
-# 	creator = db.ReferenceProperty(LLAccount,collection_name='posts')
-# 	date_published = db.DateTimeProperty
-# 	title = db.StringProperty()
-# 	possible_slug = db.StringProperty()
-# 	slug = SlugProperty(possible_slug)
-# 	short_url = db.StringProperty()
-	
-# class LLArticle(LLPostedElement):
-# 	text = db.TextProperty()
-# 	tags = db.StringListProperty()
-
-# class LLNews(LLPostedElement):
-# 	text = db.TextProperty()
-# 	tags = db.StringListProperty()	
-
-
-# class LLPlay(LLPostedElement):
-# 	synopsis = db.TextProperty()
-# 	tags = db.StringListProperty()
-# 	category = db.ReferenceProperty(LLCategory,collection_name='plays')
-
-# class LLPostReply(LLModel):
-# 	replier_name = db.StringProperty()
-# 	reply = db.StringProperty(multiline=True)
-# 	element_replied = db.ReferenceProperty(LLPostedElement,collection_name='replies')
-
-
-# class LLImage(LLModel):
-# 	description = db.StringProperty()
-# 	tags = db.StringListProperty()
-# 	content = db.BlobProperty()
-# 	content_type = db.StringProperty()
-# 	image_size = db.StringProperty()
-# 	parent_element = db.ReferenceProperty(LLPostedElement,collection_name='images')
+class STImage(STSeasonMedia):
+	fast_url = db.StringProperty()
+	payload = blobstore.BlobReferenceProperty()
 
 class STAccount(STModel):
 

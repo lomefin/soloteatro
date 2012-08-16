@@ -31,6 +31,8 @@ handlers:
   script: modules/venues/venues.py 
 - url: /logout
   script: modules/extras/extras.py
+- url: /fotos/(.*)
+  script: modules/content/content.py
 - url: /contenido/.*
   script: modules/content/content.py
 - url: /.*

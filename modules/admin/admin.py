@@ -19,6 +19,7 @@ def main():
   		('/admin/venues/add', AddVenue),
   		('/admin/venues/(.*)', ViewVenue),
       ('/admin/media/video/(\S*)',AddVideoToSeason),
+      ('/admin/media/image/(\S*)',AddImageToSeason),
       ('/admin/',ShowReports),
       ])
 

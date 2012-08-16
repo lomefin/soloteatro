@@ -47,6 +47,9 @@ class NotFoundHandler(llhandler.LLHandler):
 		
 		self.response.set_status(404)
 
+	def post(self):
+		self.get()
+
 	def render_specific(self,pagename,template_values=None):
 		#self.wr(os.path.dirname(__file__))
 		path = os.path.join(self.base_directory(), pagename+'.html')
