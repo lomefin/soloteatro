@@ -2,39 +2,62 @@
 {% block content %}
 
 <div class="row-fluid">
-	<div class="span12">
-		<div class="page-header">
-			<h1>{{montage.name}}</h1>
-		</div>
-	</div>
+    <div class="span12">
+        <div class="page-header">
+            <h1>{{montage.name}}</h1>
+        </div>
+    </div>
 </div>
 <div class="row-fluid">
-	<div class="span6">
-		<div>{{montage.description}}</div>
-    <h2>Ficha Técnica</h2>
-    <h3><small>Director </small> {{montage.director}}</h3>
-		<h3 class="capitalize"><small>Género </small> {{montage.genre}}</h3>
-		
-	</div>
-	<div class="span6">
-		{% if selected_media %}
-			<img src="{{selected_media.url}}" alt="{{montage.name}}" class="span12"/>
-		{% endif %}
-	</div>
+    <div class="span6">
+        <div>{{montage.description}}</div>
+    
+        
+    </div>
+    <div class="span6">
+        {% if selected_media %}
+            <img src="{{selected_media.url}}" alt="{{montage.name}}" class="span12"/>
+        {% endif %}
+    </div>
   
 </div>
 <hr />
 <div class="row-fluid">
-  
-  <div class="span8">
+  <div class="span4">
+    <h4><small style="font-size:14px">Dirección</small> {{montage.director}}</h4>
+    <h4 class="capitalize"><small style="font-size:14px">Género </small> {{montage.genre}}</h3>
+    <h4 class="capitalize"><small style="font-size:14px">Dramaturgia </small> {{montage.writer}}</h3>
+    <h4><small style="font-size:14px">Elenco</small></h4>
+    <div>
+        <ul>
+        {%for actor in season.cast%}
+            <li>{{actor}}
+        {%endfor%}
+        </ul>
+    </div>
+  </div>
+  <div class="span4">
       <div>
         <h3>Temporada {{season.repetition}}</h3>
         <h4>Del {{season.start|date:"SHORT_DATE_FORMAT"}} al {{season.end|date:"SHORT_DATE_FORMAT"}} </h4>
         <h4>en <a href="/teatros/{{season.venue.slug}}">{{season.venue.name}}</a></h4>
       </div>
   </div>
-  <div class="span4">
-    
+  <div class="span2">
+        <h3>Funciones</h3>
+        <ul class="nav nav-tabs nav-stacked">
+        {% for presentation in future_presentations %}
+            <li><a href="#">{{presentation.date|date:"l, H:i" }} hrs.</a></li>
+        {% endfor %}
+        </ul>   
+  </div>
+  <div class="span2">
+        <h3>Precios</h3>
+        <ul class="nav nav-tabs nav-stacked">
+        {% for presentation in future_presentations %}
+            <li><a href="#">{{presentation.date|date:"l, H:i" }} hrs.</a></li>
+        {% endfor %}
+        </ul>   
   </div>
 </div>
 <hr />

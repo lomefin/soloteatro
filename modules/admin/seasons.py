@@ -70,6 +70,7 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 		montage = STMontage()
 		montage.name = self.param('montage_name')
 		montage.director = self.param('montage_director')
+		montage.writer	= self.param("montage_writer")
 		montage.genre = db.Category(self.param('montage_genre'))
 		montage.description = self.param('montage_description')
 		montage.slug = Slugger.slugify(montage.name + " de "+montage.director)
@@ -85,6 +86,7 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 		season.end = datetime.datetime.strptime(self.param("season_end"),"%m/%d/%Y")
 		season.repetition = seasons_for_this_montage + 1
 		season.status = db.Category("Open")
+		season.cast = self.param("season_cast").split(",")
 		season.genre = montage.genre
 		season.put()
 

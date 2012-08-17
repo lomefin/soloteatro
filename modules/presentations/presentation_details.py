@@ -21,8 +21,15 @@ class PresentationDetails(STHandler):
 			if media.selected:
 				selected_media = media
 		#current_season = seasons[0]
+		today = datetime.datetime.now()
+		next_week = today + datetime.timedelta(weeks=1)
+		future_presentations = []
+		for presentation in current_season.presentations:
+			if (today <= presentation.date <= next_week):
+					future_presentations.append(presentation)
+		
 
-
+		self.set("future_presentations",future_presentations)
 		self.set("season",current_season)
 		self.set("montage",current_season.montage)
 		self.set("selected_media",selected_media)
