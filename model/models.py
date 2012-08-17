@@ -65,6 +65,7 @@ class STSeasonMedia(polymodel.PolyModel):
 	season = db.ReferenceProperty(STSeason,collection_name='related_media')
 	montage = db.ReferenceProperty(STMontage,collection_name='related_media')
 	parent_media = db.SelfReferenceProperty(collection_name='related_media')
+	selected = db.BooleanProperty(default=False)
 	description = db.StringProperty()
 
 class STVideo(STSeasonMedia):

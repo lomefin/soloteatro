@@ -16,10 +16,14 @@ class PresentationDetails(STHandler):
 		montage = STMontage.all().filter("slug =",montage_slug).get()
 		current_season = montage.seasons.order('repetition').get()
 		
-
+		selected_media = None
+		for media in current_season.related_media:
+			if media.selected:
+				selected_media = media
 		#current_season = seasons[0]
 
 
 		self.set("season",current_season)
 		self.set("montage",current_season.montage)
+		self.set("selected_media",selected_media)
 		self.render('view_presentation')

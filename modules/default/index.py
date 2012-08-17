@@ -23,8 +23,16 @@ class DefaultHandler(STHandler):
 	
 	def internal_get(self):
 
-		rand_seasons = db.GqlQuery("SELECT * FROM STSeason WHERE status = 'Open' LIMIT 3")
-		self.set("rand_seasons",rand_seasons)
+		seasons = []
+		rand_seasons = db.GqlQuery("SELECT * FROM STSeason WHERE status = 'Open' ORDER BY date_created LIMIT 3 ")
+		for season in rand_seasons:
+			selected_media = None
+			for media in season.related_media:
+				if media.selected:
+					selected_media = media
+			seasons.append({'season':season,'selected_media':selected_media})
+
+		self.set("rand_seasons",seasons)
 		self.render('index')
 
 def main():

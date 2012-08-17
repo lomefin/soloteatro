@@ -19,6 +19,7 @@
   </div>
   {% endwith %}
 </div>
+<!--------------------INIT DESKTOP-------------------------->
 <div class="row-fluid greeter visible-desktop" >
   <div class="span8">
     <div id="myCarousel" class="carousel slide">
@@ -26,13 +27,19 @@
         
         {%for season in rand_seasons %}
         <div class="item {%cycle 'active' 'st-not-active' 'st-not-active-yet'%}">
-            <img src="http://placehold.it/720x300.png" alt="">
+            {%if season.selected_media %}
+              {% if season.selected_media.class_name == 'STPicture' %}
+                <img height="300" src="{{season.selected_media.url}}" />
+              {% endif %}
+            {% else %}
+              <img src="/img/logo_5to_aniversario.jpg" height="300" alt="">
+            {% endif %}
             <div class="carousel-caption" >
-              <h1>{{season.montage.name}}</h1>
-              <p>{{season.montage.description|truncatewords:30}}
+              <h1>{{season.season.montage.name}}</h1>
+              <p>{{season.season.montage.description|truncatewords:30}}
               </p>
             </div>
-            <a href="/obras/{{season.montage.slug}}"><span class="panelLink"></span></a>
+            <a href="/obras/{{season.season.montage.slug}}"><span class="panelLink"></span></a>
         </div>
         {% endfor %}
 

@@ -18,7 +18,13 @@
   		
   	</div>
   	<div class="span6">
-  		<img src="http://www.dummyimage.com/720x300" alt="imagen para rellenar" class="span12"/>
+      {%for media in montage.related_media %}
+        {% if media.selected %}
+          {% if media.class_name == 'STPicture' %}
+            <img src="{{media.url}}" alt="{{montage.name}}"/>
+          {%endif%}
+        {% endif %}
+      {%endfor%}
   	</div>
     
   </div>
@@ -62,15 +68,12 @@
         {%for media in montage.related_media %}
           <li class="span4" style="">
             <div class="thumbnail">
-
-          {% if media.class_name == 'STVideo' %}
-            <iframe class="span4" height="180" src="http://www.youtube.com/embed/{{media.video_id}}" frameborder="0" allowfullscreen></iframe>
-          {% endif %}
-          {% if media.class_name == 'STPicture' %}
-            
+            {% if media.class_name == 'STVideo' %}
+              <iframe class="span4" height="180" src="http://www.youtube.com/embed/{{media.video_id}}" frameborder="0" allowfullscreen></iframe>
+            {% endif %}
+            {% if media.class_name == 'STPicture' %}
               <img  height="180" src="{{media.url}}" alt="{{montage.name}}"/>
-            
-          {% endif %}
+            {% endif %}
             </div>
           </li>
         {% endfor %}

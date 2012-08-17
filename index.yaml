@@ -37,4 +37,9 @@ indexes:
 - kind: STSeason
   properties:
   - name: status
+  - name: date_created
+
+- kind: STSeason
+  properties:
+  - name: status
   - name: genre

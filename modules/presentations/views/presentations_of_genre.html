@@ -18,7 +18,15 @@
 	            <div class="caption" style="">
 	              <h5>{{season.montage.name}}</h5>
 	            </div>
-	            <img src="http://placehold.it/320x180" alt="">
+	            <a href="/obras/{{season.montage.slug}}">
+	            {% for media in season.related_media %}
+	            	{% if media.class_name == 'STPicture' and forloop.first %}
+		                <img style="max-height: 180px; max-width: 320px" src="{{media.url}}" />
+		            {% endif %}
+		        {% empty %}
+	            	<img src="http://placehold.it/320x180" alt="" />
+	            {% endfor %}
+	        	</a>
 	          </div>
 	        </li>
 	    {%endfor%}
