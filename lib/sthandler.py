@@ -41,13 +41,11 @@ class STHandler(llhandler.LLHandler):
 		current_month = datetime.date.today().month
 		self.logger.info("Getting presentations from {start} to {end}".format(start=start_date,end=end_date))
 		while(current_date <= end_date):
-			day =[]
-			for i in range(7):
-				current_day = {'day':current_date.day,'current_month':current_month == current_date.month}
-				presentations_that_day = STPresentation.all().filter('day =',current_date)
-				
-				day.append(presentations_that_day)
-			days.append(day)
+			
+			current_day = {'day':current_date.day,'current_month':current_month == current_date.month}
+			presentations_that_day = STPresentation.all().filter('day =',current_date)
+			days.append(presentations_that_day)
+			current_date += datetime.timedelta(days=1)
 		return days
 
 	def calculate_presentations_on_dates(self,start_date,end_date):	
