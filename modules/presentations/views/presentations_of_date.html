@@ -1,0 +1,39 @@
+{% extends "main_template.html" %}
+{% block content %}
+
+
+<div class="row-fluid">
+	<div class="span8">
+		<h1 style="text-transform:capitalize;">Obras para hoy</h1>
+	</div>
+	<div class="span4">
+	</div>
+</div>
+<div class="row-fluid" >
+	<div class="span9" style="">
+		<ul class="thumbnails presentation-mosaic">
+		{%for day in days}
+        	{%for presentation in day%}
+	        <li class="span4" style="">
+	          <div class="thumbnail" style="" >
+	            <div class="caption" style="">
+	              <h5>{{presentation.season.montage.name}}</h5>
+	            </div>
+	            <a href="/obras/{{presentation.season.montage.slug}}">
+	            {% for media in presentation.season.related_media %}
+	            	{% if media.class_name == 'STPicture' and forloop.first %}
+		                <img style="max-height: 180px; max-width: 320px" src="{{media.url}}" />
+		            {% endif %}
+		        {% empty %}
+	            	<img src="http://placehold.it/320x180" alt="" />
+	            {% endfor %}
+	        	</a>
+	          </div>
+	        </li>
+	        {%endfor%}
+	    {%endfor%}
+		</ul>
+	</div>
+</div>
+
+{% endblock content %}

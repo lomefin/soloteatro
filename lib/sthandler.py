@@ -26,16 +26,36 @@ class STHandler(llhandler.LLHandler):
 		self.show_presentations_on_calendar()
 		self.transitional_post(args)
 
+
+
 	def calculate_presentations_on_calendar(self):
 		calendar_start_date = datetime.date.today() - datetime.timedelta(days = datetime.date.today().isoweekday()-1)
 		calendar_end_date = calendar_start_date + datetime.timedelta(weeks=4)
 		calendar_end_date = calendar_end_date + datetime.timedelta(days = 7 - calendar_end_date.isoweekday())
-		
-		current_date = calendar_start_date
+
+		return self.calculate_presentations_on_dates(start_date=calendar_start_date,end_date=calendar_end_date)
+	
+	def get_presentations_on_dates(self,start_date,end_date):
+		current_date = start_date
+		days = []
+		current_month = datetime.date.today().month
+		self.logger.info("Getting presentations from {start} to {end}".format(start=start_date,end=end_date))
+		while(current_date <= end_date):
+			day =[]
+			for i in range(7):
+				current_day = {'day':current_date.day,'current_month':current_month == current_date.month}
+				presentations_that_day = STPresentation.all().filter('day =',current_date)
+				
+				day.append(presentations_that_day)
+			days.append(day)
+		return days
+
+	def calculate_presentations_on_dates(self,start_date,end_date):	
+		current_date = start_date
 		month_weeks = []
 		current_month = datetime.date.today().month
 		self.logger.info("Calculation presentations for caledar")
-		while(current_date <= calendar_end_date):
+		while(current_date <= end_date):
 			week = []
 			for i in range(7):
 				current_day = {'day':current_date.day,'current_month':current_month == current_date.month}

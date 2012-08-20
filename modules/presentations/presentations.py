@@ -16,14 +16,19 @@
 #
 from lib.imports import *
 from modules.presentations.presentations_by_genre import *
+from modules.presentations.presentations_by_date import *
 from modules.presentations.presentations_all import *
 from modules.presentations.presentation_details import *
+
 
 
 def main():
   LLApp([('/obras/genero/(.*)', PresentationsByGenre),
   		('/obras/',PresentationList),
-  		('/obras/((\S*?))',PresentationDetails)
+  		('/obras/hoy',PresentationsToday),
+  		('/obras/desde/(\S*?)/hasta/(\S*?)',PresentationsInTimeSpan),
+  		('/obras/((\S*?))',PresentationDetails),
+
   	])
  
 if __name__ == "__main__":
