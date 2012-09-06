@@ -50,7 +50,7 @@
     </div>
   </div>
   <div class="span4">
-    <h1>El calendario!<small>Pero no funciona...</small></h1>
+    <h1>Calendario</h1>
     <div id="erCalendario">
       <div id="" class="row-fluid day-names">
         <div class="span1 day-name" >Lu</div>
@@ -64,7 +64,13 @@
       {% for week in calendar_presentations%}
       <div id="" class="row-fluid week">
         {%for day in week %}
-        <div class="span1 day {%if not day.current_month%}other-month{%endif%} {%if day.has_shows%}has-shows{%endif%}">{{day.day}}</div>
+        <div class="span1 day {%if not day.current_month%}other-month{%endif%} {%if day.has_shows%}has-shows{%endif%}">
+          {%if day.is_today %}
+          <a href="/obras/hoy">{{day.day}}</a>
+          {%else%}
+          <a href="/obras/desde/{{day.date_string}}/hasta/{{day.date_string}}" >{{day.day}}</a>
+          {%endif%}
+        </div>
         {%endfor%}
       </div>
       {% endfor %}

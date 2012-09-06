@@ -13,7 +13,7 @@
 	<div class="span9" style="">
 		<ul class="thumbnails presentation-mosaic">
         {%for day in days%}
-        	{%for presentation in day %}
+        	{%for presentation in day.presentations %}
 	        <li class="span4" style="">
 	          <div class="thumbnail" style="" >
 	            <div class="caption" style="">
@@ -25,11 +25,13 @@
 		                <img style="max-height: 180px; max-width: 320px" src="{{media.url}}" />
 		            {% endif %}
 		        {% empty %}
-	            	<img src="http://placehold.it/320x180" alt="" />
+	            	<img src="http://placehold.it/260x180" alt="" />
 	            {% endfor %}
 	        	</a>
 	          </div>
 	        </li>
+	        {% empty %}
+	        	<p>Ná que hacer...</p>
 	        {%endfor%}
 	    {%endfor%}
 		</ul>

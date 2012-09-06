@@ -38,14 +38,15 @@ class STHandler(llhandler.LLHandler):
 	def get_presentations_on_dates(self,start_date,end_date):
 		current_date = start_date
 		days = []
-		current_month = datetime.date.today().month
-		self.logger.info("Getting presentations from {start} to {end}".format(start=start_date,end=end_date))
+		#self.logger.info("Getting presentations from {start} to {end}".format(start=start_date,end=end_date))
 		while(current_date <= end_date):
-			
-			current_day = {'day':current_date.day,'current_month':current_month == current_date.month}
-			presentations_that_day = STPresentation.all().filter('day =',current_date)
-			days.append(presentations_that_day)
-			current_date += datetime.timedelta(days=1)
+			logging.debug("Trying with date " + str(current_date))
+			presentations_that_day = STPresentation.all().filter('status =','Open').filter('day =',current_date)
+			if presentations_that_day.count(1)> 0 :
+				days.append({'date':current_date, 'presentations':presentations_that_day,
+							'date_string':current_date.strftime("%Y-%m-%d")})
+			current_date = current_date +datetime.timedelta(days=1)
+			#self.logger.debug("Current day count for {day} is {count}".format(day=current_date,count=presentations_that_day.count(10)))
 		return days
 
 	def calculate_presentations_on_dates(self,start_date,end_date):	
@@ -56,11 +57,12 @@ class STHandler(llhandler.LLHandler):
 		while(current_date <= end_date):
 			week = []
 			for i in range(7):
-				current_day = {'day':current_date.day,'current_month':current_month == current_date.month}
+				current_day = {'day':current_date.day,'date_string': current_date.strftime("%Y-%m-%d"),'current_month':current_month == current_date.month}
 				presentations_that_day = STPresentation.all().filter('day =',current_date)
+				current_day['is_today'] = current_date == datetime.date.today()
 				if presentations_that_day.count(1) > 0:
 					current_day['has_shows'] = 1
-				current_date += datetime.timedelta(days=1)
+				current_date = current_date +datetime.timedelta(days=1)
 				week.append(current_day)
 			month_weeks.append(week)
 		return month_weeks
@@ -68,8 +70,8 @@ class STHandler(llhandler.LLHandler):
 	def show_presentations_on_calendar(self):
 		
 
-		if self.session and False: #While there is low load.
-			if not self.session['calendar_presentations']:
+		if self.session: #While there is low load.
+			if not self.session.has_key('calendar_presentations'):
 				self.session['calendar_presentations'] = self.calculate_presentations_on_calendar()
 			self.set("calendar_presentations",self.session['calendar_presentations'])
 		else:
@@ -78,13 +80,13 @@ class STHandler(llhandler.LLHandler):
 	def show_actives_genres_in_menu(self):
 
 		#Optimization for current presentations, use when DB load goes up.
-		# if(self.session):
-		# 	if(self.session.has_key('active_genres')):
-		# 		self.set('active_genres',self.session['active_genres'])
-		# 		logging.debug("Active Genres List Recycled")
-		# 	if (self.session.has_key('active_seasons')):
-		# 		self.set('active_seasons',self.session['active_seasons'])
-		# 		return	
+		if(self.session):
+			if(self.session.has_key('active_genres')):
+				self.set('active_genres',self.session['active_genres'])
+				logging.debug("Active Genres List Recycled")
+			if (self.session.has_key('active_seasons')):
+				self.set('active_seasons',self.session['active_seasons'])
+				return	
 
 
 

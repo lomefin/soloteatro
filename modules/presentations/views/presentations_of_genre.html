@@ -21,10 +21,10 @@
 	            <a href="/obras/{{season.montage.slug}}">
 	            {% for media in season.related_media %}
 	            	{% if media.class_name == 'STPicture' and forloop.first %}
-		                <img style="max-height: 180px; max-width: 320px" src="{{media.url}}" />
+		                <img style="max-height: 180px; max-width: 320px;min-height:180px" src="{{media.url}}" />
 		            {% endif %}
 		        {% empty %}
-	            	<img src="http://placehold.it/320x180" alt="" />
+	            	<img style="min-height:180px" src="http://placehold.it/320x180" alt="" />
 	            {% endfor %}
 	        	</a>
 	          </div>
