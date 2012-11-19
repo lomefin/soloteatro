@@ -73,7 +73,11 @@
           <iframe class="span4" height="180" src="http://www.youtube.com/embed/{{media.video_id}}" frameborder="0" allowfullscreen></iframe>
         {% endif %}
         {% if media.class_name == 'STPicture' %}
-          <img  height="180" src="{{media.url}}" alt="{{montage.name}}"/>
+          {%for thumb in media.thumbs %}  
+            {%if thumb.size == 'thumb'%}
+            <img  height="180" src="{{thumb.url}}" alt="{{montage.name}}"/>
+            {%endif %}
+          {% endfor %}
         {% endif %}
           <div class="caption" style="">
             <a href="/admin/montages/{{montage.slug}}/media/{{media.key}}/select">Marcar como seleccionado</a>
@@ -84,6 +88,7 @@
     </ul>
     
   </div>
+ 
   
 </section>
 

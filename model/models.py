@@ -72,13 +72,21 @@ class STVideo(STSeasonMedia):
 	video_id = db.StringProperty()
 	provider = db.StringProperty()
 	failsafe_url = db.StringProperty()
+	parent_season = db.ReferenceProperty(STSeason,collection_name='videos')
+	parent_montage = db.ReferenceProperty(STMontage,collection_name='videos')
 
 class STInterview(STSeasonMedia):
 	byline = db.StringProperty()
 	content = db.TextProperty()
 
 class STPicture(STSeasonMedia):
+	parent_season = db.ReferenceProperty(STSeason,collection_name='pictures')
+	parent_montage = db.ReferenceProperty(STMontage,collection_name='pictures')
+
+class STThumb(STModel):
+	picture = db.ReferenceProperty(STPicture,collection_name='thumbs')
 	url = db.StringProperty()
+	size = db.StringProperty()
 
 class STImage(STSeasonMedia):
 	fast_url = db.StringProperty()

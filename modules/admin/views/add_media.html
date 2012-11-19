@@ -40,7 +40,7 @@
 		</div>
 	</div>
 </section>
-<section id="upload-video-youtube">
+<section id="upload-image-transloadit">
 	<div class="page-header">
 		<h2>Vincular a Imagen</h2>
 	</div>
@@ -49,7 +49,7 @@
 			<h3>Instrucciones</h3>
 			<p>Para agregar imagenes a Soloteatro <em>habrán</em> varias maneras, por mientras, solamente estará disponible el subir la imagen al sitio.</p>
 
-			<form class="form-horizontal" method="post" action="{{image_upload_url}}" enctype="multipart/form-data" >
+			<form class="form-horizontal" method="post" action="" id="upload_image" enctype="multipart/form-data" >
 			  <fieldset>
 			    <legend>Agregar Fotos</legend>
 			    
@@ -61,10 +61,13 @@
 				        <p class="help-block">Trata que no sea tan pesada la imagen.</p>
 			      </div>	
 			    </div>
-			    
+			    <div class="progress progress-striped active">
+				  <div class="bar" id="progress" style="width: 0%;"></div>
+				</div>
 			    <div class="form-actions">
 			    	<input type="submit" value="Subir Imagen" class="btn btn-primary" />
 			    	<input type="reset" value="Me arrepentí!" class="btn btn-warning" value=""/>
+			    	<input type="hidden" name="params" value="{&quot;auth&quot;:{&quot;key&quot;:&quot;c7c74110afd14a4d981088958c1323cc&quot;},&quot;template_id&quot;:&quot;040b71bd2a1649b0b3c28ea68151a3ce&quot;,&quot;redirect_url&quot;:&quot;{{current_host}}/admin/media/image/{{season.key}}&quot;}" />
 			    </div>
 			</form>
 		</div>
@@ -99,7 +102,22 @@
 	    	$('#save_youtube_video').show();
 	    	return false;
 	    });
+
+	    $('#upload_image').transloadit({
+	    	autoSubmit: true,
+	    	wait:  true,
+	    	modal: false,
+	    	onProgress: function(bytesReceived, bytesExpected) {
+			    // render your own progress bar!
+			    width = (bytesReceived / bytesExpected * 100).toFixed(2)+'%'
+			    $('#progress').css('width',width)
+			},
+			onError: function(assembly) {
+			  	alert(assembly.error+': '+assembly.message);
+			}
+	    });
 	    
 	});
 </script> 
+
 {% endblock js_activities %}

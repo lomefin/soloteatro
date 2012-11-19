@@ -11,7 +11,7 @@ def main():
   		('/admin/montages/', ListMontages),
   		('/admin/montages/(.*)/seasons/add',AddSeasonToMontage),
   		('/admin/montages/(.*)/season/(\d*)/media/add',AddMediaToSeason),
-      ('/admin/montages/(.*)/pictures/add',AddMediaToLatestSeason),
+      ('/admin/montages/(.*)/(pictures|videos)/add',AddMediaToLatestSeason),
       ('/admin/montages/(.*)',ViewMontage),
   		('/admin/seasons/add',AddSeason),
       ('/admin/seasons/express_add',AddSeasonExpress),
@@ -19,7 +19,7 @@ def main():
   		('/admin/venues/add', AddVenue),
   		('/admin/venues/(.*)', ViewVenue),
       ('/admin/media/video/(\S*)',AddVideoToSeason),
-      ('/admin/media/image/(\S*)',AddImageToSeason),
+      ('/admin/media/image/(\S*)',AddPictureToSeason),
       ('/admin/',ShowReports),
       ])
 

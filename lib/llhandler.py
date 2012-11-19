@@ -112,7 +112,7 @@ class LLDefaultHandler(webapp.RequestHandler):
 			
 		except:
 			pass
-		
+		template_values.update({'current_url':self.request.url,'current_host':self.request.host_url})
 		path = os.path.join(self.base_directory(), 'views/'+pagename+'.html')
 		template_file = open(path) 
 		compiled_template = template.Template(template_file.read()) 

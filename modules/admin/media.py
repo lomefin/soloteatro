@@ -31,7 +31,6 @@ class AddMediaToLatestSeason(llhandler.LLGAEHandler):
         montage = self.get_or_404(STMontage.all().filter('slug =',montage_slug).get())
         self.set('montage',montage)
         season = montage.seasons.order('-repetition').get()
-        self.set('image_upload_url',blobstore.create_upload_url('/admin/media/image/'+str(season.key())))
         self.set('season',season)
         self.render('add_media')
 
@@ -57,6 +56,8 @@ class AddVideoToSeason(llhandler.LLGAEHandler):
         video = STVideo()
         video.season = season.key()
         video.montage = montage.key()
+        video.parent_season = season.key()
+        video.parent_montage = season.montage.key()
 
         video.video_id = self.param('youtube_id')
         provider = db.StringProperty('youtube')
@@ -67,66 +68,51 @@ class AddVideoToSeason(llhandler.LLGAEHandler):
         self.set_flash('El video ha sido agregado a la temporada')
         self.redirect('/admin/montages/'+montage.slug)
 
-class AddImageToSeason(blobstore_handlers.BlobstoreUploadHandler):
-    def post(self,season_key):
-        #try:
-        season_key = db.Key(encoded=season_key)
-        season = STSeason.get(season_key)
-        logging.debug(season_key)
-        montage = season.montage
-        
 
-        image = STImage()
-        
-        logging.debug(self.get_uploads())
-        upload = self.get_uploads()[0]
-        image.payload = upload.key()
-        logging.warn("Got upload")
-        logging.warn(image.payload)
-        image.put()
-        image.fast_url = images.get_serving_url(image.payload)
-        picture = STPicture()
-        picture.season = season.key()
-        picture.montage = montage.key()
-        picture.url = images.get_serving_url(image.payload)
-        picture.put()
 
-        #self.set_flash('La imagen ha sido agregado a la temporada')
-        self.redirect('/admin/montages/'+montage.slug)
-
-        #except :
-        #    self.redirect('/upload_failure.html')
-
-class AddImageToSeason2(llhandler.LLGAEHandler):
+class AddPictureToSeason(llhandler.LLGAEHandler):
 
     def base_directory(self):
         return os.path.dirname(__file__)
     
     def transitional_post(self, args):
+        self.internal_post(args[0])   
 
-        self.internal_post(args[0])
+    def save_picture_thumb(self, picture, thumb_url, thumb_name = "default"):
+        picture_thumb = STThumb()
+        picture_thumb.picture = picture
+        picture_thumb.url = thumb_url
+        picture_thumb.size = thumb_name
+        picture_thumb.put()
+
+    def get_thumb_from_picture(self,results,picture, thumb_type, original_id):
+        if results.has_key(thumb_type):
+                for thumb in results[thumb_type]:
+                    if thumb['original_id'] == original_id:
+                        self.save_picture_thumb(picture,thumb['url'], thumb_type)
 
     def internal_post(self, season_key):
 
+        transloadit_response = json.loads(self.param("transloadit"))
+        
         season_key = db.Key(encoded=season_key)
         season = STSeason.get(season_key)
-        logging.debug(season_key)
-        montage = season.montage
+
+        picture = STPicture()
+        picture.season = season.key()
+        picture.montage = season.montage.key()
+        picture.parent_season = season.key()
+        picture.parent_montage = season.montage.key()
+        picture.put()
         
+        uploads = transloadit_response['uploads']
+        results = transloadit_response['results']
 
-        image = STImage()
-        image.season = season.key()
-        image.montage = montage.key()
+        for upload in uploads:
+            original_id = upload['original_id']
+            self.get_thumb_from_picture(results,picture,'thumb',original_id)
+            self.get_thumb_from_picture(results,picture,'carrousel',original_id)
 
-        image.payload = db.Blob(self.param('image_file'))
-        
-    
-        image.put()
-        image.fast_url = images.get_serving_url(image.payload.key())
-        image.put()
-
-        self.set_flash('La imagen ha sido agregado a la temporada')
-        self.redirect('/admin/montages/'+montage.slug)
-
-
+        self.set_flash('La image ha sido agregada a la temporada')
+        self.redirect('/admin/montages/'+season.montage.slug)
         
