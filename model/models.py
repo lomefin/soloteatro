@@ -67,21 +67,27 @@ class STSeasonMedia(polymodel.PolyModel):
 	parent_media = db.SelfReferenceProperty(collection_name='related_media')
 	selected = db.BooleanProperty(default=False)
 	description = db.StringProperty()
+	visible = db.BooleanProperty(default=True)
+	priority = db.IntegerProperty(default=1)
 
 class STVideo(STSeasonMedia):
 	video_id = db.StringProperty()
 	provider = db.StringProperty()
 	failsafe_url = db.StringProperty()
-	parent_season = db.ReferenceProperty(STSeason,collection_name='videos')
-	parent_montage = db.ReferenceProperty(STMontage,collection_name='videos')
+	
 
 class STInterview(STSeasonMedia):
 	byline = db.StringProperty()
 	content = db.TextProperty()
+	visible = False
+
 
 class STPicture(STSeasonMedia):
-	parent_season = db.ReferenceProperty(STSeason,collection_name='pictures')
-	parent_montage = db.ReferenceProperty(STMontage,collection_name='pictures')
+	def url(self):
+		return self.thumbs.filter('size = ','carrousel').get().url
+	@property
+	def thumb_url(self):
+		return self.thumbs.filter('size = ','thumb').get().url
 
 class STThumb(STModel):
 	picture = db.ReferenceProperty(STPicture,collection_name='thumbs')

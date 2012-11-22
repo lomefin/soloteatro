@@ -43,3 +43,9 @@ indexes:
   properties:
   - name: status
   - name: genre
+
+- kind: STSeasonMedia
+  properties:
+  - name: season
+  - name: priority
+    direction: desc

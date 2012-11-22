@@ -12,6 +12,7 @@ def main():
   		('/admin/montages/(.*)/seasons/add',AddSeasonToMontage),
   		('/admin/montages/(.*)/season/(\d*)/media/add',AddMediaToSeason),
       ('/admin/montages/(.*)/(pictures|videos)/add',AddMediaToLatestSeason),
+      ('/admin/media/(.*)/toggle',ToggleMediaSelection),
       ('/admin/montages/(.*)',ViewMontage),
   		('/admin/seasons/add',AddSeason),
       ('/admin/seasons/express_add',AddSeasonExpress),

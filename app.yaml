@@ -46,5 +46,3 @@ error_handlers:
   - error_code: over_quota
     file: templates/over_quota.html
 
-env_variables:
-  TRANSLOADIT_KEY: c7c74110afd14a4d981088958c1323cc

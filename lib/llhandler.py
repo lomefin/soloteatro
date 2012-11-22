@@ -25,6 +25,7 @@ class LLDefaultHandler(webapp.RequestHandler):
 		self.log_count = 1
 		self.values = {}
 		self.logger = logging.getLogger(__name__)
+
 		#self.auth_check()
 	
 	def set_flash(self,flash,flash_type='info'):
@@ -44,7 +45,7 @@ class LLDefaultHandler(webapp.RequestHandler):
 		self.session = get_current_session()
 		user = users.get_current_user()
 		self.current_account = None
-			
+		self.set('current_url',self.request.host_url)	
 		if(user and self.session):
 			if self.session.has_key("current_account"):
 				self.current_account = self.session["current_account"]	

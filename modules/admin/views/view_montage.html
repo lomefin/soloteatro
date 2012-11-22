@@ -80,7 +80,9 @@
           {% endfor %}
         {% endif %}
           <div class="caption" style="">
-            <a href="/admin/montages/{{montage.slug}}/media/{{media.key}}/select">Marcar como seleccionado</a>
+            <a href="/admin/media/{{media.key}}/toggle" class="btn btn-mini {%if not media.selected%}btn-primary{%else%}btn-warning{%endif%}">
+              {% if not media.selected %}S{%else%}Des{% endif %}eleccionar
+            </a>
           </div>
         </div>
       </li>

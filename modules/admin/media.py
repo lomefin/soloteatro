@@ -56,6 +56,7 @@ class AddVideoToSeason(llhandler.LLGAEHandler):
         video = STVideo()
         video.season = season.key()
         video.montage = montage.key()
+        video.priority = 100
         video.parent_season = season.key()
         video.parent_montage = season.montage.key()
 
@@ -67,8 +68,6 @@ class AddVideoToSeason(llhandler.LLGAEHandler):
 
         self.set_flash('El video ha sido agregado a la temporada')
         self.redirect('/admin/montages/'+montage.slug)
-
-
 
 class AddPictureToSeason(llhandler.LLGAEHandler):
 
@@ -101,6 +100,7 @@ class AddPictureToSeason(llhandler.LLGAEHandler):
         picture = STPicture()
         picture.season = season.key()
         picture.montage = season.montage.key()
+        picture.priority = 10
         picture.parent_season = season.key()
         picture.parent_montage = season.montage.key()
         picture.put()
@@ -116,3 +116,21 @@ class AddPictureToSeason(llhandler.LLGAEHandler):
         self.set_flash('La image ha sido agregada a la temporada')
         self.redirect('/admin/montages/'+season.montage.slug)
         
+class ToggleMediaSelection(llhandler.LLGAEHandler):
+
+    def base_directory(self):
+        return os.path.dirname(__file__)
+    
+    def transitional_get(self, args):
+        self.internal_get(media_key = args[0])
+
+    def internal_get(self, media_key):   
+
+        media_key = db.Key(encoded = media_key)
+
+        media = STSeasonMedia.get(media_key)
+        montage = media.montage
+        media.selected = not media.selected
+        media.put()
+        self.set_flash('La imagen ha sido seleccionada.')
+        self.redirect('/admin/montages/'+montage.slug)

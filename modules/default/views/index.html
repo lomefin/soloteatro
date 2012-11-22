@@ -4,7 +4,7 @@
 <div class="row-fluid greeter hidden-desktop">
   {% with rand_seasons|first as season %}
   <div class="span4">
-    <img src="http://placehold.it/720x300.png" alt="">
+    <img src="http://bit.ly/ThbNXE" alt="">
   </div>
 
   <div class="span4">
@@ -21,18 +21,22 @@
 </div>
 <!--------------------INIT DESKTOP-------------------------->
 <div class="row-fluid greeter visible-desktop" >
-  <div class="span8">
+  {% if rand_seasons %}
+  <div class="span7">
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
-        
         {%for season in rand_seasons %}
         <div class="item {%cycle 'active' 'st-not-active' 'st-not-active-yet'%}">
             {%if season.selected_media %}
               {% if season.selected_media.class_name == 'STPicture' %}
-                <img height="300" src="{{season.selected_media.url}}" />
+                {%for thumb in season.selected_media.thumbs %}
+                  {%if thumb.size == 'carrousel' %}
+                    <img height="300" src="{{thumb.url}}" />
+                  {%endif%}
+                {%endfor%}
               {% endif %}
             {% else %}
-              <img src="/img/logo_5to_aniversario.jpg" height="300" alt="">
+              <img src="http://bit.ly/ThbNXE" height="300" alt="">
             {% endif %}
             <div class="carousel-caption" >
               <h1>{{season.season.montage.name}}</h1>
@@ -49,7 +53,8 @@
       <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
     </div>
   </div>
-  <div class="span4">
+  {% endif %}
+  <div class="span4 offset1">
     <h1>Calendario</h1>
     <div id="erCalendario">
       <div id="" class="row-fluid day-names">

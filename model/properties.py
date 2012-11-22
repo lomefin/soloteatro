@@ -32,8 +32,6 @@ class GenderProperty(db.Property):
         return value is None
 
 
-
-
 class SlugProperty(db.StringProperty):
 
     """A (rough) App Engine equivalent to Django's SlugField."""
