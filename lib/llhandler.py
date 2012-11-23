@@ -93,32 +93,32 @@ class LLDefaultHandler(webapp.RequestHandler):
 			
 	def render(self,pagename,template_values=None):
 		
-		if not template_values:
-			template_values = self.values
+		if template_values:
+			self.values.update(template_values)
 			
 		try:
 			self.read_flash()
 			
-			template_values['flash'] = self.flash
-			template_values['flash_type'] = self.flash_type
+			self.values['flash'] = self.flash
+			self.values['flash_type'] = self.flash_type
 			
 			if self.current_account:
-				template_values['logged_user'] = self.current_account
+				self.values['logged_user'] = self.current_account
 			if self.login_url:
-				template_values['login_url'] = self.login_url
+				self.values['login_url'] = self.login_url
 			if self.session.has_key("current_account"):
-				template_values['logged_user'] = self.session["current_account"]
+				self.values['logged_user'] = self.session["current_account"]
 			if self.logout_url:
-				template_values['logout_url'] = self.logout_url
+				self.values['logout_url'] = self.logout_url
 			
 		except:
 			pass
-		template_values.update({'current_url':self.request.url,'current_host':self.request.host_url})
+		self.values.update({'current_url':self.request.url,'current_host':self.request.host_url})
 		path = os.path.join(self.base_directory(), 'views/'+pagename+'.html')
 		template_file = open(path) 
 		compiled_template = template.Template(template_file.read()) 
 		template_file.close()  
-		self.response.out.write(compiled_template.render(template.Context(template_values)))
+		self.response.out.write(compiled_template.render(template.Context(self.values)))
 		
 	def base_directory(self):
 		return os.path.dirname(__file__)

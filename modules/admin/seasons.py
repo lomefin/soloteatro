@@ -1,3 +1,4 @@
+
 from lib.imports import *
 
 class AddSeason(llhandler.LLGAEHandler):
@@ -57,6 +58,7 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 	
 	def internal_get(self):
 		venue_list = STVenue.all()
+		self.set('montages',STMontage.all().order('-date_created').fetch(100))
 		self.render('add_season_express',template_values={'venue_list':venue_list})
 
 	def daterange(self,start_date, end_date):

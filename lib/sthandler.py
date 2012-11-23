@@ -2,7 +2,6 @@ from lib.imports import *
 
 
 class STHandler(llhandler.LLHandler):
-	
 
 	def get(self,*args):
 		self.auth_check()
