@@ -2,19 +2,24 @@
 {% block content %}
 <div class="row-fluid">
 	<div class="span12">
-		<h1>Agregar una temporada a {{montage.name}} de {{montage.director}}</h1>
+		<h1>{{montage.name}} de {{montage.director}} <small> +Temporada</small></h1>
 	</div>
 </div>
 <div class="row-fluid">
 	<div class="span9 offset3">
 		<form class="form-horizontal" method="post" >
-		  	<fieldset>
+			<fieldset>
 			    <legend>Datos de la Temporada</legend>
 			    
 			 	<div class="control-group">
 			      <label class="control-label" for="season_venue">Teatro</label>
 			      <div class="controls">
-			        <input type="text" class="input-xlarge" id="season_venue" name="season_venue">
+
+			        <select  class="input-xlarge" id="season_venue" name="season_venue">
+			        	{% for venue in venue_list %}
+			        	<option value="{{venue.key}}">{{venue.name}}</option>
+			        	{% endfor %}
+			        </select>
 			      </div>
 			      <p class="help-block">Elige un teatro de la lista, si no existe, crealo y vuelve a intentar. Si es teatro itinerante, estas cagado.</p>
 			    </div>
@@ -22,14 +27,14 @@
 			    <div class="control-group">
 			      <label class="control-label" for="season_start">Fecha inicio temporada</label>
 			      <div class="controls">
-			        <input type="text" class="input-xlarge" id="season_start" name="season_start">
+			        <input type="text" class="input-xlarge date-picker" id="season_start" name="season_start" data-date-format="dd/mm/yyyy" required>
 			      </div>
 			    </div>
 
 			    <div class="control-group">
 			      <label class="control-label" for="season_end">Fecha fin temporada</label>
 			      <div class="controls">
-			        <input type="text" class="input-xlarge" id="season_end" name="season_end">
+			        <input type="text" class="input-xlarge date-picker" id="season_end" name="season_end" data-date-format="dd/mm/yyyy" required>
 			      </div>
 			    </div>
 			</fieldset>
@@ -39,8 +44,9 @@
 			    <div class="control-group">
 			      <label class="control-label" for="season_cast">Elenco</label>
 			      <div class="controls">
-			        <input type="text" class="input-xlarge" id="season_cast" name="season_cast">
+			        <textarea class="input-xlarge" id="season_cast" name="season_cast" rows="5"></textarea>
 			      </div>
+			      <p class="help-block">Separa los actores por comas.</p>
 			    </div>
 
 			    <div class="control-group">
@@ -53,46 +59,93 @@
 			    <div class="control-group">
 			      <label class="control-label" for="season_technical_team">Equipo Técnico</label>
 			      <div class="controls">
-			        <input type="text" class="input-xlarge" id="season_technical_team" name="season_technical_team">
+			        <textarea class="input-xlarge" id="season_technical_team" name="season_technical_team" rows="5"></textarea>
 			      </div>
 			    </div>
 			 </fieldset>
 			 <fieldset>
-			    <legend>Presentaciones y horarios</legend>
-			    <p class="help-block">Elige las fechas en que presentarás tu temporada. Luego elige a la hora que harás la presentación.</p>
-			    <div class="control-group">
-			      	<label class="control-label" for="play_dates">Fecha presentaciones</label>
-			      	<div class="controls">
-			      		<input type="text" id="play_dates" />
-			      	</div>
-			      	<label class="control-label" for="play_time">Hora presentaciones</label>
-			      	<div class="controls">
-		      			<input type="time" id="play_time" />
-			      	</div>
-			    </div>
+			 	<legend>Presentaciones y horarios</legend>
+			 	<div class="row-fluid">
+			 		<div class="span4">
+			    
+			    		<p class="help-block">Ok, este es el trato. Esto funciona cuando hay máximo una presentación al día. No es lo más choro, pero es un buen comienzo.</p>
+			    		<p class="help-block">Marca los días en que van a ser las presentaciones, y anota la hora de la presentación de ese día.</p>
+			    	</div>
+			    	<div class="span4">
+					    <div class="control-group">
+					      	<table class="table">
+					      		<thead>
+					      			<tr><th> </th><th colspan="2">Hora presentaciones</th></tr>
+					      			<tr>
+					      				<th>Día presentación</th><th>1era</th><th>2da</th>
+					      			</tr>
+					      		</thead>
+					      		<tbody>
+					      			<tr>
+					      				<td><label for="plays_on_monday"><input type="checkbox" name="plays_on_monday" value="true" /> Lunes</label></td>
+					      				<td><input type="text" name="monday_showtime_1" class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00" /></td>
+					      				<td><input type="text" name="monday_showtime_2" class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00" /></td>
+					      				
+					      			</tr>
+					      			<tr>
+					      				<td><label for="plays_on_tuesday"><input type="checkbox" name="plays_on_tuesday" value="true" /> Martes</label></td>
+					      				<td><input type="text" name="tuesday_showtime_1"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"/></td>
+					      				<td><input type="text" name="tuesday_showtime_2"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"/></td>
+					      				
+					      			</tr>
+					      			<tr>
+					      				<td><label for="plays_on_wednesday"><input type="checkbox" name="plays_on_wednesday" value="true" />Miércoles</label></td>
+					      				<td><input type="text" name="wednesday_showtime_1"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="wednesday_showtime_2"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				
+					      			</tr>
+					      			<tr>
+					      				<td><label for="plays_on_thursday"><input type="checkbox" name="plays_on_thursday" value="true" /> Jueves</label></td>
+					      				<td><input type="text" name="thursday_showtime_1"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="thursday_showtime_2"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				
+					      			</tr>
+					      			<tr>
+					      				<td><label for="plays_on_friday"><input type="checkbox" name="plays_on_friday" value="true" /> Viernes</label></td>
+					      				<td><input type="text" name="friday_showtime_1"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="friday_showtime_2"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				
+					      			</tr>
+					      			<tr>
+					      				<td><label for="plays_on_saturday"><input type="checkbox" name="plays_on_saturday" value="true" /> Sábado</label></td>
+					      				<td><input type="text" name="saturday_showtime_1"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="saturday_showtime_2"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				
+					      			</tr>
+					      			<tr>
+					      				<td><label for="plays_on_sunday"><input type="checkbox" name="plays_on_sunday" value="true" /> Domingo</label></td>
+					      				<td><input type="text" name="sunday_showtime_1"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="sunday_showtime_2"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				
+					      			</tr>
+					      		</tbody>
+					      	</table>
+					    </div>
+					</div>
+				</div>
 			    
 			</fieldset>
 			<fieldset>
-				<legend>Presentaciones</legend>
-			    <p class="help-block">Elige las fechas y horas para cada presentación de tu temporada.</p>
-			    <div id="datetime_chooser_container">
-				    <div class="control-group" id="datetime_chooser1">
-				      	<label class="control-label" for="play_date_1">Fecha presentaciones</label>
-				      	<div class="controls">
-				      		<input type="text" id="play_date_1" />
-				      	</div>
-				    </div>
-			    </div>
-			</fieldset>
-			<fieldset>
 				<legend>Precios</legend>
-				<div class="control-group">
-			    	<label class="control-label" for="season_prices">Precios</label>
-			      	<div class="controls">
-			       		<textarea class="input-xlarge" id="season_prices" name="season_prices" rows="5"></textarea>
-			      	</div>
-			    	<p class="help-block">Coloca cada tipo de precio en una línea, ejemplo: "Jueves populares: $1000", "Adulto mayor: $2500".</p>
-			    </div>
+				<div class="row-fluid">
+					<div class="span4">
+						<p class="help-block">Coloca cada tipo de precio en una línea, ejemplo: </p>
+						<p class="help-block">"Jueves populares: $1000", "Adulto mayor: $2500".</p>
+					</div>
+			 		<div class="span4">
+						<div class="control-group">
+					    	<label class="control-label" for="season_prices">Precios</label>
+					      	<div class="controls">
+					       		<textarea class="input-xlarge" id="season_prices" name="season_prices" rows="5" required="required" wrap="hard"></textarea>
+					      	</div>
+					    </div>
+					</div>
+				</div>
 			</fieldset>
 			<div class="form-actions">
 		    	<input type="submit" value="Agregar Montaje" class="btn btn-primary" />
@@ -105,83 +158,4 @@
 {% endblock content %}
 {% block js_activities %}
 
-<style type="text/css">@import "/js/datepick/jquery.datepick.css";</style> 
-<script type="text/javascript" src="/js/datepick/jquery.datepick.js"></script>
-<script type="text/javascript" src="/js/datepick/jquery.datepick-es.js"></script>
-<script src="/js/timepicker/jquery.ui.timepicker.js"></script>
-<style type="text/css">@import "/js/timepicker/jquery.ui.timepicker.css";</style> 
-<script src="/js/will_pickdate/will_pickdate.js"></script>
-<script src="/js/will_pickdate/jquery.mousewheel.js"></script>
-<style type="text/css">@import "/js/will_pickdate/style.css";</style> 
-<script type="text/javascript"> 
-	
-	var datetime_chooser_count = 1;
-	startWillSelect = function(picker,renderDate)
-	{
-
-		var a = $("#"+picker).will_pickdate({
-			timePicker: true,
-  			format: 'j F Y @ h:iA',
-  			//minDate : {date:renderDate,format:'Y-m-d H:i:s'},
-  			inputOutputFormat: 'Y-m-d H:i:s',
-  			days:               ['Domingo', 'Lunes', 'Martes', 'Miércoles','Jueves', 'Viernes', 'Sábado'],
-			months:             ['enero', 'febrero', 'marzo', 'abril', 'mayo','junio', 'julio', 'agosto', 'septiembre', 'octubre','noviembre', 'diciembre'],
-			onSelect: function(renderDate)
-			{
-				var datetime_chooser_container = $('#datetime_chooser_container');
-				var renderDate = $('#play_date_'+datetime_chooser_count).val();
-				var datetime_chooser = $('<div class="control-group" id="datetime_chooser'+ (++datetime_chooser_count) +'">')
-				datetime_chooser.append($('<label class="control-label" for="play_date_'+datetime_chooser_count+'">Fecha presentaciones</label>'))
-				var controls = $('<div class="controls">').append($('<input type="text" id="play_date_'+datetime_chooser_count+'" />'));
-				datetime_chooser.append(controls);
-				datetime_chooser_container.append(datetime_chooser);
-
-				startWillSelect("play_date_"+datetime_chooser_count,renderDate);
-			}
-		});
-	}
-	startMultiCalendar = function()
-	{
-		$('#play_dates').datepick({ 
-    		multiSelect: 999, monthsToShow: 3, 
-    	});
-	}
-	startTimePicker = function()
-	{
-		$('#play_time').timepicker({
-			hourText: 'Horas',
-			minuteText: 'Minutos',
-			minutes: {
-        		starts: 0,                // First displayed minute
-        		ends: 55,                 // Last displayed minute
-        		interval: 15               // Interval of displayed minutes
-    		}, 
-    	});
-	}
-
-	$(function() {
-		$( "#season_start" ).datepicker({
-			defaultDate: "+1w",
-			changeMonth: true,
-			numberOfMonths: 3,
-			onSelect: function( selectedDate ) {
-				$( "#season_end" ).datepicker( "option", "minDate", selectedDate );
-			}
-		});
-		$( "#season_end" ).datepicker({
-			defaultDate: "+1w",
-			changeMonth: true,
-			numberOfMonths: 3,
-			onSelect: function( selectedDate ) {
-				$( "#season_start" ).datepicker( "option", "maxDate", selectedDate );
-			}
-		});
-		
-		startMultiCalendar();
-		startTimePicker();
-		startWillSelect("play_date_1");
-
-	});
-	
-</script> 
 {% endblock js_activities %}

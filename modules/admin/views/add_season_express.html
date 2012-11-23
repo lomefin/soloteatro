@@ -49,11 +49,11 @@
 			      <label class="control-label" for="montage_genre">Género</label>
 			      <div class="controls">
 			        <select class="input-xlarge" id="montage_genre" name="montage_genre">
-			        	<option>Drama</option>
-			        	<option>Comedia</option>
-			        	<option>Familiar</option>
-			        	<option>StandUp</option>
-			        	<option>Fisico</option>
+			        	<option value="drama">Drama</option>
+			        	<option value="comedia">Comedia</option>
+			        	<option value="familiar">Familiar</option>
+			        	<option value="stand_up">StandUp</option>
+			        	<option value="fisico">Físico</option>
 			        	<option>Impro</option>
 			        	<option>Musical</option>
 			        	<option>Callejero</option>
@@ -140,38 +140,53 @@
 					    <div class="control-group">
 					      	<table class="table">
 					      		<thead>
+					      			<tr><th> </th><th colspan="2">Hora presentaciones</th></tr>
 					      			<tr>
-					      				<th>Día presentación</th><th>Hora</th>
+					      				<th>Día presentación</th><th>1era</th><th>2da</th>
 					      			</tr>
 					      		</thead>
 					      		<tbody>
 					      			<tr>
 					      				<td><label for="plays_on_monday"><input type="checkbox" name="plays_on_monday" value="true" /> Lunes</label></td>
-					      				<td><input type="text" name="monday_showtime" class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00" /></td>
+					      				<td><input type="text" name="monday_showtime_1" class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00" /></td>
+					      				<td><input type="text" name="monday_showtime_2" class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00" /></td>
+					      				
 					      			</tr>
 					      			<tr>
 					      				<td><label for="plays_on_tuesday"><input type="checkbox" name="plays_on_tuesday" value="true" /> Martes</label></td>
-					      				<td><input type="text" name="tuesday_showtime"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="tuesday_showtime_1"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"/></td>
+					      				<td><input type="text" name="tuesday_showtime_2"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"/></td>
+					      				
 					      			</tr>
 					      			<tr>
 					      				<td><label for="plays_on_wednesday"><input type="checkbox" name="plays_on_wednesday" value="true" />Miércoles</label></td>
-					      				<td><input type="text" name="wednesday_showtime"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="wednesday_showtime_1"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="wednesday_showtime_2"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				
 					      			</tr>
 					      			<tr>
 					      				<td><label for="plays_on_thursday"><input type="checkbox" name="plays_on_thursday" value="true" /> Jueves</label></td>
-					      				<td><input type="text" name="thursday_showtime"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="thursday_showtime_1"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="thursday_showtime_2"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				
 					      			</tr>
 					      			<tr>
 					      				<td><label for="plays_on_friday"><input type="checkbox" name="plays_on_friday" value="true" /> Viernes</label></td>
-					      				<td><input type="text" name="friday_showtime"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="friday_showtime_1"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="friday_showtime_2"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				
 					      			</tr>
 					      			<tr>
 					      				<td><label for="plays_on_saturday"><input type="checkbox" name="plays_on_saturday" value="true" /> Sábado</label></td>
-					      				<td><input type="text" name="saturday_showtime"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="saturday_showtime_1"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="saturday_showtime_2"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				
 					      			</tr>
 					      			<tr>
 					      				<td><label for="plays_on_sunday"><input type="checkbox" name="plays_on_sunday" value="true" /> Domingo</label></td>
-					      				<td><input type="text" name="sunday_showtime"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="sunday_showtime_1"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				<td><input type="text" name="sunday_showtime_2"  class="input-mini time-entry" pattern="\d\d:\d\d" value="20:00"  /></td>
+					      				
 					      			</tr>
 					      		</tbody>
 					      	</table>
