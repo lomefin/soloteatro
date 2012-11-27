@@ -43,12 +43,3 @@ class ListMontages(llhandler.LLGAEHandler):
 	def internal_get(self):
 		montage_list = STMontage.all()
 		self.render('list_montages',template_values={'montage_list':montage_list})
-
-	def internal_post(self):
-		montage = STMontage()
-		montage.name = self.param('montage_name')
-		montage.director = self.param('montage_director')
-		montage.description = self.param('montage_description')
-		montage.slug = Slugger.slugify(str(montage.name) + " de "+str(montage.director))
-
-		montage.put()

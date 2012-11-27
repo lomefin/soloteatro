@@ -46,20 +46,19 @@
 			    </div>
 
 			    <div class="control-group">
+			      <label class="control-label" for="montage_company">Compañía</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" id="montage_company" name="montage_company">
+			      </div>
+			    </div>
+
+			    <div class="control-group">
 			      <label class="control-label" for="montage_genre">Género</label>
 			      <div class="controls">
 			        <select class="input-xlarge" id="montage_genre" name="montage_genre">
-			        	<option value="drama">Drama</option>
-			        	<option value="comedia">Comedia</option>
-			        	<option value="familiar">Familiar</option>
-			        	<option value="stand_up">StandUp</option>
-			        	<option value="fisico">Físico</option>
-			        	<option>Impro</option>
-			        	<option>Musical</option>
-			        	<option>Callejero</option>
-			        	<option>Marionetas</option>
-			        	<option>Performance</option>
-			        	<option>Otras</option>
+			        	{%for genre in genres %}
+			        	<option value="{{genre.slug}}">{{genre.name}}</option>
+			        	{%endfor%}
 			        </select>
 			        <p class="help-block">Elige de la lista</p>
 			      </div>

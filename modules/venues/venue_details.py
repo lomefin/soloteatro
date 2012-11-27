@@ -3,7 +3,7 @@
 from lib.imports import *
 
 
-class ViewVenue(llhandler.LLGAEHandler):
+class ViewVenue(STHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	

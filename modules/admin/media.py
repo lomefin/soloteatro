@@ -30,6 +30,7 @@ class AddMediaToLatestSeason(llhandler.LLGAEHandler):
 
         montage = self.get_or_404(STMontage.all().filter('slug =',montage_slug).get())
         self.set('montage',montage)
+        logging.debug(montage.seasons.get())
         season = montage.seasons.order('-repetition').get()
         self.set('season',season)
         self.render('add_media')

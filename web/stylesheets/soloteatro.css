@@ -132,7 +132,7 @@ gap { margin-top:9px; margin-bottom:9px;}
 	background-color: #eee; margin: 0px; width: 30%;padding:0; position:relative;
 }
 .row-fluid .presentation-mosaic .thumbnail { padding:0;border:0; }
-.row-fluid .presentation-mosaic .thumbnail .caption { position: absolute; bottom: 30px; left:10px; background-color:rgba(255,255,255,0.3); width:100%; }
+.row-fluid .presentation-mosaic .thumbnail .caption { position: absolute; bottom: 30px; left:10px; background-color:rgba(255,255,255,0.5); width:100%; }
 /*.carousel-caption p {color: #333;}
 .carousel-control {top: 90%;}*/
 section{ margin-bottom: 1.5em;}

@@ -5,6 +5,7 @@ from modules.admin.montages import *
 from modules.admin.seasons import *
 from modules.admin.media import *
 from modules.admin.reports import *
+from modules.admin.genres import *
 def main():
   LLApp([
   		('/admin/montages/add', AddMontage),
@@ -21,6 +22,7 @@ def main():
   		('/admin/venues/(.*)', ViewVenue),
       ('/admin/media/video/(\S*)',AddVideoToSeason),
       ('/admin/media/image/(\S*)',AddPictureToSeason),
+      ('/admin/genres/',AdminGenres),
       ('/admin/',ShowReports),
       ])
 

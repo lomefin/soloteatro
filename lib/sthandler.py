@@ -87,16 +87,17 @@ class STHandler(llhandler.LLHandler):
 				self.set('active_seasons',self.session['active_seasons'])
 				return	
 
+		genres = STGenre.all().order('-rating')
+		active_genres = []
+		active_seasons = []
+		for genre in genres:
+			open_seasons_query = genre.seasons.filter('status = ', 'Open')
+			if open_seasons_query.count() > 0:
+				active_genres.append(genre)
+				active_seasons.append(open_seasons_query.fetch(100))
 
-
-		active_seasons = db.GqlQuery("SELECT * FROM STSeason WHERE status = 'Open' ORDER BY genre")
-		active_genres = {}
-		for season in active_seasons:
-
-			active_genres[season.genre] = True
 
 		self.set("active_genres",active_genres)
-		logging.debug("Active Genres List Generated")
 		if(self.session):
 			self.session['active_genres'] = active_genres
 			self.session['active_seasons'] = active_seasons

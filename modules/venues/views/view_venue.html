@@ -59,7 +59,7 @@
               new google.maps.Point(16, 37));
 
         var geocoder = new google.maps.Geocoder();
-        geocoder.geocode( { 'address': '{{venue.address}}'}, 
+        geocoder.geocode( { 'address': '{{venue.address}}, Santiago, Chile'}, 
                             function(results, status) {
                               if (status == google.maps.GeocoderStatus.OK) {
                                 map.setCenter(results[0].geometry.location);

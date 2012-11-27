@@ -8,13 +8,15 @@ class PresentationsByGenre(STHandler):
 		return os.path.dirname(__file__)
 	
 	def transitional_get(self, args):
-		self.internal_get(genre=args[0])
+		self.internal_get(genre_slug=args[0])
 
-	def internal_get(self,genre):
+	def internal_get(self,genre_slug):
 
-		logging.debug("Showing presentations of " + genre)
+		genre = STGenre.all().filter('slug = ',genre_slug).get()
 
-		open_seasons = STSeason.all().filter("status = ","Open").filter("genre = ",genre)
+		logging.debug("Showing presentations of " + genre.name)
+
+		open_seasons = genre.seasons.filter("status = ","Open")
 		
 		self.set("genre",genre)
 		self.set("open_seasons",open_seasons)

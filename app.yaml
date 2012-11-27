@@ -46,3 +46,5 @@ error_handlers:
   - error_code: over_quota
     file: templates/over_quota.html
 
+builtins:
+  - remote_api: on

@@ -12,23 +12,14 @@ from google.appengine.ext.webapp import template
 
 from google.appengine.ext.db import polymodel
 
-possible_categories = {
-	'drama':'Drama',
-	'comedia':'Comedia',
-	'familiar':'Familiar',
-	'stand_up':'StandUp',
-	'fisico':'Físico',
-	'impro':'Impro',
-	'musical':'Musical',
-	'callejero':'Callejero',
-	'marionetas':'Marionetas',
-	'performance':'Performance',
-	'otras':'Otras'
-}
-
 class STModel(db.Model):
 	date_created = db.DateTimeProperty(auto_now_add=True) 
 	is_active = db.BooleanProperty(default=True)
+
+class STGenre(STModel):
+	name = db.StringProperty()
+	slug = db.StringProperty()
+	rating = db.RatingProperty()
 	
 class STVenue(STModel):
 	name = db.StringProperty()
@@ -45,10 +36,13 @@ class STMontage(STModel):
 	name = db.StringProperty()
 	director = db.StringProperty()
 	company = db.StringProperty()
-	genre = db.CategoryProperty(choices=possible_categories.keys(),default='drama',verbose_name="Categorías")
+	genre = db.ReferenceProperty(STGenre, collection_name="montages")
 	slug = db.StringProperty()
 	description = db.TextProperty()
 	writer = db.StringProperty()
+
+	def delete(self):
+		db.delete(self.seasons)
 
 class STSeason(STModel):
 	
@@ -60,12 +54,15 @@ class STSeason(STModel):
 	
 	status = db.CategoryProperty()
 	repetition = db.IntegerProperty()
-	genre = db.CategoryProperty()
+	genre = db.ReferenceProperty(STGenre, collection_name="seasons")
 	#Technical Sheet
 	cast = db.StringListProperty()
 	producer = db.StringProperty()
 	technical_team = db.StringListProperty()
 
+	@property
+	def best_picture(self):
+		return self.related_media.filter('class = ','STPicture').order('-priority').get().thumb_url
 
 
 class STPresentation(STModel):

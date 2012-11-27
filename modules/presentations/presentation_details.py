@@ -19,11 +19,13 @@ class PresentationDetails(STHandler):
 		selected_media = current_season.related_media.order('-priority').get()
 		pictures = current_season.related_media.filter('class = ','STPicture')
 		today = datetime.datetime.now()
-		next_week = today + datetime.timedelta(weeks=1)
+		next_2_weeks = today + datetime.timedelta(weeks=2)
 		future_presentations = []
 		for presentation in current_season.presentations:
-			if (today <= presentation.date <= next_week):
+			logging.debug("Presentations: "+ str(presentation))
+			if (today <= presentation.date <= next_2_weeks):
 					future_presentations.append(presentation)
+					logging.debug("Appending " + str(presentation))
 		
 
 		self.set("future_presentations",future_presentations)

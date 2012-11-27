@@ -73,8 +73,8 @@
                 {% block menu_content %}
                 <ul class="nav">
                   {% for genre in active_genres %}
-                  <li class="">
-                    <a href="/obras/genero/{{genre}}">{{genre}}</a>
+                  <li>
+                    <a href="/obras/genero/{{genre.slug}}">{{genre.name}}</a>
                   </li>
                   {% endfor %}
                   <li class="divider-vertical"></li>

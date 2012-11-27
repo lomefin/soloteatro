@@ -20,7 +20,7 @@
       {%endif%}
       </div>
     <div class="page-header">
-        <h1>{{montage.name}}</h1>
+        <h1>{{montage.name}} <br /><small>{{montage.company}} company</small></h1>
     </div>
   </div>
 </div>
@@ -44,7 +44,7 @@
 <div class="row-fluid">
   <div class="span4">
     <h4><small style="font-size:14px">Dirección</small> {{montage.director}}</h4>
-    <h4 class="capitalize"><small style="font-size:14px">Género </small> {{montage.genre}}</h3>
+    <h4 class="capitalize"><small style="font-size:14px">Género </small> <a href="/obras/genero/{{montage.genre.slug}}">{{montage.genre.name}}</a></h3>
     <h4 class="capitalize"><small style="font-size:14px">Dramaturgia </small> {{montage.writer}}</h3>
     <h4><small style="font-size:14px">Elenco</small></h4>
     <div>
@@ -55,14 +55,14 @@
         </ul>
     </div>
   </div>
-  <div class="span4">
+  <div class="span3">
       <div>
         <h3>Temporada {{season.repetition}}</h3>
         <h4>Del {{season.start|date:"SHORT_DATE_FORMAT"}} al {{season.end|date:"SHORT_DATE_FORMAT"}} </h4>
         <h4>en <a href="/teatros/{{season.venue.slug}}">{{season.venue.name}}</a></h4>
       </div>
   </div>
-  <div class="span2">
+  <div class="span3">
         <h3>Funciones</h3>
         <ul class="nav nav-tabs nav-stacked">
         {% for presentation in future_presentations %}
@@ -73,8 +73,8 @@
   <div class="span2">
         <h3>Precios</h3>
         <ul class="nav nav-tabs nav-stacked">
-        {% for presentation in future_presentations %}
-            <li><a href="#">{{presentation.date|date:"l, H:i" }} hrs.</a></li>
+        {% for price in season.prices %}
+            <li><a href="#">{{price}}</a></li>
         {% endfor %}
         </ul>   
   </div>
@@ -84,9 +84,6 @@
     <section>
       <div class="fb-comments" data-href="{{current_url}}" data-num-posts="2" data-width="550"></div>
     </section>
-  </div>
-  <div class="span6">
-    Al lado van los comentarios {{current_url}}
   </div>
 </div>
 
@@ -110,9 +107,7 @@
       <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div>
   </div>
-  <div class="modal-footer">
-    <a href="#" class="btn">Cerrar</a>
-  </div>
+  
 </div>
 {% endblock content %}
 {% block js_activities %}

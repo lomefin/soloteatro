@@ -59,6 +59,7 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 	def internal_get(self):
 		venue_list = STVenue.all()
 		self.set('montages',STMontage.all().order('-date_created').fetch(100))
+		self.set('genres',STGenre.all().order('-rating'))
 		self.render('add_season_express',template_values={'venue_list':venue_list})
 
 	def daterange(self,start_date, end_date):
@@ -69,13 +70,15 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 
 	def internal_post(self):
 		
+		genre = STGenre.all().filter('slug =',self.param('montage_genre')).get()
 		#The Montage
 		montage = STMontage()
 		montage.name = self.param('montage_name')
 		montage.director = self.param('montage_director')
 		montage.writer	= self.param("montage_writer")
-		montage.genre = db.Category(self.param('montage_genre'))
+		montage.genre = genre
 		montage.description = self.param('montage_description')
+		montage.company = self.param('montage_company')
 		montage.slug = Slugger.slugify(montage.name + " de "+montage.director)
 		montage.put()
 		
@@ -90,17 +93,19 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 		season.repetition = seasons_for_this_montage + 1
 		season.status = db.Category("Open")
 		season.cast = self.param("season_cast").split(",")
+		season.prices = self.param("season_prices").split(",")
 		season.genre = montage.genre
 		season.put()
-
 		#Le Plays for that season
 		showtimes_week = []
 		for (idx,day) in enumerate(['monday','tuesday','wednesday','thursday','friday','saturday','sunday']):
 			showtimes_week.insert(idx,[])
 			for i in range(1,3):
-				if self.param('plays_on_'+day+'_'+str(i)):
-					showtimes_week[idx].append(datetime.datetime.strptime(self.param(day + '_showtime'),"%H:%M").time())
-
+				logging.debug("Checking " + 'plays_on_'+day+ ">> " + self.param('plays_on_'+day))
+				logging.debug(self.param(day + '_showtime_'+str(i)))
+				if self.param('plays_on_'+day):
+					showtimes_week[idx].append(datetime.datetime.strptime(self.param(day + '_showtime_'+str(i)),"%H:%M").time())
+		logging.info(showtimes_week)
 		
 		for single_date in self.daterange(season.start, season.end):
 			showtimes = showtimes_week[single_date.weekday()]

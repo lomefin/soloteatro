@@ -46,6 +46,13 @@ indexes:
 
 - kind: STSeasonMedia
   properties:
+  - name: class
+  - name: season
+  - name: priority
+    direction: desc
+
+- kind: STSeasonMedia
+  properties:
   - name: season
   - name: priority
     direction: desc
