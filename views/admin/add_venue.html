@@ -1,0 +1,86 @@
+{% extends "admin_template.html" %}
+{% block content %}
+<div class="row-fluid">
+	<div class="span12">
+		<h1>Teatros</h1>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span9 offset3">
+		<form class="form-horizontal" method="post">
+		  <fieldset>
+		    <legend>Información del Teatro</legend>
+		    
+		    <div class="control-group">
+		      <label class="control-label" for="venue_name">Nombre del teatro</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="venue_name" name="venue_name">
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="venue_address">Dirección del teatro</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="venue_address" name="venue_address" />
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="venue_telephone">Teléfono de reserva</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="venue_telephone" name="venue_telephone" />
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="venue_url">Página web</label>
+		      <div class="controls">
+		        	<input type="text" class="input-xlarge" id="venue_url" name="venue_url"/>
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="venue_twitter">Twitter</label>
+		      <div class="controls">
+		      		<div class="input-prepend">
+		      			<span class="add-on">@</span>
+		        		<input type="text" class="input-xlarge" id="venue_twitter" name="venue_twitter"/>
+		        	</div>
+		      </div>
+		    </div>
+
+		    <div class="control-group">
+		      <label class="control-label" for="venue_facebook">Facebook</label>
+		      <div class="controls">
+		      		<div class="input-prepend">
+		      			<span class="add-on">http://www.facebook.com/</span>
+		        		<input type="text" class="input-xlarge" id="venue_facebook" name="venue_facebook"/>
+		        	</div>
+		      </div>
+		    </div>
+
+
+		    <div class="control-group">
+		      <label class="control-label" for="venue_parking">Estacionamiento</label>
+		      <div class="controls">
+		        <input type="text" class="input-xlarge" id="venue_parking" name="venue_parking" />
+		        <p class="help-block">Ej. Parquímetro, estacionamiento pagado, a la propina, estacionamiento propio.</p>
+		      </div>
+		    </div>
+
+		    <div class="pit">
+		    	<input type="submit" class="btn btn-primary" value="Enviar" />
+		    </div>
+		</form>
+	</div>
+</div>
+
+{% endblock content %}
+{% block js_activities %}
+<script type="text/javascript"> 
+	$(document).ready(function() {
+      $("#play_description").markItUp(mySettings);
+   	});
+	
+</script> 
+{% endblock js_activities %}

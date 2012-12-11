@@ -18,14 +18,16 @@ from lib.imports import *
 
 
 
-class LLDefaultHandler(webapp.RequestHandler):
-	def __init__(self):
+class LLDefaultHandler(webapp2.RequestHandler):
+	def __init__(self,request,response):
+		self.initialize(request, response)
 		self.flash = None
 		self.flash_type = 'success'
 		self.log_count = 1
 		self.values = {}
 		self.logger = logging.getLogger(__name__)
-
+		self.debug = True
+		self.jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 		#self.auth_check()
 	
 	def set_flash(self,flash,flash_type='info'):
@@ -41,7 +43,7 @@ class LLDefaultHandler(webapp.RequestHandler):
 			
 	
 	def auth_check(self):
-		
+		return True
 		self.session = get_current_session()
 		user = users.get_current_user()
 		self.current_account = None
@@ -114,11 +116,15 @@ class LLDefaultHandler(webapp.RequestHandler):
 		except:
 			pass
 		self.values.update({'current_url':self.request.url,'current_host':self.request.host_url})
-		path = os.path.join(self.base_directory(), 'views/'+pagename+'.html')
-		template_file = open(path) 
-		compiled_template = template.Template(template_file.read()) 
-		template_file.close()  
-		self.response.out.write(compiled_template.render(template.Context(self.values)))
+
+		template = jinja_environment.get_template(pagename+'.html')
+		
+		# path = os.path.join(self.base_directory(), 'views/'+pagename+'.html')
+		# template_file = open(path) 
+		# compiled_template = template.Template(template_file.read()) 
+		# template_file.close() 
+		self.response.write(template.render(template_values)) 
+		# self.response.write(compiled_template.render(template.Context(self.values)))
 		
 	def base_directory(self):
 		return os.path.dirname(__file__)
@@ -193,7 +199,8 @@ class LLDefaultHandler(webapp.RequestHandler):
 class LLHandler(LLDefaultHandler):
 	
 	def auth_check(self):
-		self.session = get_current_session()
+		return True
+		#self.session = get_current_session()
 		
 		return True
 		
@@ -239,4 +246,4 @@ class LLGAEHandler(LLDefaultHandler):
 			self.redirect(users.create_login_url(self.request.uri))
         
 			
-	
+

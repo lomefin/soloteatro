@@ -4,6 +4,7 @@ from lib.imports import *
 class STHandler(llhandler.LLHandler):
 
 	def get(self,*args):
+		logging.debug("STH.get")
 		self.auth_check()
 
 		new_args = []

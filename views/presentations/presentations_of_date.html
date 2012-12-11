@@ -1,0 +1,39 @@
+{% extends "main_template.html" %}
+{% block content %}
+
+
+<div class="row-fluid">
+	<div class="span8">
+		<h1 style="text-transform:capitalize;">Obras entre el {{start|date}} y el {{end|date}}</h1>
+	</div>
+	<div class="span4">
+	</div>
+</div>
+{%for day in days%}
+	<section id="presentations_in_{{day.date}}">
+		<h1>{{day.date|date}}</h1>
+			<div class="row" >
+				<div class="span9" style="">
+					
+					<ul class="thumbnails presentation-mosaic">
+						{%for presentation in day.presentations%}
+				        <li class="span3" style="">
+				          <div class="thumbnail" style="" >
+				            <div class="caption" style="">
+				              <h5>{{presentation.season.montage.name}}</h5>
+				            </div>
+				            <a href="/obras/{{presentation.season.montage.slug}}">
+				            	<img src="http://placehold.it/320x180" alt="" />
+				        	</a>
+				          </div>
+				        </li>
+				        {%empty%}
+				        	<p>Ná que hacer...</p>
+				        {%endfor%}
+					</ul>
+				</div>
+			</div>
+	</section>
+{%endfor%}
+
+{% endblock content %}

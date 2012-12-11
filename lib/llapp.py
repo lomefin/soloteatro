@@ -27,5 +27,9 @@ class LLApp():
 		#Setting routes and launching
 		default_routes = [('.*',lib.errors.NotFoundHandler),]
 		routes.extend(default_routes)
-		application = webapp.WSGIApplication(routes,debug=debug)
-  		util.run_wsgi_app(application)
+		self.application = webapp2.WSGIApplication()
+
+		all_routes = []
+		for route in routes:
+			self.application.router.add(route)
+

@@ -1,0 +1,29 @@
+{% extends "main_template.html" %}
+{% block content %}
+<div class="row-fluid">
+	<div class="span8">
+		<h1 style="text-transform:capitalize;">{{genre}}</h1>
+	</div>
+	<div class="span4">
+		<p>{{current_shows.count}} obras de este género.</p>
+	</div>
+</div>
+<h2>Como Mosaico con descripciones</h2>
+<div class="row-fluid" >
+	<div class="span9" style="">
+		<ul class="thumbnails presentation-mosaic">
+        {%for season in open_seasons%}
+	        <li class="span4" style="">
+	          <div class="thumbnail" style="" >
+	            <div class="caption" style="">
+	              <h5>{{season.montage.name}}</h5>
+	            </div>
+	            <img src="http://placehold.it/260x180" alt="">
+	          </div>
+	        </li>
+	    {%endfor%}
+		</ul>
+	</div>
+</div>
+
+{% endblock content %}

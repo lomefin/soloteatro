@@ -1,0 +1,172 @@
+﻿{% extends "main_template.html" %}
+
+{% block content %}
+<div class="row-fluid greeter hidden-desktop">
+  {% with rand_seasons|first as season %}
+  <div class="span4">
+    <img src="http://bit.ly/ThbNXE" alt="">
+  </div>
+
+  <div class="span4">
+     <div class="">
+        <h1>{{season.montage.name}}</h1>
+        <p>{{season.montage.description|truncatewords:30}}</p>
+    </div>
+  </div>
+  <hr />
+  <div class="span4">
+    <h1>Aqui va el calendario</h1>
+  </div>
+  {% endwith %}
+</div>
+<!--------------------INIT DESKTOP-------------------------->
+<div class="row-fluid greeter visible-desktop" >
+  {% if rand_seasons %}
+  <div class="span7">
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        {%for season in rand_seasons %}
+        <div class="item {%cycle 'active' 'st-not-active' 'st-not-active-yet'%}">
+            {%if season.selected_media %}
+              {% if season.selected_media.class_name == 'STPicture' %}
+                {%for thumb in season.selected_media.thumbs %}
+                  {%if thumb.size == 'carrousel' %}
+                    <img height="300" src="{{thumb.url}}" />
+                  {%endif%}
+                {%endfor%}
+              {% endif %}
+            {% else %}
+              <img src="http://bit.ly/ThbNXE" height="300" alt="">
+            {% endif %}
+            <div class="carousel-caption" >
+              <h1>{{season.season.montage.name}}</h1>
+              <p>{{season.season.montage.description|truncatewords:30}}
+              </p>
+            </div>
+            <a href="/obras/{{season.season.montage.slug}}"><span class="panelLink"></span></a>
+        </div>
+        {% endfor %}
+
+      </div>
+    
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+    </div>
+  </div>
+  {% endif %}
+  <div class="span4 offset1">
+    <h1>Calendario</h1>
+    <div id="erCalendario">
+      <div id="" class="row-fluid day-names">
+        <div class="span1 day-name" >Lu</div>
+        <div class="span1 day-name" >Ma</div>
+        <div class="span1 day-name" >Mi</div>
+        <div class="span1 day-name" >Ju</div>
+        <div class="span1 day-name" >Vi</div>
+        <div class="span1 day-name" >Sa</div>
+        <div class="span1 day-name" >Do</div>
+      </div>
+      {% for week in calendar_presentations%}
+      <div id="" class="row-fluid week">
+        {%for day in week %}
+        <div class="span1 day {%if not day.current_month%}other-month{%endif%} {%if day.has_shows%}has-shows{%endif%}">
+          {%if day.is_today %}
+          <a href="/obras/hoy">{{day.day}}</a>
+          {%else%}
+          <a href="/obras/desde/{{day.date_string}}/hasta/{{day.date_string}}" >{{day.day}}</a>
+          {%endif%}
+        </div>
+        {%endfor%}
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+<div class="divider"></div>
+<!--
+<div class="navbar navigation soloteatro">
+  <div class="navbar-inner">
+    <div class="nav-collapse collapse">
+      {%block lower_menu %}
+      <ul class="nav">
+        <li class="">
+          <a href="/obras/especial/popular">Populares</a>
+        </li>
+        <li class="">
+          <a href="/obras/especial/votada">Comentadas</a>
+        </li>
+        <li class="">
+          <a href="./obras/especial/gratis">Gratis</a>
+        </li>
+        <li class="">
+          <a href="./obras/especial/proximas">Próximamente</a>
+        </li>
+        <li class="">
+          <a href="/obras/especial/ultima">PUM</a>
+        </li>
+        <li class="">
+          <a href="/obras/especial/ultima">Se Acaba</a>
+        </li>
+         <li class="">
+          <a href="/obras/especial/ahora">Teatro Ahora</a>
+        </li>
+        <li class="">
+          
+        </li>
+      </ul>
+      {%endblock lower_menu%}
+    </div>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span3">
+    <div class="row-fluid" style="background-color:#eee">
+      <div class="span6">
+        <img src="http://blastmagazine.com/wp-content/uploads/2010/10/MethodGun13-100x100.jpg" />
+      </div>
+      <div class="span6" >
+        <p>La XV Muestra Nacional de Dramaturgia</p>
+      </div>
+    </div>  
+  </div>
+  <div class="span3">
+    <div class="row-fluid" style="background-color:#eee">
+      <div class="span6">
+        <img src="http://blastmagazine.com/wp-content/uploads/2010/10/MethodGun13-100x100.jpg" />
+      </div>
+      <div class="span6" >
+        <p>La XV Muestra Nacional de Dramaturgia</p>
+      </div>
+    </div>  
+  </div>
+  <div class="span3">
+    <div class="row-fluid" style="background-color:#eee">
+      <div class="span6">
+        <img src="http://blastmagazine.com/wp-content/uploads/2010/10/MethodGun13-100x100.jpg" />
+      </div>
+      <div class="span6" >
+        <p>La XV Muestra Nacional de Dramaturgia</p>
+      </div>
+    </div>  
+  </div>
+  <div class="span3">
+    <div class="row-fluid">
+      <div class="span12"> 
+        <h2>Radio UC</h2>
+        <p>Escucha aqui el nombre del programa</p>
+      </div>
+    </div>  
+  </div>
+  
+</div>
+<div class="divider"></div>
+-->
+{% endblock content %}
+{% block js_activities %}
+<script>
+
+  $('.carousel').carousel()
+</script>
+{% endblock %}

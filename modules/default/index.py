@@ -22,7 +22,6 @@ class DefaultHandler(STHandler):
 		return os.path.dirname(__file__)
 	
 	def internal_get(self):
-
 		seasons = []
 		rand_seasons = db.GqlQuery("SELECT * FROM STSeason WHERE status = 'Open' ORDER BY date_created LIMIT 3 ")
 		for season in rand_seasons:
@@ -35,11 +34,8 @@ class DefaultHandler(STHandler):
 		self.set("rand_seasons",seasons)
 		self.render('index')
 
-def main():
-  LLApp([('/', DefaultHandler)])
+class IndexHandler(webapp2.RequestHandler):
+	def get(self):
+		self.response.write('index')
 
-if __name__ == "__main__":
-  main()
-
-
-
+application = LLApp([('/', DefaultHandler)]).application

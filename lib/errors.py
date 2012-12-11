@@ -14,37 +14,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import cgi
-import datetime
-import os
-import lib
-#import controller.sessions.SessionManager
-#from controller.appengine_utilities.sessions import Session
-#from controller.appengine_utilities.flash import Flash
-#from controller.appengine_utilities.cache import Cache
-from google.appengine.api import users
-from google.appengine.ext import webapp
-from google.appengine.ext.webapp import util
-from google.appengine.ext import db
-from google.appengine.api import datastore_errors
-from google.appengine.ext.webapp import template
+from lib.imports import *
 from lib import llhandler
-from model.models import *
-
-
+import templates
+from root_dir import root_directory
 class NotFoundHandler(llhandler.LLHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)
 	
 	def get(self):
 		template_values = {}
-		path = os.path.join(self.base_directory(), '../templates/not_found.html')
-		template_file = open(path) 
-		compiled_template = template.Template(template_file.read()) 
-		template_file.close()  
-		self.response.out.write(compiled_template.render(template.Context(template_values)))
-
-		
+		print root_directory()
+		jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(root_directory()+'/templates/'),cache_size=0)
+		print jinja_environment
+		template = jinja_environment.get_template('error.html')
+		print template
+		self.response.write(template.render(template_values)) 
 		self.response.set_status(404)
 
 	def post(self):
@@ -56,4 +41,3 @@ class NotFoundHandler(llhandler.LLHandler):
 		#self.wr(path)
 		self.response.out.write(template.render(path, template_values))
 		
-
