@@ -32,7 +32,7 @@ class DefaultHandler(STHandler):
 			seasons.append({'season':season,'selected_media':selected_media})
 
 		self.set("rand_seasons",seasons)
-		self.render('index')
+		self.render('default/index')
 
 class IndexHandler(webapp2.RequestHandler):
 	def get(self):

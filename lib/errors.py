@@ -25,9 +25,8 @@ class NotFoundHandler(llhandler.LLHandler):
 	def get(self):
 		template_values = {}
 		print root_directory()
-		jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(root_directory()+'/templates/'),cache_size=0)
-		print jinja_environment
-		template = jinja_environment.get_template('error.html')
+		self.jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(root_dir.from_root_directory('views/templates')))
+		template = self.jinja_environment.get_template('error.html')
 		print template
 		self.response.write(template.render(template_values)) 
 		self.response.set_status(404)
