@@ -8,7 +8,7 @@ class AddMontage(llhandler.LLGAEHandler):
 		#open_montages_names = db.GqlQuery("SELECT STMontage.name FROM STMontage WHERE status = :1",'Open')
 		open_montages = STMontage.all().filter('status =','Open').get()
 		self.set('open_montages',open_montages)
-		self.render('add_montage',template_values={})
+		self.render('/admin/add_montage',template_values={})
 
 	def internal_post(self):
 		montage = STMontage()
@@ -33,7 +33,7 @@ class ViewMontage(llhandler.LLGAEHandler):
 	def internal_get(self,slug):
 		logging.debug("Looking montage with slug ["+slug+"]")
 		montage = self.retrieve_or_404(STMontage.all().filter('slug =',slug).get())
-		self.render('view_montage',template_values={'montage':montage})	
+		self.render('/admin/view_montage',template_values={'montage':montage})	
 
 class ListMontages(llhandler.LLGAEHandler):
 
@@ -42,4 +42,4 @@ class ListMontages(llhandler.LLGAEHandler):
 	
 	def internal_get(self):
 		montage_list = STMontage.all()
-		self.render('list_montages',template_values={'montage_list':montage_list})
+		self.render('/admin/list_montages',template_values={'montage_list':montage_list})

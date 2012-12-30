@@ -34,7 +34,7 @@
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=340592785985454";
+  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1&appId=340592785985454";
   fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -42,22 +42,23 @@
     ================================================== -->
     
 
-  <div class="container">
-    <div class="row">
+  <div class="container-fluid">
+    <div class="row-fluid">
       <!--div class="span2 visible-desktop" style="  padding-top: 220px; padding-bottom:200px" >
         
       </div-->
       <div class="span12">
 
-        <header class="jumbotron ">
+        <header >
           <div class="innerno">
-            <div class="row">
-            <div class="span4">
-              <a href="/"><img src="http://bitly.com/WkY9kw" style="height:83px" alt="SoloTeatro.cl" /></a>
+            <div class="row-fluid">
+              <div class="span4">
+                <a href="/"><img src="http://bit.ly/SsnGfK" style="height:83px" alt="SoloTeatro.cl" /></a>
+              </div>
+              <div class="span8 top-header">
+                
+              </div>
             </div>
-            <div class="span8">
-            </div>
-          </div>
           </div>
         </header>
         <div class="navbar soloteatro">
@@ -88,36 +89,43 @@
             </div>
           </div><!-- /navbar-inner -->
         </div>
-        
-      
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="span12">
       {% block content %}
 
-      <div class="row">
-        <div class="span4">
-          <h2>Aqui va</h2>
+        <div class="row">
+          <div class="span4">
+            <h2>Aqui va</h2>
+          </div>
+          <div class="span8">
+            <h1>El Contenido</h1>
+          </div>
         </div>
-        <div class="span8">
-          <h1>El Contenido</h1>
-        </div>
-      </div>
 
       {% endblock %}
-      
-      
-      <footer class="footer">
-        <p style="text-align: right">
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <footer class="footer span12">
+        <p class="">
           <a href="/contenido/quienes-somos">Quienes Somos</a>
           <!--a href="/archive">Archivo</a-->
           <a href="/contenido/links">Links amigos</a>
           <a href="/teatros/">Teatros</a>
           <!--a href="/obras/genero/musical">Promociones</a-->
-          <a href="/contacto/">Contacto</a>
+          <a href="http://soloteatro.us6.list-manage1.com/subscribe?u=efdfc95dd2212d9b96d3e00b3&id=da2a9c1d45">Newsletter</a>
           <!--a href="/contact/ingresar-obra">Ingresa tu obra</a-->
         </p>
       </footer>
     </div>
   </div>
-</div>
+
 
   <!-- Le javascript
   ================================================== -->

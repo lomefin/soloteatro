@@ -1,4 +1,4 @@
-﻿{% extends "admin_template.html" %}
+﻿{% extends "templates/admin_template.html" %}
 {% block content %}
 <div class="row-fluid">
 	<div class="span12">
@@ -9,7 +9,7 @@
 		  	Estás agregando una obra express! Eso significa que vas a crear un montaje al mismo tiempo que creas su primera temporada. Ten mucho cuidado, porque si <strong>ya existe el montaje quedará la tendalá!</strong>.</p>
 		  <p>Puedes revisar esta lista de montajes para asegurar que no est&aacute;, de encontrarse y ser solamente una nueva temporada hazle click al boton <em>Nueva temporada de este montaje</em>.</p>
 		  <form class="form-inline">
-		  	<input type="text" data-provide="typeahead" data-source='[{%for montage in montages %}"{{montage.name}}"{%if forloop.last %}{%else%},{%endif%}{%endfor%}]'/>
+		  	<input type="text" data-provide="typeahead" data-source='[{%for montage in montages %}"{{montage.name}}"{%if loop.last %}{%else%},{%endif%}{%endfor%}]'/>
 		  	<input type="submit" class="btn-primary" value="Nueva temporada de este montaje" />
 		  </form>
 		  

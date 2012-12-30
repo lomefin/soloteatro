@@ -1,4 +1,4 @@
-{% extends "admin_template.html" %}
+{% extends "templates/admin_template.html" %}
 {% block content %}
 
 <div class="row">
@@ -34,19 +34,21 @@
     
     <div class="span8">
       <h2>Temporadas de este Montaje</h2>
-      {% for season in montage.seasons %}
+      {% if montage.seasons %}
+        {% for season in montage.seasons %}
         <div>
           <h3>Temporada {{season.repetition}}</h3>
-          <h4>Del {{season.start|date:"SHORT_DATE_FORMAT"}} al {{season.end|date:"SHORT_DATE_FORMAT"}} </h4>
+          <h4>Del {{season.start|datetime("SHORT_DATE_FORMAT")}} al {{season.end|datetime("SHORT_DATE_FORMAT")}} </h4>
           <h4>en <a href="/admin/venues/{{season.venue.slug}}">{{season.venue.name}}</a></h4>
 
         </div>
-      {% empty %}
+        {% endfor %}
+      {% else %}
         <div class="alert">
           <button class="close" data-dismiss="alert">×</button>
           <p>Actualmente, este montaje no tiene ninguna temporada. Si quieres agregarle una puedes ir al <a href="/admin/seasons/add">Administrador de Temporadas</a> o agregar una temporada a este montaje <a href="/admin/montages/{{montage.slug}}/seasons/add">directamente</a>.</p>
         </div>
-      {% endfor %}
+      {% endif %}
     </div>
     <div class="span4">
       <h2>Opciones</h2>
@@ -68,11 +70,10 @@
     {%for media in montage.related_media %}
       <li class="span4" style="">
         <div class="thumbnail">
-          
-        {% if media.class_name == 'STVideo' %}
+        {% if media.class_name() == 'STVideo' %}
           <iframe class="span4" height="180" src="http://www.youtube.com/embed/{{media.video_id}}" frameborder="0" allowfullscreen></iframe>
         {% endif %}
-        {% if media.class_name == 'STPicture' %}
+        {% if media.class_name() == 'STPicture' %}
           {%for thumb in media.thumbs %}  
             {%if thumb.size == 'thumb'%}
             <img  height="180" src="{{thumb.url}}" alt="{{montage.name}}"/>
@@ -80,7 +81,7 @@
           {% endfor %}
         {% endif %}
           <div class="caption" style="">
-            <a href="/admin/media/{{media.key}}/toggle" class="btn btn-mini {%if not media.selected%}btn-primary{%else%}btn-warning{%endif%}">
+            <a href="/admin/media/{{media.key()}}/toggle" class="btn btn-mini {%if not media.selected%}btn-primary{%else%}btn-warning{%endif%}">
               {% if not media.selected %}S{%else%}Des{% endif %}eleccionar
             </a>
           </div>

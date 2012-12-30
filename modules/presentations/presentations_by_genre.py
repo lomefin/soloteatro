@@ -21,4 +21,4 @@ class PresentationsByGenre(STHandler):
 		self.set("genre",genre)
 		self.set("open_seasons",open_seasons)
 
-		self.render('presentations_of_genre')
+		self.render('presentations/presentations_of_genre')
