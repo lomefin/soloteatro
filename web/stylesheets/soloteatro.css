@@ -248,3 +248,4 @@ div.presentation-details
 	background-repeat:no-repeat; 
 	background-position: right;
 }
+.fb-comments, .fb-comments iframe[style] {width: 100% !important;}

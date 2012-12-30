@@ -5,7 +5,7 @@ class AddVenue(llhandler.LLGAEHandler):
 		return os.path.dirname(__file__)
 	
 	def internal_get(self):
-		self.render('add_venue',template_values={})
+		self.render('/admin/add_venue',template_values={})
 
 	def internal_post(self):
 
@@ -34,4 +34,4 @@ class ViewVenue(llhandler.LLGAEHandler):
 	def internal_get(self,venue_code):
 		logging.debug("Looking for " + venue_code)
 		venue = STVenue.all().filter('slug =',venue_code).get()
-		self.render('view_venue',template_values={'venue':venue})
+		self.render('/admin/view_venue',template_values={'venue':venue})

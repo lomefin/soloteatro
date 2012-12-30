@@ -11,8 +11,9 @@ import time
 import json
 import webapp2
 import jinja2
-
+from google.appengine.api import memcache
 from webapp2_extras import sessions
+from webapp2_extras import sessions_memcache
 
 from lib import appengine_launch
 

@@ -13,4 +13,4 @@ class ViewVenue(STHandler):
 	def internal_get(self,venue_code):
 		logging.debug("Looking for " + venue_code)
 		venue = STVenue.all().filter('slug =',venue_code).get()
-		self.render('view_venue',template_values={'venue':venue})
+		self.render('venues/view_venue',template_values={'venue':venue})

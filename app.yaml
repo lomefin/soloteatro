@@ -21,20 +21,25 @@ handlers:
 #   script: modules/extras/extras.py
 # - url: /noticias/.*
 #   script: modules/news/news.py
-# - url: /obras/genero/(.*)
-#   script: modules/presentations/presentations.py
-# - url: /(obras|categorias)/.*
-#   script: modules/presentations/presentations.py 
-# - url: /teatros/(.*)
-#   script: modules/venues/venues.py 
+
 # - url: /logout
 #   script: modules/extras/extras.py
 # - url: /fotos/(.*)
 #   script: modules/content/content.py
 # - url: /contenido/.*
 #   script: modules/content/content.py
+- url: /admin/(\D*?)/.*
+  script: modules.admin.admin.application
+- url: /admin/
+  script: modules.admin.admin.application
+- url: /obras/genero/(.*)
+  script: modules.presentations.presentations.application
 - url: /(obras|categorias)/.*
   script: modules.presentations.presentations.application
+- url: /teatros/(.*)
+  script: modules.venues.venues.application
+- url: /contenido/(.*)
+  script: modules.content.content.application
 - url: /.*
   script: modules.default.index.application
 

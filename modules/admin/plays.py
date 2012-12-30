@@ -6,7 +6,7 @@ class AddPlay(llhandler.LLGAEHandler):
 	
 	def internal_get(self):
 		venue_list = STVenue.all()
-		self.render('add_play',template_values={'venue_list':venue_list})
+		self.render('/admin/add_play',template_values={'venue_list':venue_list})
 
 	def internal_post(self):
 		pass

@@ -22,7 +22,7 @@
 			            	</div>
 			            {{ season.best_picture}}
 			            {% for media in season.related_media %}
-			            	{% if media.class_name == 'STPicture' and forloop.first %}
+			            	{% if media.class_name == 'STPicture' and loop.first %}
 						    <img src="{{media.url}}" alt="{{season.montage.name}}" class="span12"/>
 						    {% endif %}
 				        {% empty %}

@@ -32,14 +32,14 @@ class LLDefaultHandler(webapp2.RequestHandler):
         self.jinja_environment.filters['datetime'] = self.format_datetime        
         #self.auth_check()
 
-    def format_datetime(value, format='medium'):
+    def format_datetime(self, value, format='medium'):
         if format == 'SHORT_DATE_FORMAT':
-            format = 'dd/MM/y'
+            format = '%d/%m/%Y'
         if format == 'full':
             format="EEEE, d. MMMM y 'at' HH:mm"
         elif format == 'medium':
             format="EE dd.MM.y HH:mm"
-        return value.strptime(format)
+        return value.strftime(format)
 
 
 
@@ -60,7 +60,7 @@ class LLDefaultHandler(webapp2.RequestHandler):
     @webapp2.cached_property
     def session(self):
         # Returns a session using the default cookie key.
-        return self.session_store.get_session()
+        return self.session_store.get_session(name='soloteatro',factory=sessions_memcache.MemcacheSessionFactory)
 
     
     def set_flash(self,flash,flash_type='info'):
@@ -77,33 +77,7 @@ class LLDefaultHandler(webapp2.RequestHandler):
     
     def auth_check(self):
         return True
-        self.session = get_current_session()
-        user = users.get_current_user()
-        self.current_account = None
-        self.set('current_url',self.request.host_url)   
-        if(user and self.session):
-            if self.session.has_key("current_account"):
-                self.current_account = self.session["current_account"]  
-            else:
-                self.current_account = STAccount.all().filter('email = ',user.email()).get()
-                
-                if not self.current_account:
-                    self.current_account = STAccount()
-                    self.current_account.email = user.email()
-                        #self.current_account.put()
-                    #Setting the session data
-                #self.current_account.is_administrator = users.is_current_user_admin()
-                self.current_account.last_entrance = datetime.datetime.now()
-                self.current_account.put()
-                self.session["current_account"] = self.current_account
-                
-                time.sleep(1)
         
-        else:
-            self.login_url = users.create_login_url('/')
-        
-        
-        return True
 
     def set(self,key,value):
 
@@ -248,11 +222,10 @@ class LLGAEHandler(LLDefaultHandler):
         logging.debug("Current user is "+ str(user))
         if user:
             
-            self.session = get_current_session()
             self.current_account = None
             self.set("current_user",user)
             if self.session.has_key("current_account"):
-                self.current_account = self.session["current_account"]  
+                self.current_account = STAccount.get(db.Key(encoded=self.session["current_account"]))
             else:
                 self.current_account = STAccount.all().filter('email = ',user.email()).get()
                 
@@ -263,16 +236,11 @@ class LLGAEHandler(LLDefaultHandler):
                 #Setting the session data
                 self.current_account.last_entrance = datetime.datetime.now()
                 self.current_account.put()
-                if self.current_account.is_administrator:
-                    self.session["current_account"] = self.current_account
-                    #self.session["current_account"].put()
-                    time.sleep(1)
-                    return True
-                else:
-                    self.session["current_account"] = self.current_account
-                    time.sleep(1)
-                    return True
-                    #self.redirect('/error/403')        
+
+                self.session["current_account"] = str(self.current_account.key())
+                time.sleep(1)
+                return True
+                
             
                 
         else:

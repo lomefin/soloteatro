@@ -97,7 +97,7 @@
       <!-- Carousel items -->
       <div class="carousel-inner">
         {%for picture in pictures%}
-        <div class="{% if forloop.first %}active{%endif%} item">
+        <div class="{% if loop.first %}active{%endif%} item">
           <img src="{{picture.url}}" />
         </div>
         {%endfor%}

@@ -94,7 +94,7 @@ class STHandler(llhandler.LLHandler):
 		for genre in genres:
 			open_seasons_query = genre.seasons.filter('status = ', 'Open')
 			if open_seasons_query.count() > 0:
-				active_genres.append(genre)
+				active_genres.append(genre.name)
 				active_seasons.append(open_seasons_query.fetch(100))
 
 
