@@ -71,6 +71,31 @@
 			      </div>
 			    </div>
 			</fieldset>
+			<fieldset>
+			    <legend>Ficha Técnica</legend>
+
+			    <div class="control-group">
+			      <label class="control-label" for="season_cast">Elenco</label>
+			      <div class="controls">
+			        <textarea class="input-xlarge" id="season_cast" name="season_cast" rows="5"></textarea>
+			      </div>
+			      <p class="help-block">Separa los actores por comas.</p>
+			    </div>
+
+			    <div class="control-group">
+			      <label class="control-label" for="season_producer">Productor</label>
+			      <div class="controls">
+			        <input type="text" class="input-xlarge" id="season_producer" name="season_producer">
+			      </div>
+			    </div>
+
+			    <div class="control-group">
+			      <label class="control-label" for="season_technical_team">Equipo Técnico</label>
+			      <div class="controls">
+			        <textarea class="input-xlarge" id="season_technical_team" name="season_technical_team" rows="5"></textarea>
+			      </div>
+			    </div>
+			 </fieldset>
 			<h2>La temporada...</h2>
 			<fieldset>
 			    <legend>Datos de la Temporada</legend>
@@ -101,33 +126,18 @@
 			        <input type="text" class="input-xlarge date-picker" id="season_end" name="season_end" data-date-format="dd/mm/yyyy" required>
 			      </div>
 			    </div>
+
 			</fieldset>
 			<fieldset>
-			    <legend>Ficha Técnica</legend>
-
-			    <div class="control-group">
-			      <label class="control-label" for="season_cast">Elenco</label>
-			      <div class="controls">
-			        <textarea class="input-xlarge" id="season_cast" name="season_cast" rows="5"></textarea>
-			      </div>
-			      <p class="help-block">Separa los actores por comas.</p>
-			    </div>
-
-			    <div class="control-group">
-			      <label class="control-label" for="season_producer">Productor</label>
-			      <div class="controls">
-			        <input type="text" class="input-xlarge" id="season_producer" name="season_producer">
-			      </div>
-			    </div>
-
-			    <div class="control-group">
-			      <label class="control-label" for="season_technical_team">Equipo Técnico</label>
-			      <div class="controls">
-			        <textarea class="input-xlarge" id="season_technical_team" name="season_technical_team" rows="5"></textarea>
-			      </div>
-			    </div>
-			 </fieldset>
-			 <fieldset>
+				<legend>Presentaciones y horarios</legend>
+				<div class="row-fluid">
+					<div class="span8">
+						<ul class="presentations">
+						</ul>
+					</div>
+				</div>
+			</fieldset>
+			<fieldset>
 			 	<legend>Presentaciones y horarios</legend>
 			 	<div class="row-fluid">
 			 		<div class="span4">
@@ -241,5 +251,19 @@
 	});
 	
 	
+	$(function(){
+		$('#season_start').on('changeDate',function(ev)
+		{
+			var date = ev.date;
+			SeasonPlanner.dateChanged(date,'start')
+		})
+		$('#season_end').on('changeDate',function(ev)
+		{
+			var date = ev.date;
+			SeasonPlanner.dateChanged(date,'end')
+		})
+	});
+	
 </script> 
+<script type="text/coffeescript" src="/js/season_planner.coffee"></script>
 {% endblock js_activities %}
