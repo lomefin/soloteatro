@@ -17,12 +17,4 @@
 from lib.imports import *
 from modules.venues.venue_details import *
 
-
-
-def main():
-  LLApp([('/teatros/(.*)', ViewVenue),
-  		
-  	])
- 
-if __name__ == "__main__":
-  main()
+application = LLApp([('/teatros/(.*)', ViewVenue),]).application

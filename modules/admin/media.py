@@ -14,7 +14,7 @@ class AddMediaToSeason(llhandler.LLGAEHandler):
         self.set('montage',montage)
         season = montage.seasons.filter('repetition =',season_numeral)
         self.set('season',season)
-        self.render('add_media')
+        self.render('/admin/add_media')
 
 
 
@@ -33,7 +33,7 @@ class AddMediaToLatestSeason(llhandler.LLGAEHandler):
         logging.debug(montage.seasons.get())
         season = montage.seasons.order('-repetition').get()
         self.set('season',season)
-        self.render('add_media')
+        self.render('/admin/add_media')
 
 
 

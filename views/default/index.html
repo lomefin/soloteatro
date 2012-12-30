@@ -1,24 +1,7 @@
-﻿{% extends "main_template.html" %}
+﻿{% extends "templates/main_template.html" %}
 
 {% block content %}
-<div class="row-fluid greeter hidden-desktop">
-  {% with rand_seasons|first as season %}
-  <div class="span4">
-    <img src="http://bit.ly/ThbNXE" alt="">
-  </div>
 
-  <div class="span4">
-     <div class="">
-        <h1>{{season.montage.name}}</h1>
-        <p>{{season.montage.description|truncatewords:30}}</p>
-    </div>
-  </div>
-  <hr />
-  <div class="span4">
-    <h1>Aqui va el calendario</h1>
-  </div>
-  {% endwith %}
-</div>
 <!--------------------INIT DESKTOP-------------------------->
 <div class="row-fluid greeter visible-desktop" >
   {% if rand_seasons %}
@@ -26,7 +9,7 @@
     <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         {%for season in rand_seasons %}
-        <div class="item {%cycle 'active' 'st-not-active' 'st-not-active-yet'%}">
+        <div class="item {{ loop.cycle ('active','st-not-active','st-not-active-yet') }}">
             {%if season.selected_media %}
               {% if season.selected_media.class_name == 'STPicture' %}
                 {%for thumb in season.selected_media.thumbs %}
@@ -40,7 +23,7 @@
             {% endif %}
             <div class="carousel-caption" >
               <h1>{{season.season.montage.name}}</h1>
-              <p>{{season.season.montage.description|truncatewords:30}}
+              <p>{{season.season.montage.description|truncate}}
               </p>
             </div>
             <a href="/obras/{{season.season.montage.slug}}"><span class="panelLink"></span></a>

@@ -21,7 +21,7 @@
 	            </div>
 	            <a href="/obras/{{presentation.season.montage.slug}}">
 	            {% for media in presentation.season.related_media %}
-	            	{% if media.class_name == 'STPicture' and forloop.first %}
+	            	{% if media.class_name == 'STPicture' and loop.first %}
 		                <img style="max-height: 180px; max-width: 320px" src="{{media.url}}" />
 		            {% endif %}
 		        {% empty %}

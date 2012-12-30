@@ -33,4 +33,4 @@ class PresentationDetails(STHandler):
 		self.set("montage",current_season.montage)
 		self.set("selected_media",selected_media)
 		self.set('pictures',pictures)
-		self.render('view_presentation')
+		self.render('presentations/view_presentation')

@@ -6,7 +6,7 @@ class AddSeason(llhandler.LLGAEHandler):
 		return os.path.dirname(__file__)
 	
 	def internal_get(self):
-		self.render('add_montage',template_values={})
+		self.render('/admin/add_montage',template_values={})
 
 	def internal_post(self):
 		montage = STMontage()
@@ -33,7 +33,7 @@ class AddSeasonToMontage(llhandler.LLGAEHandler):
 		logging.debug('Looking for ' + montage_slug + "... " + str(montage))
 		self.set('montage',montage)
 		self.set('value_list', STVenue.all())
-		self.render('add_season')
+		self.render('/admin/add_season')
 
 	def internal_post(self):
 
@@ -60,7 +60,7 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 		venue_list = STVenue.all()
 		self.set('montages',STMontage.all().order('-date_created').fetch(100))
 		self.set('genres',STGenre.all().order('-rating'))
-		self.render('add_season_express',template_values={'venue_list':venue_list})
+		self.render('/admin/add_season_express',template_values={'venue_list':venue_list})
 
 	def daterange(self,start_date, end_date):
 		logging.debug(start_date)

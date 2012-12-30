@@ -7,5 +7,5 @@ class ShowReports(llhandler.LLGAEHandler):
 
 	def internal_get(self):
 
-		self.render('dashboard')
+		self.render('/admin/dashboard')
 		
