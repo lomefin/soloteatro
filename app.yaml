@@ -33,6 +33,8 @@ handlers:
 #   script: modules/content/content.py
 # - url: /contenido/.*
 #   script: modules/content/content.py
+- url: /(obras|categorias)/.*
+  script: modules.presentations.presentations.application
 - url: /.*
   script: modules.default.index.application
 
@@ -43,9 +45,10 @@ error_handlers:
   - error_code: over_quota
     file: templates/over_quota.html
 
-builtins:
-  - remote_api: on
 
 libraries:
 - name: jinja2
   version: latest
+
+builtins:
+  - remote_api: on

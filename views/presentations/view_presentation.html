@@ -1,4 +1,4 @@
-{% extends "main_template.html" %}
+{% extends "templates/main_template.html" %}
 {%block opengraph%}
 <meta property="og:title" content="{{montage.name}}" />
 <meta property="og:type" content="play" />
@@ -58,7 +58,7 @@
   <div class="span3">
       <div>
         <h3>Temporada {{season.repetition}}</h3>
-        <h4>Del {{season.start|date:"SHORT_DATE_FORMAT"}} al {{season.end|date:"SHORT_DATE_FORMAT"}} </h4>
+        <h4>Del {{season.start|datetime("SHORT_DATE_FORMAT")}} al {{season.end|datetime("SHORT_DATE_FORMAT")}} </h4>
         <h4>en <a href="/teatros/{{season.venue.slug}}">{{season.venue.name}}</a></h4>
       </div>
   </div>
@@ -66,7 +66,7 @@
         <h3>Funciones</h3>
         <ul class="nav nav-tabs nav-stacked">
         {% for presentation in future_presentations %}
-            <li><a href="#">{{presentation.date|date:"l, H:i" }} hrs.</a></li>
+            <li><a href="#">{{presentation.datetime|datetime("l, H:i")}} hrs.</a></li>
         {% endfor %}
         </ul>   
   </div>

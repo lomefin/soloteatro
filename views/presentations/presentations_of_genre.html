@@ -1,4 +1,4 @@
-{% extends "main_template.html" %}
+{% extends "templates/main_template.html" %}
 {% block content %}
 
 
@@ -20,14 +20,11 @@
 			            	<div class="caption" style="">
 			              		<h5>{{season.montage.name}}</h5>
 			            	</div>
-			            {{ season.best_picture}}
-			            {% for media in season.related_media %}
-			            	{% if media.class_name == 'STPicture' and forloop.first %}
-						    <img src="{{media.url}}" alt="{{season.montage.name}}" class="span12"/>
-						    {% endif %}
-				        {% empty %}
-			            	<img style="min-height:180px" src="http://bit.ly/WkY9kw" alt="" />
-			            {% endfor %}
+			            	{% if season.best_picture %}
+			            	<img src="{{ season.best_picture}}" alt="{{season.montage.name}}" class="span12"/>
+			            	{% else %}
+			            	<img src="http://bit.ly/WkY9kw" alt="{{season.montage.name}}" class="span12"/>
+			            	{% endif %}
 			          	</div>
 		          	</a>
 		        </li>

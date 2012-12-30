@@ -16,7 +16,7 @@
 #
 from lib.imports import *
 from lib import llhandler
-import templates
+
 from root_dir import root_directory
 class NotFoundHandler(llhandler.LLHandler):
 	def base_directory(self):

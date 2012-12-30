@@ -29,8 +29,19 @@ class LLDefaultHandler(webapp2.RequestHandler):
         self.debug = True
         
         self.jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(root_dir.from_root_directory('views')))
-        
+        self.jinja_environment.filters['datetime'] = self.format_datetime        
         #self.auth_check()
+
+    def format_datetime(value, format='medium'):
+        if format == 'SHORT_DATE_FORMAT':
+            format = 'dd/MM/y'
+        if format == 'full':
+            format="EEEE, d. MMMM y 'at' HH:mm"
+        elif format == 'medium':
+            format="EE dd.MM.y HH:mm"
+        return value.strptime(format)
+
+
 
     def dispatch(self):
         config = {'secret_key': 'my-super-secret-key'}
