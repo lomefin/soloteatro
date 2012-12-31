@@ -132,8 +132,44 @@
 				<legend>Presentaciones y horarios</legend>
 				<div class="row-fluid">
 					<div class="span8">
-						<ul class="presentations">
-						</ul>
+						<table class="table">
+							<thead class="presentations-head" style="display: none">
+								<tr>
+									<th></th>
+									<th colspan="6">Horas presentaciones</th>
+									<th rowspan="2"></th>
+								</tr>
+								<tr>
+									<th>Fecha</th>
+									<th colspan="2">1ra</th>
+									<th colspan="2">2da</th>
+									<th colspan="2">3ra</th>
+								</tr>
+								<tr>
+									<th>Todas</th>
+									<td>
+										<input type="time" class="input-small" name="all-dates:1" value="20:00" data-column="0"/>
+									</td>
+									<td>
+										<input type="checkbox" name="select-column:1" checked="checked" data-column="0"/>
+									</td>
+									<td>
+										<input type="time" class="input-small" name="all-dates:2" value="21:00" data-column="1"/>
+									</td>
+									<td>
+										<input type="checkbox" name="select-column:2" checked="checked" data-column="1"/>
+									</td>
+									<td>
+										<input type="time" class="input-small" name="all-dates:3" value="22:00" data-column="2"/>
+									</td>
+									<td>
+										<input type="checkbox" name="select-column:3"  checked="checked" data-column="2"/>
+									</td>
+								</tr>
+							</thead>
+							<tbody class="presentations">
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</fieldset>
