@@ -36,4 +36,4 @@ class PresentationsInTimeSpan(STHandler):
 		self.set("end",end_date)
 		self.set("days",days)
 
-		self.render('presentations_of_date')
+		self.render('presentations/presentations_of_date')

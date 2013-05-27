@@ -59,7 +59,7 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 	def internal_get(self):
 		venue_list = STVenue.all()
 		self.set('montages',STMontage.all().order('-date_created').fetch(100))
-		self.set('genres',STGenre.all().order('-rating'))
+		self.set('genres',STGenre.all().order('rating'))
 		self.render('/admin/add_season_express',template_values={'venue_list':venue_list})
 
 	def daterange(self,start_date, end_date):
@@ -84,15 +84,30 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 		
 		seasons_for_this_montage = montage.seasons.count()
 		
+		venue = None
+		
+		if self.param('venue_name'):
+			logging.info("Venue exists")
+			venue = STVenue()
+			venue.name = self.param('venue_name')
+			venue.address = self.param('venue_address')
+			venue.put()
+
+
 		#The first season
 		season = STSeason()
 		season.montage = montage.key()
-		season.venue = db.Key(encoded = self.param("season_venue"))
+		logging.info(self.param("season_venue"))
+		if venue:
+			season.venue = venue 
+		else:
+			season.venue = db.Key(encoded = self.param("season_venue"))
 		season.start = datetime.datetime.strptime(self.param("season_start"),"%d/%m/%Y")
 		season.end = datetime.datetime.strptime(self.param("season_end"),"%d/%m/%Y")
 		season.repetition = seasons_for_this_montage + 1
 		season.status = db.Category("Open")
 		season.cast = self.param("season_cast").split(",")
+		season.technical_team = self.param("season_technical_team").split(",")
 		season.prices = self.param("season_prices").split(",")
 		season.genre = montage.genre
 		season.put()

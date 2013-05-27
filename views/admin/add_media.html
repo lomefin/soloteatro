@@ -29,7 +29,7 @@
 			<form class="well form-inline">
 				<input type="text"  id="youtube_url" name="youtube_url" value=""/><span id="youtube_test" class="btn">Probar</span>
 			</form>
-			<form method="post" action="/admin/media/video/{{season.key}}" id="save_youtube_video" style="display:none">
+			<form method="post" action="/admin/media/video/{{season.key()}}" id="save_youtube_video" style="display:none">
 				<label for="youtube_description">Descripción:</label><input type="text" name="youtube_description" />
 				<button class="btn btn-primary" ><i class="icon-plus icon-white"></i>Agregar</button>
 				<input type="hidden" name="youtube_id" id="youtube_id"/>
@@ -67,7 +67,7 @@
 			    <div class="form-actions">
 			    	<input type="submit" value="Subir Imagen" class="btn btn-primary" />
 			    	<input type="reset" value="Me arrepentí!" class="btn btn-warning" value=""/>
-			    	<input type="hidden" name="params" value="{&quot;auth&quot;:{&quot;key&quot;:&quot;c7c74110afd14a4d981088958c1323cc&quot;},&quot;template_id&quot;:&quot;040b71bd2a1649b0b3c28ea68151a3ce&quot;,&quot;redirect_url&quot;:&quot;{{current_host}}/admin/media/image/{{season.key}}&quot;}" />
+			    	<input type="hidden" name="params" value="{&quot;auth&quot;:{&quot;key&quot;:&quot;c7c74110afd14a4d981088958c1323cc&quot;},&quot;template_id&quot;:&quot;040b71bd2a1649b0b3c28ea68151a3ce&quot;,&quot;redirect_url&quot;:&quot;{{current_host}}/admin/media/image/{{season.key()}}&quot;}" />
 			    </div>
 			</form>
 		</div>

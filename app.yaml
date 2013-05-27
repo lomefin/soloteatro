@@ -40,6 +40,8 @@ handlers:
   script: modules.venues.venues.application
 - url: /contenido/(.*)
   script: modules.content.content.application
+- url: /noticias/(.*)
+  script: modules.articles.articles.application
 - url: /.*
   script: modules.default.index.application
 

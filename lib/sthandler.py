@@ -80,21 +80,21 @@ class STHandler(llhandler.LLHandler):
 	def show_actives_genres_in_menu(self):
 
 		#Optimization for current presentations, use when DB load goes up.
-		if(self.session):
-			if(self.session.has_key('active_genres')):
-				self.set('active_genres',self.session['active_genres'])
-				logging.debug("Active Genres List Recycled")
-			if (self.session.has_key('active_seasons')):
-				self.set('active_seasons',self.session['active_seasons'])
-				return	
+		#if(self.session):
+		#	if(self.session.has_key('active_genres')):
+		#		self.set('active_genres',self.session['active_genres'])
+		#		logging.debug("Active Genres List Recycled")
+		#	if (self.session.has_key('active_seasons')):
+		#		self.set('active_seasons',self.session['active_seasons'])
+		#		return	
 
-		genres = STGenre.all().order('-rating')
+		genres = STGenre.all().order('rating')
 		active_genres = []
 		active_seasons = []
 		for genre in genres:
 			open_seasons_query = genre.seasons.filter('status = ', 'Open')
 			if open_seasons_query.count() > 0:
-				active_genres.append(genre.name)
+				active_genres.append(genre)
 				active_seasons.append(open_seasons_query.fetch(100))
 
 

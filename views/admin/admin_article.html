@@ -1,0 +1,44 @@
+{% extends "templates/admin_template.html" %}
+{% block content %}
+
+<section id="article-manager">
+	<div class="page-header">
+		<h1>Artículos </h1>
+		<p>Administralos</p>
+	</div>
+	<div class="row">
+    <div class="span8">
+  		<form method="POST" class="form-horizontal">
+  			<fieldset><legend>Agregar artículo</legend>
+          <div class="control-group">
+            <label class="control-label" for="article_title">Título</label>
+            <div class="controls">
+              <input type="text" required name="article_title" placeholder="Título" class="input-xxlarge"/>
+            </div>
+          </div>
+  				<div class="control-group">
+            <label class="control-label" for="article_body">Cuerpo</label>
+            <div class="controls">
+              <textarea name="article_body" rows="10" class="input-xxlarge"></textarea>
+            </div>
+          </div>
+          <p>Ayuda: Para un párrafo nuevo 2 enters. Para que quede abajo, 1 enter.</p>
+  			</fieldset>
+  			<div class="form-actions">
+  				<input type="submit" class="btn btn-primary" value="Publicar">
+  			</div>
+  		</form>
+    </div>
+    <div class="span4">
+      <h2>Últimos artículos</h2>
+      <dl class="dl">
+      {%for article in latest_articles %}
+        <dt>{{article.title}}</dt>
+        <dd><a href="#">Ver detalle en el sitio</a></dd>
+      {%endfor%}
+      </dl>
+    </div>
+	</div>
+	
+</section>
+{% endblock %}
