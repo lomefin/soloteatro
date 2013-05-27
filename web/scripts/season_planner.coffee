@@ -27,9 +27,6 @@ class SeasonPlanner
       elements.push $('<input type="checkbox" checked="checked" class="time-activator">').
         attr('name',date.toJSON()+"@"+id+"@valid").
         attr('data-column',id)
-    
-
-    
     elements
     
 
@@ -112,6 +109,7 @@ class SeasonPlanner
       elements.push $timeCheck
     elements
     
+
   triggerRender: ()->
     $presentationsHead = $('.presentations-head')
     $presentationsHeadControls = $('.presentations-head-controls')
@@ -129,6 +127,7 @@ class SeasonPlanner
     while current_date < @end_date
       $seasonListContainer.append(@wrap(@renderDate(current_date),'data-date':current_date))
       current_date = new Date(current_date.getFullYear(),current_date.getMonth(),current_date.getDate() + 1 )
+      @renderDate(current_date,$seasonListContainer)
 
     $presentationsHead.show()
 

@@ -106,13 +106,28 @@
 
 			        <select  class="input-xlarge" id="season_venue" name="season_venue">
 			        	{% for venue in venue_list %}
-			        	<option value="{{venue.key}}">{{venue.name}}</option>
+			        	<option value="{{venue.key()}}">{{venue.name}}</option>
 			        	{% endfor %}
 			        </select>
+			        <a id="addTheaterToggler" class="auto-toggler" data-target="addTheater">(Agregar teatro)</a>
 			      </div>
+
 			      <p class="help-block">Elige un teatro de la lista, si no existe, crealo y vuelve a intentar. Si es teatro itinerante, estas cagado.</p>
 			    </div>
-
+			    <div id="addTheater" style=""> 
+				    <div class="control-group">
+				    	<label class="control-label">Nombre teatro</label>
+				     	<div class="controls">
+				     		<input type="text" name="venue_name" />
+				     	</div>
+				    </div>
+				    <div class="control-group">
+				    	<label class="control-label">Dirección</label>
+				     	<div class="controls">
+				     		<input type="text" name="venue_address" />
+				     	</div>
+				    </div>
+				</div>
 			    <div class="control-group">
 			      <label class="control-label" for="season_start">Fecha inicio temporada</label>
 			      <div class="controls">
@@ -128,7 +143,7 @@
 			    </div>
 
 			</fieldset>
-			<fieldset>
+			<fieldset style="display: none">
 				<legend>Presentaciones y horarios</legend>
 				<div class="row-fluid presentations-head" style="display: none">
 					<div class="span8">
@@ -293,6 +308,12 @@
 			SeasonPlanner.dateChanged(date,'end')
 		})
 	});
+
+	$(function(){
+		$('#addTheaterToggler').click(function(ev){
+
+		})
+	})
 	
 </script> 
 <script type="text/coffeescript" src="/js/season_planner.coffee"></script>
