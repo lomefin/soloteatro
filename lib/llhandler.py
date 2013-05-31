@@ -48,7 +48,7 @@ class LLDefaultHandler(webapp2.RequestHandler):
         elif format == "MEDIUM_DATE_FORMAT":
             format = self.name_date(value.strftime("%w")) + " %d de " + self.name_month(value.strftime("%m"))
         elif format == 'SHORT_DATETIME_FORMAT':
-            format = "%d de "+self.name_month(value.strftime("%m"))+", %H:%m hrs."
+            format = "%d de "+self.name_month(value.strftime("%m"))+", %H:%M hrs."
         elif format == 'JUST_TIME':
             format = "HH:mm hrs"
         elif format == 'full':
