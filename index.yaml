@@ -62,3 +62,8 @@ indexes:
   - name: season
   - name: priority
     direction: desc
+
+- kind: STPresentation
+  properties:
+  - name: season
+  - name: date

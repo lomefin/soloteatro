@@ -21,13 +21,17 @@ class PresentationDetails(STHandler):
 		today = datetime.datetime.now()
 		next_2_weeks = today + datetime.timedelta(weeks=2)
 		future_presentations = []
-		for presentation in current_season.presentations:
+		presentations = STPresentation.all().filter('season =',current_season).order('date').fetch(limit=100)
+		next_presentation = None
+		for presentation in presentations:
 			
 			if (today <= presentation.date <= next_2_weeks):
-					future_presentations.append(presentation)
+				future_presentations.append(presentation)
+			if not next_presentation:
+				next_presentation = presentation
 					
 		
-
+		self.set("next_presentation",next_presentation)
 		self.set("future_presentations",future_presentations)
 		self.set("season",current_season)
 		self.set("montage",current_season.montage)
