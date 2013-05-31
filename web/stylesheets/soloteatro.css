@@ -249,3 +249,26 @@ div.presentation-details
 	background-position: right;
 }
 .fb-comments, .fb-comments iframe[style] {width: 100% !important;}
+
+.technical
+{
+	font-size: 24.5px;
+	line-height: 26px;
+}
+
+.technical.list, .technical .list
+{
+	color: #0088cc;
+	font-size: 20px;
+}
+
+article
+{
+	font-family: serif;
+}
+
+h1{ color: #db7221;}
+h2{ color: ;}
+
+a { color: #7B3F00;}
+a:hover { color: #996515;}

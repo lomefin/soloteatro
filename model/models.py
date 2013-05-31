@@ -89,6 +89,10 @@ class STVideo(STSeasonMedia):
 	provider = db.StringProperty()
 	failsafe_url = db.StringProperty()
 	
+class STArticle(STModel):
+	title = db.StringProperty()
+	body = db.TextProperty()
+	slug = SlugProperty(title)
 
 class STInterview(STSeasonMedia):
 	byline = db.StringProperty()

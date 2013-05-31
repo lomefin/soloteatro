@@ -22,10 +22,10 @@ class PresentationDetails(STHandler):
 		next_2_weeks = today + datetime.timedelta(weeks=2)
 		future_presentations = []
 		for presentation in current_season.presentations:
-			logging.debug("Presentations: "+ str(presentation))
+			
 			if (today <= presentation.date <= next_2_weeks):
 					future_presentations.append(presentation)
-					logging.debug("Appending " + str(presentation))
+					
 		
 
 		self.set("future_presentations",future_presentations)
