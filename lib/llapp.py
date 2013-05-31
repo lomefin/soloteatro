@@ -20,10 +20,10 @@ from lib.imports import *
 
 class LLApp():
 
-	def __init__(self,routes=[],debug=True):
+  def __init__(self,routes=[],debug=True):
 
-		#Setting up logging		
-		logging.getLogger().setLevel(logging.DEBUG)
+    #Setting up logging   
+    logging.getLogger().setLevel(logging.DEBUG)
 
     def handle_404(self,request, response, exception):
         logging.exception(exception)
@@ -35,12 +35,12 @@ class LLApp():
         logging.error('A server error occurred!')
         response.set_status(500)
 
-		#Setting routes and launching
-		default_routes = [('.*',lib.errors.NotFoundHandler),]
-		routes.extend(default_routes)
-		self.application = webapp2.WSGIApplication()
+    #Setting routes and launching
+    default_routes = [('.*',lib.errors.NotFoundHandler),]
+    routes.extend(default_routes)
+    self.application = webapp2.WSGIApplication()
 
-		all_routes = []
-		for route in routes:
-			self.application.router.add(route)
+    all_routes = []
+    for route in routes:
+      self.application.router.add(route)
 
