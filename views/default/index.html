@@ -10,16 +10,10 @@
       <div class="carousel-inner">
         {%for season in rand_seasons %}
         <div class="item {{ loop.cycle ('active','st-not-active','st-not-active-yet') }}">
-            {%if season.selected_media %}
-              {% if season.selected_media.class_name == 'STPicture' %}
-                {%for thumb in season.selected_media.thumbs %}
-                  {%if thumb.size == 'carrousel' %}
-                    <img height="300" src="{{thumb.url}}" />
-                  {%endif%}
-                {%endfor%}
-              {% endif %}
+            {% if season.season.best_carrousel_picture %}
+              <img src="{{ season.season.best_carrousel_picture}}" alt="{{season.season.montage.name}}" height="300" />
             {% else %}
-              <img src="http://bit.ly/ThbNXE" height="300" alt="">
+              <img src="http://bit.ly/ThbNXE" height="300" alt="{{season.season.montage.name}}">
             {% endif %}
             <div class="carousel-caption" >
               <h1>{{season.season.montage.name}}</h1>
