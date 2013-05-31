@@ -64,6 +64,10 @@ class STSeason(STModel):
 	def best_picture(self):
 		return self.related_media.filter('class = ','STPicture').order('-priority').get().thumb_url
 
+	@property
+	def best_carrousel_picture(self):
+		return self.related_media.filter('class = ','STPicture').order('-priority').get().carrousel_url		
+
 
 class STPresentation(STModel):
 	date = db.DateTimeProperty()
@@ -94,6 +98,9 @@ class STInterview(STSeasonMedia):
 
 class STPicture(STSeasonMedia):
 	def url(self):
+		return self.thumbs.filter('size = ','carrousel').get().url
+	@property
+	def carrousel_url(self):
 		return self.thumbs.filter('size = ','carrousel').get().url
 	@property
 	def thumb_url(self):
