@@ -101,6 +101,7 @@ class STInterview(STSeasonMedia):
 
 
 class STPicture(STSeasonMedia):
+	@property
 	def url(self):
 		return self.thumbs.filter('size = ','carrousel').get().url
 	@property

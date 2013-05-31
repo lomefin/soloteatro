@@ -29,10 +29,10 @@
         <section>{{montage.description}}</section>
     </div>
     <div class="span6" >
-    {% if selected_media.class_name == 'STVideo' %}
+    {% if selected_media.class_name() == 'STVideo' %}
       <iframe class="span12"  style="min-height: 300px"  src="http://www.youtube.com/embed/{{selected_media.video_id}}?rel=0&wmode=transparent" frameborder="0" allowfullscreen></iframe>
     {% endif %}
-    {% if selected_media.class_name == 'STPicture' %}
+    {% if selected_media.class_name() == 'STPicture' %}
       <img src="{{selected_media.url}}" alt="{{montage.name}}" class="span12"/>
     {% endif %}
     {% if not selected_media %}
