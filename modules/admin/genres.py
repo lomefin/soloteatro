@@ -5,7 +5,7 @@ class AdminGenres(llhandler.LLGAEHandler):
 		return os.path.dirname(__file__)
 	
 	def internal_get(self):
-		self.set('genre_list', STGenre.all().order('-rating'))
+		self.set('genre_list', STGenre.all().order('rating'))
 		self.render('/admin/admin_genre')
 
 	def internal_post(self):

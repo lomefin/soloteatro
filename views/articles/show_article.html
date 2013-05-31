@@ -1,0 +1,12 @@
+{% extends "templates/main_template.html" %}
+{% block content %}
+
+<h1>{{article.title}}</h1>
+<div class="row-fluid">
+  <div class="span8">
+    <article>
+      {{article.body}}
+    </article>
+  </div>
+</div>
+{% endblock content %}

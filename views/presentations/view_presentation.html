@@ -43,36 +43,32 @@
 <hr />
 <div class="row-fluid">
   <div class="span4">
-    <h4><small style="font-size:14px">Dirección</small> {{montage.director}}</h4>
-    <h4 class="capitalize"><small style="font-size:14px">Género </small> <a href="/obras/genero/{{montage.genre.slug}}">{{montage.genre.name}}</a></h3>
-    <h4 class="capitalize"><small style="font-size:14px">Dramaturgia </small> {{montage.writer}}</h3>
-    <h4><small style="font-size:14px">Elenco</small></h4>
-    <div>
-        <ul>
-        {%for actor in season.cast%}
-            <li>{{actor}}
-        {%endfor%}
-        </ul>
+    <p class="technical">Dirección   <a>{{montage.director}}</a></p>
+    <p class="technical">Género      <a href="/obras/genero/{{montage.genre.slug}}">{{montage.genre.name}}</a></p>
+    <p class="technical">Dramaturgia <a>{{montage.writer}}</a></p>
+    <p class="technical">Elenco <span class="technical list">{{season.cast|list}}</span></p>
+    <p><a id="more_details">Ver más detalles</a></p>
+    <div id="hidden_details" style="display:none">
+      <p class="technical">Equipo técnico <span class="technical list">{{season.technical_team|list}}</span></p>
     </div>
   </div>
   <div class="span3">
       <div>
-        <h3>Temporada {{season.repetition}}</h3>
-        <h4>Del {{season.start|datetime("SHORT_DATE_FORMAT")}} al {{season.end|datetime("SHORT_DATE_FORMAT")}} </h4>
-        <h4>en <a href="/teatros/{{season.venue.slug}}">{{season.venue.name}}</a></h4>
+        <p class="technical">Cuándo?  <a>Del {{season.start|datetime("SHORT_DATE_FORMAT")}} al {{season.end|datetime("SHORT_DATE_FORMAT")}} </a></p>
+        <p class="technical">Dónde?   <a href="/teatros/{{season.venue.slug}}">{{season.venue.name}} <small>({{season.venue.address}})</small></a> </p>
       </div>
   </div>
-  <div class="span3">
-        <h3>Funciones</h3>
+  <div class="span2">
+        <p class="technical">Funciones</p>
         <ul class="nav nav-tabs nav-stacked">
         {% for presentation in future_presentations %}
-            <li><a href="#">{{presentation.datetime|datetime("l, H:i")}} hrs.</a></li>
+            <li><a href="#">{{presentation.date|datetime("SHORT_DATETIME_FORMAT")}}</a></li>
         {% endfor %}
         </ul>   
   </div>
-  <div class="span2">
-        <h3>Precios</h3>
-        <ul class="nav nav-tabs nav-stacked">
+  <div class="span3">
+        <p class="technical">Precios</p>
+        <ul class="">
         {% for price in season.prices %}
             <li><a href="#">{{price}}</a></li>
         {% endfor %}

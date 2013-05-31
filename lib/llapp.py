@@ -19,10 +19,21 @@ from lib.imports import *
 
 
 class LLApp():
+
 	def __init__(self,routes=[],debug=True):
 
 		#Setting up logging		
 		logging.getLogger().setLevel(logging.DEBUG)
+
+    def handle_404(self,request, response, exception):
+        logging.exception(exception)
+        logging.error('Oops! I could swear this page was here!')
+        response.set_status(404)
+
+    def handle_500(self,request, response, exception):
+        logging.exception(exception)
+        logging.error('A server error occurred!')
+        response.set_status(500)
 
 		#Setting routes and launching
 		default_routes = [('.*',lib.errors.NotFoundHandler),]

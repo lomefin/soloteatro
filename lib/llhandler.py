@@ -29,19 +29,44 @@ class LLDefaultHandler(webapp2.RequestHandler):
         self.debug = True
         
         self.jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(root_dir.from_root_directory('views')))
-        self.jinja_environment.filters['datetime'] = self.format_datetime        
+        self.jinja_environment.filters['datetime'] = self.format_datetime      
+        self.jinja_environment.filters['list'] = self.format_list
         #self.auth_check()
+
+
+    month_names = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre']
+    day_names   = ['lunes','martes','mi&eacute;rcoles','jueves','viernes','s&aacute;bado','domingo']
+
+    def name_day(self,day):
+        return LLDefaultHandler.day_names[int(day)]
+    def name_month(self,month):
+        return LLDefaultHandler.month_names[int(month)-1]
 
     def format_datetime(self, value, format='medium'):
         if format == 'SHORT_DATE_FORMAT':
-            format = '%d/%m/%Y'
-        if format == 'full':
+            format = "%d de " + self.name_month(value.strftime("%m"))
+        elif format == "MEDIUM_DATE_FORMAT":
+            format = self.name_date(value.strftime("%w")) + " %d de " + self.name_month(value.strftime("%m"))
+        elif format == 'SHORT_DATETIME_FORMAT':
+            format = "%d de "+self.name_month(value.strftime("%m"))+", %H:%m hrs."
+        elif format == 'JUST_TIME':
+            format = "HH:mm hrs"
+        elif format == 'full':
             format="EEEE, d. MMMM y 'at' HH:mm"
         elif format == 'medium':
             format="EE dd.MM.y HH:mm"
         return value.strftime(format)
 
-
+    def format_list(self,list):
+        if len(list) == 1:
+            return list[0]
+        if len(list) == 0:
+            return ""
+        try:
+            return ", ".join(list[:-1])+" y "+list[-1]
+        except:
+            logging.debug("Error in format_list " + str(list))
+            return ", ".join(list)
 
     def dispatch(self):
         config = {'secret_key': 'my-super-secret-key'}

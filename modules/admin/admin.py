@@ -6,6 +6,7 @@ from modules.admin.seasons import *
 from modules.admin.media import *
 from modules.admin.reports import *
 from modules.admin.genres import *
+from modules.admin.articles import *
 
 application = LLApp([
       ('/admin/montages/add', AddMontage),
@@ -23,5 +24,6 @@ application = LLApp([
       ('/admin/media/video/(\S*)',AddVideoToSeason),
       ('/admin/media/image/(\S*)',AddPictureToSeason),
       ('/admin/genres/',AdminGenres),
+      ('/admin/articles/',AdminArticles),
       ('/admin/',ShowReports),
       ]).application
