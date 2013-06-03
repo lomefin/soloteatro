@@ -23,9 +23,11 @@ class DefaultHandler(STHandler):
 	
 	def internal_get(self):
 		seasons = []
-		rand_seasons = db.GqlQuery("SELECT * FROM STSeason WHERE status = 'Open' ORDER BY date_created DESC LIMIT 3 ")
+		rand_seasons = db.GqlQuery("SELECT * FROM STSeason WHERE status = 'Open' ORDER BY last_shown ASC LIMIT 3 ")
 		for season in rand_seasons:
 			selected_media = None
+			season.last_shown = datetime.datetime.now()
+			season.put()
 			for media in season.related_media:
 				if media.selected:
 					selected_media = media

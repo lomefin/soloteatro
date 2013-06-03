@@ -61,6 +61,8 @@ class STSeason(STModel):
 	producer = db.StringProperty()
 	technical_team = db.StringListProperty()
 
+	last_shown = db.DateTimeProperty()
+
 	@property
 	def best_picture(self):
 		return self.related_media.filter('class = ','STPicture').order('-priority').get().thumb_url

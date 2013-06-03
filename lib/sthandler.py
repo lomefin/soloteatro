@@ -38,12 +38,13 @@ class STHandler(llhandler.LLHandler):
 	def get_presentations_on_dates(self,start_date,end_date):
 		current_date = start_date
 		days = []
-		#self.logger.info("Getting presentations from {start} to {end}".format(start=start_date,end=end_date))
+		self.logger.info("Getting presentations from {start} to {end}".format(start=start_date,end=end_date))
 		while(current_date <= end_date):
-			logging.debug("Trying with date " + str(current_date))
-			presentations_that_day = STPresentation.all().filter('status =','Open').filter('day =',current_date)
+			presentations_that_day = STPresentation.all().filter('day =',current_date)
 			if presentations_that_day.count(1)> 0 :
-				days.append({'date':current_date, 'presentations':presentations_that_day,
+				day_presentations = dict(map(lambda x: [x.season.montage.name,x],presentations_that_day))
+				
+				days.append({'date':current_date, 'presentations':day_presentations.values(),
 							'date_string':current_date.strftime("%Y-%m-%d")})
 			current_date = current_date +datetime.timedelta(days=1)
 			#self.logger.debug("Current day count for {day} is {count}".format(day=current_date,count=presentations_that_day.count(10)))
@@ -53,7 +54,7 @@ class STHandler(llhandler.LLHandler):
 		current_date = start_date
 		month_weeks = []
 		current_month = datetime.date.today().month
-		self.logger.info("Calculation presentations for caledar")
+		self.logger.info("calculate_presentations_on_dates " + str(start_date)+" thru "+ str(end_date))
 		while(current_date <= end_date):
 			week = []
 			for i in range(7):
