@@ -67,3 +67,8 @@ indexes:
   properties:
   - name: season
   - name: date
+
+- kind: STSeason
+  properties:
+  - name: status
+  - name: last_shown
