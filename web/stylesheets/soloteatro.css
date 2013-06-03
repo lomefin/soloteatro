@@ -130,12 +130,36 @@ gap { margin-top:9px; margin-bottom:9px;}
 {
 	text-transform: capitalize;
 }
-.row-fluid .presentation-mosaic li
-{
-	background-color: #eee; margin: 0px; width: 30%;padding:0; position:relative;
+@media (min-width:1209px){
+	.row .presentation-mosaic li
+	{
+		background-color: #eee; margin: 0px; width: 25%;padding:0; position:relative;
+	}
+	.row .presentation-mosaic .thumbnail { padding:0;border:0; }
 }
-.row-fluid .presentation-mosaic .thumbnail { padding:0;border:0; }
-.row-fluid .presentation-mosaic .thumbnail .caption { position: absolute; bottom: 30px; left:10px; background-color:rgba(255,255,255,0.5); width:100%; }
+@media (max-width: 1208px){
+	.row .presentation-mosaic li
+	{
+		background-color: #eee; margin: 0px; width: 33%;padding:0; position:relative;
+	}
+	.row .presentation-mosaic .thumbnail { padding:0;border:0; }
+}
+@media (max-width: 979px){
+	.row .presentation-mosaic li
+	{
+		background-color: #eee; margin: 0px; width: 50%;padding:0; position:relative;
+	}
+	.row .presentation-mosaic .thumbnail { padding:0;border:0; }
+}
+@media (max-width: 767px){
+	.row .presentation-mosaic li
+	{
+		background-color: #eee; margin: 0px; width: 100%;padding:0; position:relative;
+	}
+	.row .presentation-mosaic .thumbnail { padding:0;border:0; }
+}
+.row .presentation-mosaic .thumbnail .caption { position: absolute; bottom: 30px; left:10px; background-color:rgba(255,255,255,0.5); width:100%; }
+.row .presentation-mosaic .thumbnail img {width: 100%;}
 /*.carousel-caption p {color: #333;}
 .carousel-control {top: 90%;}*/
 section{ margin-bottom: 1.5em;}
@@ -272,3 +296,8 @@ h2{ color: ;}
 
 a { color: #7B3F00;}
 a:hover { color: #996515;}
+
+.twitter-share-button
+{
+	height: 39px;
+}

@@ -12,13 +12,13 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <div class="option pull-right">
-      <a href="https://twitter.com/share"  data-counturl="{{current_url}}" data-via="soloteatro" class="twitter-share-button" data-lang="en">Tweet</a>
+    <div class="option pull-right hidden-phone">
       <fb:like send="true" width="100" show_faces="false" action="recommend"></fb:like>
+      <a href="https://twitter.com/share"  data-counturl="{{current_url}}" data-via="soloteatro" class="twitter-share-button" data-lang="en">Tweet</a>
       {% if pictures %}
-      <a href="#gallery" role="button" class="btn btn-success" data-toggle="modal"><i class="icon-camera-retro"></i> Galería</a>
+      <a href="#gallery" role="button" class="btn btn-success" data-toggle="modal"style="margin-top:-39px"> <i class="icon-camera-retro"></i> Galería</a>
       {%endif%}
-      </div>
+    </div>
     <div class="page-header">
         <h1>{{montage.name}} <br /><small>{{montage.company}}</small></h1>
     </div>
@@ -86,6 +86,13 @@
       <div class="fb-comments" data-href="{{current_url}}" data-num-posts="2" data-width="550"></div>
     </section>
   </div>
+</div>
+<div class="row visible-phone">
+  <a href="https://twitter.com/share"  data-counturl="{{current_url}}" data-via="soloteatro" class="twitter-share-button" data-lang="en">Tweet</a>
+  <fb:like send="true" width="100" show_faces="false" action="recommend"></fb:like>
+  {% if pictures %}
+  <a href="#gallery" role="button" class="btn btn-success" data-toggle="modal"><i class="icon-camera-retro"></i> Galería</a>
+  {%endif%}
 </div>
 
 <div id="gallery" class="modal hide fade">

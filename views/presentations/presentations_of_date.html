@@ -4,35 +4,37 @@
 
 <div class="row-fluid">
 	<div class="span8">
-		<h1 style="text-transform:capitalize;">Obras entre el {{start}} y el {{end}}</h1>
+		<h1 >Obras entre el {{start|datetime("SHORT_DATE_FORMAT")}} y el {{end|datetime("SHORT_DATE_FORMAT")}}</h1>
 	</div>
 	<div class="span4">
 	</div>
 </div>
 {%for day in days%}
 	<section id="presentations_in_{{day.date}}">
-		<h1>{{day.date}}</h1>
-			<div class="row" >
-				<div class="span9" style="">
-					
-					<ul class="thumbnails presentation-mosaic">
-						{%for presentation in day.presentations%}
-				        <li class="span3" style="">
-				          <div class="thumbnail" style="" >
-				            <div class="caption" style="">
-				              <h5>{{presentation.season.montage.name}}</h5>
-				            </div>
-				            <a href="/obras/{{presentation.season.montage.slug}}">
-				            	<img src="http://placehold.it/320x180" alt="" />
-				        	</a>
-				          </div>
-				        </li>
-				        {%else%}
-				        	<p>Ná que hacer...</p>
-				        {%endfor%}
-					</ul>
-				</div>
+		<div class="page-header">
+			<h2>{{day.date|datetime("SHORT_DATE_FORMAT")}}</h2>
+		</div>
+		<div class="row" >
+			<div class="span12" style="">
+				
+				<ul class="thumbnails presentation-mosaic">
+					{%for presentation in day.presentations%}
+			        <li class="span3" style="">
+			          <div class="thumbnail" style="" >
+			            <div class="caption" style="">
+			              <h5>{{presentation.season.montage.name}}</h5>
+			            </div>
+			            <a href="/obras/{{presentation.season.montage.slug}}">
+			            	<img src="{{presentation.season.best_picture}}" alt="" />
+			        		</a>
+			          </div>
+			        </li>
+			        {%else%}
+			        	<p>Ná que hacer...</p>
+			        {%endfor%}
+				</ul>
 			</div>
+		</div>
 	</section>
 {%endfor%}
 
