@@ -1,5 +1,6 @@
 ﻿# coding=utf-8
 import model.models
+import datetime
 from model.properties import GenderProperty
 from model.properties import SlugProperty
 from google.appengine.api import users
@@ -74,6 +75,26 @@ class STPresentation(STModel):
 	day  = db.DateTimeProperty()
 	time = db.TimeProperty()
 	season = db.ReferenceProperty(STSeason, collection_name='presentations')
+
+	def time_for_next_presentation(self):
+		time_for_next_presentation = self.date - datetime.datetime.now()
+		days = time_for_next_presentation.days
+		hours = time_for_next_presentation.seconds/(3600*24)
+		minutes = (time_for_next_presentation.seconds - (3600*24) * hours)/3600
+
+		output = ""
+		if days > 0:
+			output = str(days) + " d&iacute;as "
+			if days < 2:
+				output = output + str(hours) + " horas "
+				if hours > 0:
+					output = output + str(minutes) + " minutos"
+		if days == 0:
+			if hours > 0:
+				output = str(hours) + " horas "
+			if minutes > 1:
+				output = output + str(minutes) + " minutes"
+		return output
 
 class STSeasonMedia(polymodel.PolyModel):
 	season = db.ReferenceProperty(STSeason,collection_name='related_media')
