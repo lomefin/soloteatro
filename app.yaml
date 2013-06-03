@@ -1,5 +1,5 @@
 application: soloteatrohrd
-version: development
+version: version1
 runtime: python27
 api_version: 1
 threadsafe: true

@@ -26,11 +26,12 @@ class PresentationDetails(STHandler):
 		for presentation in presentations:
 			
 			if (today <= presentation.date <= next_2_weeks):
+				
+				if not next_presentation:
+					next_presentation = presentation
+
 				future_presentations.append(presentation)
-			if not next_presentation:
-				next_presentation = presentation
-					
-		
+
 		self.set("next_presentation",next_presentation)
 		self.set("future_presentations",future_presentations)
 		self.set("season",current_season)
