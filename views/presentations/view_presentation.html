@@ -55,6 +55,19 @@
   <div class="span3">
       <div>
         <p class="technical">Cuándo?  <a>Del {{season.start|datetime("SHORT_DATE_FORMAT")}} al {{season.end|datetime("SHORT_DATE_FORMAT")}} </a></p>
+        <p class="technical">Próxima función 
+          <small>
+            {%if days > 0 %}{{days}} días 
+              {%if days < 2 %}
+                {%if hours > 0 %}
+                  {{hours}} horas 
+                {%endif%}
+                
+              {%endif%}
+            {%endif%}
+            {%if days == 0 %}{%if minutes > 0%}{{minutes}} minutos{%endif%}{%endif%}
+          </small>
+        </p>
         <p class="technical">Dónde?   <a href="/teatros/{{season.venue.slug}}">{{season.venue.name}} <small>({{season.venue.address}})</small></a> </p>
       </div>
   </div>
