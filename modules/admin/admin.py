@@ -9,7 +9,7 @@ from modules.admin.genres import *
 from modules.admin.articles import *
 
 application = LLApp([
-      ('/admin/montages/add', AddMontage),
+      ('/admin/montages/new', NewMontage),
       ('/admin/montages/', ListMontages),
       ('/admin/montages/(.*)/seasons/add',AddSeasonToMontage),
       ('/admin/montages/(.*)/season/(\d*)/media/add',AddMediaToSeason),

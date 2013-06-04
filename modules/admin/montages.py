@@ -1,5 +1,14 @@
 from lib.imports import *
 
+class NewMontage(llhandler.LLGAEHandler):
+	def base_directory(self):
+		return os.path.dirname(__file__)
+	
+	def internal_get(self):
+		self.set('montages',STMontage.all())
+		self.render('/admin/new_montage')
+
+
 class AddMontage(llhandler.LLGAEHandler):
 	def base_directory(self):
 		return os.path.dirname(__file__)

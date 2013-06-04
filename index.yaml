@@ -23,6 +23,11 @@ indexes:
   - name: date_created
     direction: desc
 
+- kind: STPresentation
+  properties:
+  - name: season
+  - name: date
+
 - kind: STSeason
   properties:
   - name: montage
@@ -50,6 +55,11 @@ indexes:
   - name: status
   - name: genre
 
+- kind: STSeason
+  properties:
+  - name: status
+  - name: last_shown
+
 - kind: STSeasonMedia
   properties:
   - name: class
@@ -62,13 +72,3 @@ indexes:
   - name: season
   - name: priority
     direction: desc
-
-- kind: STPresentation
-  properties:
-  - name: season
-  - name: date
-
-- kind: STSeason
-  properties:
-  - name: status
-  - name: last_shown

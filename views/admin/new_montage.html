@@ -1,0 +1,90 @@
+{% extends "templates/admin_template.html" %}
+{% block content %}
+<section id="add-or-edit">
+  <h1>Agregar un montaje o agregar temporada?</h1>
+  <div class="row-fluid well">
+    <div class="span4 offset1">
+      <div class="">
+        <a class="btn btn-large span12 btn-danger">
+          <i class="icon-book icon-4x"></i>
+          <h2>Nuevo Montaje</h2>
+        </a>
+      </div>
+      <p>Si estas completamente seguro que nunca has agregado un montaje de este autor.</p>
+    </div>
+    <div class="span4 offset2">
+      <div>
+        <a class="btn btn-large span12 btn-warning">
+          <i class="icon-calendar icon-4x"></i>
+          <h2>Agregar Temporada</h2>
+        </a>
+      </div>
+      <p>Si el montaje ya existe y quieres agregarle una nueva temporada</p>
+    </div>
+  </div>
+</section>
+<section id="montage-data">
+  <div class="page-header"><h1>Datos del Montaje</h1></div>
+  <form class="form-horizontal" method="post" >
+    <fieldset>
+      <div class="control-group">
+        <label class="control-label" for="montage_name">Nombre del montaje</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="montage_name" name="montage_name"
+          data-provide="typeahead" data-items="4" 
+          data-source="[{%for montage in open_montages%}\"{{montage.name}}\"{%endfor%}]"
+          >
+          <p class="help-block">Ej. El rucio de los cuchillos, Art, Invasión.</p>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="montage_writer">Dramaturgo</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="montage_writer" name="montage_writer">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="montage_director">Director</label>
+        <div class="controls">
+          <input type="text" class="input-xlarge" id="montage_director" name="montage_director">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="montage_genre">Género</label>
+        <div class="controls">
+          <select class="input-xlarge" id="montage_genre" name="montage_genre">
+            <option>Drama</option>
+            <option>Comedia</option>
+            <option>Impro</option>
+            <option>Musical</option>
+            <option>Experimental</option>
+            <option>Familiar</option>
+          </select>
+          <p class="help-block">Elige de la lista</p>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label class="control-label" for="montage_description">Argumento de la obra</label>
+        <div class="controls">
+          <textarea class="input-xxlarge" id="montage_description" name="montage_description" rows="5"></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <input type="submit" value="Agregar Montaje" class="btn btn-primary" />
+        <input type="reset" value="Limpiar" class="btn btn-warning" value=""/>
+      </div>
+    </fieldset>
+  </form>
+</section>
+
+
+{% endblock content %}
+{% block js_activities %}
+<script type="text/javascript"> 
+  $('#montage_name').typeahead()
+</script> 
+{% endblock js_activities %}
