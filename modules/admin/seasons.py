@@ -87,13 +87,15 @@ class AddSeasonExpress(llhandler.LLGAEHandler):
 		venue = None
 		
 		if self.param('venue_name'):
-			logging.info("Venue exists")
+			logging.info("Venue does not exists")
 			venue = STVenue()
 			venue.name = self.param('venue_name')
 			venue.address = self.param('venue_address')
 			venue.put()
 
-
+		if not venue:
+			logging.info("Choosing existing venue")
+			logging.info(self.param("season_venue"))
 		#The first season
 		season = STSeason()
 		season.montage = montage.key()
