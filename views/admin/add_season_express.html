@@ -81,7 +81,7 @@
 
 			        <select  class="input-xlarge" id="season_venue" name="season_venue">
 			        	{% for venue in venue_list %}
-			        	<option value="{{venue.key}}">{{venue.name}}</option>
+			        	<option value="{{venue.key()}}">{{venue.name}}</option>
 			        	{% endfor %}
 			        </select>
 			      </div>
