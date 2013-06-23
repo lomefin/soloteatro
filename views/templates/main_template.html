@@ -8,8 +8,8 @@
 	<meta name="author" content="Soloteatro.cl">
 
 	<!-- Le styles -->
-	<link href="/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/css/font-awesome.css" rel="stylesheet" />
+	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet" />
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet" />
 	<link href="/css/docs.css" rel="stylesheet" />
 	<link href="/css/prettify.css" rel="stylesheet" />
   <link href="/css/soloteatro.css" rel="stylesheet" />
@@ -69,7 +69,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </a>
-              <a class="brand" href="/">Cartelera</a>
               <div class="nav-collapse">
                 {% block menu_content %}
                 <ul class="nav">
@@ -82,7 +81,9 @@
                   
                 </ul>
                 <form class="navbar-search pull-right" action="">
-                  <input type="text" class="search-query span2" placeholder="Buscar" style="visibility:hidden"  data-provide="typeahead" name="lookup" id="lookup">
+                  <input type="text" class="search-query span2" placeholder="Buscar" style="visibility:hidden;display:none"  data-provide="typeahead" name="lookup" id="lookup" />
+                  <a href="https://twitter.com/soloteatro"> <i class="icon-twitter icon-light icon-2x on icon-check-empty"></i></a>
+                  <a href="http://www.facebook.com/profile.php?id=1216155801&fref=ts"><i class="icon-facebook icon-light icon-2x on icon-check-empty"></i></a> 
                 </form>
                 {%endblock menu_content%}
               </div><!-- /.nav-collapse -->

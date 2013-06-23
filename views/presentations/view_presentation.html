@@ -10,14 +10,12 @@
 {%block title%}{{montage.name}} de {{montage.director}}{%endblock%}
 {% block content %}
 
-<div class="row-fluid">
+<div class="row-fluid" style="display:none">
   <div class="span12">
     <div class="option pull-right hidden-phone">
       <fb:like send="true" width="100" show_faces="false" action="recommend"></fb:like>
       <a href="https://twitter.com/share"  data-counturl="{{current_url}}" data-via="soloteatro" class="twitter-share-button" data-lang="en">Tweet</a>
-      {% if pictures %}
-      <a href="#gallery" role="button" class="btn btn-success" data-toggle="modal"style="margin-top:-39px"> <i class="icon-camera-retro"></i> Galería</a>
-      {%endif%}
+      
     </div>
     <div class="page-header">
         <h1>{{montage.name}} <br /><small>{{montage.company}}</small></h1>
@@ -25,10 +23,40 @@
   </div>
 </div>
 <div class="row-fluid">
-    <div class="span6">
-        <section>{{montage.description}}</section>
+  <div class="span5">
+    <h1>{{montage.name}} <br /><small>{{montage.company}}</small></h1>
+  </div>
+  <div class="span2">
+    <p class="">
+      <i class="icon-calendar pull-left" style="font-size:40px"></i><a>Del {{season.start|datetime("SHORT_DATE_FORMAT")}} al {{season.end|datetime("SHORT_DATE_FORMAT")}} </a>
+    </p>
+  </div>
+  <div class="span2">
+    <p class="">
+      <i class="icon-home pull-left" style="font-size:40px"></i>
+      <a href="/teatros/{{season.venue.slug}}">{{season.venue.name}} <small>({{season.venue.address}})</small></a> 
+    </p>
+  </div>
+  <div class="span2">
+    <p>
+      <i class="icon-usd pull-left" style="font-size:40px"></i>
+      <a>{% for price in season.prices %}{{price}},{% endfor %}</a>
+    </p>
+  </div>
+  <div class="span1">
+    {% if pictures %}
+      <a href="#gallery" role="button" class="btn btn-success" data-toggle="modal"style="margin-top:-39px"> <i class="icon-camera-retro icon-2x" ></i></a>
+    {%endif%}
+    {% if pictures %}
+      <a class="btn btn-info"><i class="icon-comments-alt icon-2x"></i></a>
+    {%endif%}
+  </div>
+</div>
+<div class="row-fluid">
+    <div class="span5">
+        <section class="presentation-description">{{montage.description}}</section>
     </div>
-    <div class="span6" >
+    <div class="span7" >
     {% if selected_media.class_name() == 'STVideo' %}
       <iframe class="span12"  style="min-height: 300px"  src="http://www.youtube.com/embed/{{selected_media.video_id}}?rel=0&wmode=transparent" frameborder="0" allowfullscreen></iframe>
     {% endif %}
@@ -42,7 +70,7 @@
 </div>
 <hr />
 <div class="row-fluid">
-  <div class="span4">
+  <div class="span5">
     <p class="technical">Dirección   <a>{{montage.director}}</a></p>
     <p class="technical">Género      <a href="/obras/genero/{{montage.genre.slug}}">{{montage.genre.name}}</a></p>
     <p class="technical">Dramaturgia <a>{{montage.writer}}</a></p>
@@ -52,12 +80,11 @@
       <p class="technical">Equipo técnico <span class="technical list">{{season.technical_team|list}}</span></p>
     </div>
   </div>
-  <div class="span3">
-      <div>
-        <p class="technical">Cuándo?  <a>Del {{season.start|datetime("SHORT_DATE_FORMAT")}} al {{season.end|datetime("SHORT_DATE_FORMAT")}} </a></p>
-        <p class="technical">Dónde?   <a href="/teatros/{{season.venue.slug}}">{{season.venue.name}} <small>({{season.venue.address}})</small></a> </p>
-      </div>
+  <div class="span7">
+    <div class="fb-comments" data-href="{{current_url}}" data-num-posts="4" data-width="670"></div>
   </div>
+</div>
+<div class="row-fluid">
   <div class="span2">
         <p class="technical">Funciones</p>
         <ul class="nav nav-tabs nav-stacked">
@@ -66,22 +93,8 @@
         {% endfor %}
         </ul>   
   </div>
-  <div class="span3">
-        <p class="technical">Precios</p>
-        <ul class="">
-        {% for price in season.prices %}
-            <li><a href="#">{{price}}</a></li>
-        {% endfor %}
-        </ul>   
-  </div>
 </div>
-<div class="row-fluid">
-  <div class="span6">
-    <section>
-      <div class="fb-comments" data-href="{{current_url}}" data-num-posts="2" data-width="550"></div>
-    </section>
-  </div>
-</div>
+
 <div class="row visible-phone">
   <a href="https://twitter.com/share"  data-counturl="{{current_url}}" data-via="soloteatro" class="twitter-share-button" data-lang="en">Tweet</a>
   <fb:like send="true" width="100" show_faces="false" action="recommend"></fb:like>

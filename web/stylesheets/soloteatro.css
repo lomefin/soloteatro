@@ -5,6 +5,10 @@
 	background: none;
 	-webkit-box-shadow: none;
 }
+body
+{
+	background-image: url(/css/light_wool.png)
+}
 .jumbotron h1, .jumbotron p
 {
 	color: #db7221;
@@ -160,10 +164,11 @@ gap { margin-top:9px; margin-bottom:9px;}
 }
 .row .presentation-mosaic .thumbnail .caption { position: absolute; bottom: 30px; left:10px; background-color:rgba(255,255,255,0.5); width:100%; }
 .row .presentation-mosaic .thumbnail img {width: 100%;}
+.row .presentation-mosaic .thumbnail .caption h5 {font-size: 18px;}
 /*.carousel-caption p {color: #333;}
 .carousel-control {top: 90%;}*/
 section{ margin-bottom: 1.5em;}
-
+.presentation-description {font-size: 18px; line-height: 1.1em; font-family: serif; text-align: justify;}
 footer.footer
 {
 	background-color: rgba(200,200,200,0.25);
