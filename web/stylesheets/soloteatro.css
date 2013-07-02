@@ -5,10 +5,7 @@
 	background: none;
 	-webkit-box-shadow: none;
 }
-body
-{
-	background-image: url(/css/light_wool.png)
-}
+
 .jumbotron h1, .jumbotron p
 {
 	color: #db7221;
@@ -20,6 +17,7 @@ body
 .navbar .nav > li > a,.navbar a.brand
 {
 	color: white;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.9);
 }
 
 .navbar
@@ -43,7 +41,7 @@ body
 
 body
 { 
-	background-image: url(http://subtlepatterns.com/patterns/light_wool.png);
+	background-image: url(/img/light_wool.png);
 	color: #080808;
 }
 
@@ -59,12 +57,21 @@ body
   z-index: 1;
 
   /* edit: fixes overlap error in IE7/8, 
-     make sure you have an empty gif */
-  background-image: url('empty.gif');
+     make sure you have an empty gif 
+  background-image: url('empty.gif');*/
 } 
 .carousel .carousel-control
 {
 	z-index:2;
+}
+.carousel .carousel-caption
+{
+	padding: 0px 15px 3px 15px;
+}
+.carousel .carousel-caption h1 
+{
+	margin-top:0;
+  margin-bottom: 0;
 }
 
 
@@ -162,9 +169,11 @@ gap { margin-top:9px; margin-bottom:9px;}
 	}
 	.row .presentation-mosaic .thumbnail { padding:0;border:0; }
 }
-.row .presentation-mosaic .thumbnail .caption { position: absolute; bottom: 30px; left:10px; background-color:rgba(255,255,255,0.5); width:100%; }
+.row .presentation-mosaic .thumbnail .caption { position: absolute; bottom: 30px; left:10px; background-color:rgba(255,255,255,0.75); width:100%; }
 .row .presentation-mosaic .thumbnail img {width: 100%;}
-.row .presentation-mosaic .thumbnail .caption h5 {font-size: 18px;}
+.row .presentation-mosaic .thumbnail .caption { padding: 0px 0px 0px 9px;}
+.row .presentation-mosaic .thumbnail .caption h4 { margin: 3px 0px 0px 0px;}
+.row .presentation-mosaic .thumbnail .caption p { margin: 0px 0px 3px 0px;}
 /*.carousel-caption p {color: #333;}
 .carousel-control {top: 90%;}*/
 section{ margin-bottom: 1.5em;}
@@ -174,8 +183,19 @@ footer.footer
 	background-color: rgba(200,200,200,0.25);
 	padding: 1em;
 	font-size: 19px;
+	margin-top: 60px;
+	height: 90px;
+	padding: 40px 0 40px;
 }
-
+.footer-links 
+{
+	margin: 10px 0;
+}
+.footer-links li 
+{
+	display: inline;
+	padding: 0 2px;
+}
 a.brand
 {
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
@@ -261,6 +281,19 @@ div.presentation-details
 	color: #747669;
 	margin-top: 1em;
 }
+.presentation-details-item
+{
+	color: #7B3F00;
+}
+.presentation-details-item.hidden{display:none;}
+.presentation-details-item i
+{
+	color: #DB7221;
+}
+.detail-item .tiny
+{
+	font-size: 10pt;
+}
 
 .readable
 {
@@ -306,3 +339,9 @@ a:hover { color: #996515;}
 {
 	height: 39px;
 }
+
+a.switchable i:hover
+{
+	color: #996515;
+}
+.long-paragraphs p {font-family: serif;}

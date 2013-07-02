@@ -10,16 +10,81 @@
 </div>
 <div class="row-fluid">
 	<div class="span3">
-		{%if venue.telephone %}<h3><small>Teléfono</small> <a href="tel:{{venue.telephone}}"> {{venue.telephone}}</a></h3> {%endif%}
-		{%if venue.url%}<h3><small>Página web</small>	{{venue.url}}</h3>{% endif %}
-		{%if venue.parking%}<h3><small>Estacionamiento</small> {{venue.parking}}</h3>{%endif%}
-    {%if venue.twitter%}<h3><small>Twitter </small> <a href="http://www.twitter.com/#!/{{venue.twitter}}">@{{venue.twitter}}</a></h3>{%endif%}
-    {%if venue.facebook%}<h3><small>Facebook </small> {{venue.facebook}}</h3>{%endif%}
+		{%if venue.telephone %}
+      <p>
+        <i class="icon-phone-sign icon-2x" alt="Teléfono"></i> 
+        <a href="tel:{{venue.telephone}}"> {{venue.telephone}}</a>
+      </p> 
+    {%endif%}
+    {%if venue.twitter%}
+      <p>
+        <i class="icon-twitter-sign icon-2x" alt="Twitter"></i>
+        <a href="http://www.twitter.com/#!/{{venue.twitter}}" target="tw">@{{venue.twitter}}</a>
+      </p>
+    {%endif%}
+    {%if venue.facebook%}
+      <p>
+        <i class="icon-facebook-sign icon-2x" alt="Facebook"></i>
+        <a href="http://www.facebook.com/{{venue.facebook}}" target="fb">{{venue.facebook}}</a> 
+      </p>
+    {%endif%}
+    {%if venue.url%}
+      <p>
+        <span class="icon-stack" alt="Dirección web">
+          <i class="icon-sign-blank  icon-stack-base"></i>
+          <i class="icon-laptop  icon-light"></i>
+        </span> 
+        <a href="http://{{venue.url}}" target="_blank">{{venue.url}}</a>
+      </p>
+    {% endif %}
+    {%if venue.parking%}
+      <p>
+        <span class="icon-stack" alt="Estacionamiento">
+          <i class="icon-sign-blank icon-stack-base"></i>
+          <i class="icon-dashboard icon-light"></i>
+        </span>
+        {{venue.parking}}
+      </p>
+    {%endif%}
 	</div>
 	<div class="span9">
-		<div id="map_canvas" style="width:100%; height:300px;"></div>
+		<div id="map_canvas" style="width:100%; height:400px;"></div>
 	</div>
 </div>
+{% if open_seasons.count() > 0 %}
+<div class="row-fluid">
+  <div class="span8">
+    <h2 style="text-transform:capitalize;">Obras en {{venue.name}} </h2>
+  </div>
+  <div class="span4">
+  </div>
+</div>
+<section>
+  <div class="row" >
+    <div class="span12" style="">
+      <ul class="thumbnails presentation-mosaic">
+          {%for season in open_seasons%}
+            <li class="span3" style="">
+              <a href="/obras/{{season.montage.slug}}">
+                  <div class="thumbnail" style="" >
+                    <div class="caption" style="">
+                      <h4>{{season.montage.name}}</h4>
+                      <p>{{season.venue.name}}</p>
+                    </div>
+                    {% if season.best_picture %}
+                    <img src="{{ season.best_picture}}" alt="{{season.montage.name}}" class="span12"/>
+                    {% else %}
+                    <img src="http://bit.ly/WkY9kw" alt="{{season.montage.name}}" class="span12"/>
+                    {% endif %}
+                  </div>
+                </a>
+            </li>
+        {%endfor%}
+      </ul>
+    </div>
+  </div>
+</section>
+{%endif%}
 
 {% endblock content %}
 {% block js_activities %}
@@ -58,6 +123,8 @@
               // The anchor for this image is the base of the flagpole at 0,32.
               new google.maps.Point(16, 37));
 
+        {% if venue.location %}
+        {% else %}
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode( { 'address': '{{venue.address}}, Santiago, Chile'}, 
                             function(results, status) {
@@ -72,6 +139,7 @@
                                 //alert("Geocode was not successful for the following reason: " + status);
                               }
         });
+        {% endif %}
 
       }
 

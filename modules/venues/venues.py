@@ -16,5 +16,9 @@
 #
 from lib.imports import *
 from modules.venues.venue_details import *
+from modules.venues.venue_list import *
 
-application = LLApp([('/teatros/(.*)', ViewVenue),]).application
+application = LLApp([
+  ('/teatros/',ListVenues),
+  ('/teatros/(.*)', ViewVenue),
+  ]).application

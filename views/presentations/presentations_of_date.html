@@ -4,7 +4,11 @@
 
 <div class="row-fluid">
 	<div class="span8">
+		{% if start == end %}
+		<h1>Obras para el {{start|datetime("SHORT_DATE_FORMAT")}}</h1>
+		{% else %}
 		<h1 >Obras entre el {{start|datetime("SHORT_DATE_FORMAT")}} y el {{end|datetime("SHORT_DATE_FORMAT")}}</h1>
+		{% endif %}
 	</div>
 	<div class="span4">
 	</div>
@@ -12,30 +16,50 @@
 {%for day in days%}
 	<section id="presentations_in_{{day.date}}">
 		<div class="page-header">
-			<h2>{{day.date|datetime("SHORT_DATE_FORMAT")}}</h2>
+			<h2 {%if day.date==original_start %}class="show-me-first"{%endif%}>{{day.date|datetime("SHORT_DATE_FORMAT")}}</h2>
 		</div>
 		<div class="row" >
 			<div class="span12" style="">
 				
 				<ul class="thumbnails presentation-mosaic">
 					{%for presentation in day.presentations%}
-			        <li class="span3" style="">
-			          <div class="thumbnail" style="" >
-			            <div class="caption" style="">
-			              <h5>{{presentation.season.montage.name}}</h5>
-			            </div>
-			            <a href="/obras/{{presentation.season.montage.slug}}">
-			            	<img src="{{presentation.season.best_picture}}" alt="" />
-			        		</a>
-			          </div>
-			        </li>
-			        {%else%}
-			        	<p>Ná que hacer...</p>
-			        {%endfor%}
+	        <li class="span3" style="">
+	          <div class="thumbnail" style="" >
+	            <div class="caption" style="">
+	              <h4>{{presentation.season.montage.name}}</h4>
+	              <p>{{presentation.season.venue.name}}</p>
+	            </div>
+	            <a href="/obras/{{presentation.season.montage.slug}}">
+	            	<img src="{{presentation.season.best_picture}}" alt="" />
+	        		</a>
+	          </div>
+	        </li>
+	        {%else%}
+	        	<li>Ná que hacer...</li>
+	        {%endfor%}
 				</ul>
 			</div>
 		</div>
 	</section>
+{% else %}
+	<section class="well">
+		No hay obras para este periodo :(
+	</section>
 {%endfor%}
 
+
+
 {% endblock content %}
+{%block js_activities%}
+<script>
+function RT(){}
+
+RT.scrollTo = function(element)
+{
+  $('html, body').animate({scrollTop: $(element).offset().top - 80}, 700); 
+}
+$(function(){
+	RT.scrollTo($('.show-me-first'));
+})
+</script>
+{%endblock%}

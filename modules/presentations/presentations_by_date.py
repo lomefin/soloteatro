@@ -27,13 +27,14 @@ class PresentationsInTimeSpan(STHandler):
 	def internal_get(self,date_from,date_to):
 		start_date=dparser.parse(date_from,fuzzy=True)
 		end_date=dparser.parse(date_to,fuzzy=True)
-		#logging.debug("Showing presentations from {start} to {end} ".format(start=date_from,end=date_to))
-		#logging.debug("Showing presentations from {start} to {end} ".format(start=start_date,end=end_date))
-
-		days = self.get_presentations_on_dates(start_date=start_date,end_date=end_date)
 		
-		self.set("start",start_date)
-		self.set("end",end_date)
+		start = start_date - timedelta(days=2)
+		end = end_date + timedelta(days=2)
+		days = self.get_presentations_on_dates(start_date=start,end_date=end)
+
+		self.set("start",start)
+		self.set("original_start",start_date)
+		self.set("end",end)
 		self.set("days",days)
 
 		self.render('presentations/presentations_of_date')

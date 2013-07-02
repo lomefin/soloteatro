@@ -17,10 +17,7 @@
 from lib.imports import *
 from modules.content.display_content import DisplayContent
 from modules.content.display_picture import DisplayPicture
-def main():
-  LLApp([('/contenido/(quienes-somos|links)', DisplayContent),
-  		('/fotos/(.*)',DisplayPicture)
-  	])
- 
-if __name__ == "__main__":
-  main()
+
+application = LLApp([('/contenido/(quienes-somos|links)', DisplayContent),
+      ('/fotos/(.*)',DisplayPicture)
+    ]).application

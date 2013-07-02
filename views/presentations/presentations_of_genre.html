@@ -18,8 +18,9 @@
 		        	<a href="/obras/{{season.montage.slug}}">
 			          	<div class="thumbnail" style="" >
 			            	<div class="caption" style="">
-			              		<h5>{{season.montage.name}}</h5>
-			            	</div>
+				              <h4>{{season.montage.name}}</h4>
+				              <p>{{season.venue.name}}</p>
+				            </div>
 			            	{% if season.best_picture %}
 			            	<img src="{{ season.best_picture}}" alt="{{season.montage.name}}" class="span12"/>
 			            	{% else %}

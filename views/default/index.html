@@ -17,7 +17,7 @@
             {% endif %}
             <div class="carousel-caption" >
               <h1>{{season.season.montage.name}}</h1>
-              <p>{{season.season.montage.description|truncate}}</p>
+              <p>{{season.season.montage.description|truncate(180,False,"...")}}</p>
             </div>
             <a href="/obras/{{season.season.montage.slug}}"><span class="panelLink"></span></a>
         </div>
@@ -38,7 +38,7 @@
     </div>
   </div>
   {% endif %}
-  <div class="span4 offset1">
+  <div class="span3 ">
     <h1 class="hidden-phone">Anda al teatro<span style="font-size:1px">Conchetumare</span></h1>
     <div id="erCalendario" style="" class="hidden-phone">
       <div id="" class="row-fluid day-names">
@@ -64,17 +64,22 @@
       </div>
       {% endfor %}
     </div>
-    <header>
-      <h1 class="visible-phone">NOTICIAS</h1>
-      <h1 class="hidden-phone">Noticias</h1>
-    </header>
-    <div id="newsContainer">
-      {%for article in latest_articles %}
-      <div class="article">
-        <a href="/noticias/{{article.slug}}"><h4>{{article.title}}</h4></a>
-      </div>
-      {%endfor%}
+  </div>
+  <div class="span2">
+    <a class="twitter-timeline"  href="https://twitter.com/soloteatro"  data-widget-id="313722139775733760" >Tweets @soloteatro</a>
+  </div>
+</div>
+<div class="row">
+  <header>
+    <h1 class="visible-phone">NOTICIAS</h1>
+    <h1 class="hidden-phone">Noticias</h1>
+  </header>
+  <div id="newsContainer">
+    {%for article in latest_articles %}
+    <div class="article span3">
+      <a href="/noticias/{{article.slug}}"><h4>{{article.title}}</h4></a>
     </div>
+    {%endfor%}
   </div>
 </div>
 <div class="divider"></div>

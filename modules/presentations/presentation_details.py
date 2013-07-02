@@ -23,6 +23,7 @@ class PresentationDetails(STHandler):
 		future_presentations = []
 		presentations = STPresentation.all().filter('season =',current_season).order('date').fetch(limit=100)
 		next_presentation = None
+		season_span = self.format_datespan([current_season.start,current_season.end])
 		for presentation in presentations:
 			
 			if (today <= presentation.date <= next_2_weeks):
@@ -32,6 +33,7 @@ class PresentationDetails(STHandler):
 
 				future_presentations.append(presentation)
 
+		self.set("season_span",season_span)
 		self.set("next_presentation",next_presentation)
 		self.set("future_presentations",future_presentations)
 		self.set("season",current_season)

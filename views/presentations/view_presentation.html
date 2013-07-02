@@ -26,18 +26,33 @@
   <div class="span5">
     <h1>{{montage.name}} <br /><small>{{montage.company}}</small></h1>
   </div>
-  <div class="span2">
+  <div class="span2 presentation-details-item detail-item trigger" data-triggers="next_presentations_container">
     <p class="">
-      <i class="icon-calendar pull-left" style="font-size:40px"></i><a>Del {{season.start|datetime("SHORT_DATE_FORMAT")}} al {{season.end|datetime("SHORT_DATE_FORMAT")}} </a>
+      <i class="icon-calendar pull-left" style="font-size:40px"></i>{{season_span}}
     </p>
+    <p class="tiny">Ver próximas funciones</p>
   </div>
-  <div class="span2">
+  <div class="span4 presentation-details-item detail-item hidden" id="next_presentations_container">
+    <ul class="nav nav-tabs nav-stacked">
+      <p>Próximas funciones <span class="pull-right detail-item-closer" >Cerrar</span></p>
+      {% for presentation in future_presentations %}
+        <li><a href="#">{{presentation.date|datetime("SHORT_DATETIME_FORMAT")}}</a></li>
+      {% endfor %}
+    </ul>  
+  </div>
+  <div class="span2 presentation-details-item detail-item trigger" data-triggers="venue_details_container">
     <p class="">
       <i class="icon-home pull-left" style="font-size:40px"></i>
-      <a href="/teatros/{{season.venue.slug}}">{{season.venue.name}} <small>({{season.venue.address}})</small></a> 
+      <span>{{season.venue.name}}</span>
+      <p class="tiny">Ver detalles</p>
     </p>
   </div>
-  <div class="span2">
+  <div class="span4 presentation-details-item detail-item hidden" id="venue_details_container">
+    <p>Dirección <span class="pull-right detail-item-closer" >Cerrar</span></p>
+    <address>{{season.venue.address}}</address>
+    <a href="/teatros/{{season.venue.slug}}">Ver más información </a> 
+  </div>
+  <div class="span2 presentation-details-item detail-item trigger">
     <p>
       <i class="icon-usd pull-left" style="font-size:40px"></i>
       <a>{% for price in season.prices %}{{price}},{% endfor %}</a>
@@ -85,14 +100,6 @@
   </div>
 </div>
 <div class="row-fluid">
-  <div class="span2">
-        <p class="technical">Funciones</p>
-        <ul class="nav nav-tabs nav-stacked">
-        {% for presentation in future_presentations %}
-            <li><a href="#">{{presentation.date|datetime("SHORT_DATETIME_FORMAT")}}</a></li>
-        {% endfor %}
-        </ul>   
-  </div>
 </div>
 
 <div class="row visible-phone">
@@ -128,4 +135,5 @@
 {% endblock content %}
 {% block js_activities %}
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<script src="/js/detail_trigger.js"></script>
 {% endblock js_activities %}

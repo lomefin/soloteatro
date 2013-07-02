@@ -14,9 +14,9 @@ class DisplayContent(STHandler):
 
 	def transitional_get(self, *args):
 		if args[0][0] == 'links':
-			self.render('links')
+			self.render('content/links')
 		else:
-			self.render('index')
+			self.render('content/index')
 
 	def internal_get(self):
 		self.render('index',template_values={})

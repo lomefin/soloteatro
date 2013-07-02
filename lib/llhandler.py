@@ -42,13 +42,28 @@ class LLDefaultHandler(webapp2.RequestHandler):
     def name_month(self,month):
         return LLDefaultHandler.month_names[int(month)-1]
 
+    def format_datespan(self,value,format='SHORT_DATE_FORMAT'):
+        [start_date,end_date] = value
+        start_month = self.name_month(start_date.strftime("%m"))
+        end_month = self.name_month(end_date.strftime("%m"))
+        output_string = ""
+        if format == 'SHORT_DATE_FORMAT':
+            if start_month == end_month:
+                output_string = "Del " + start_date.strftime("%d")
+                output_string = output_string + " al " + end_date.strftime("%d") + " de " + start_month
+            else:
+                output_string = "Del " + start_date.strftime("%d de ")  + start_month
+                output_string = output_string + " al " + end_date.strftime("%d de ") + end_month
+        return output_string
+
+
     def format_datetime(self, value, format='medium'):
         if format == 'SHORT_DATE_FORMAT':
             format = "%d de " + self.name_month(value.strftime("%m"))
         elif format == "MEDIUM_DATE_FORMAT":
-            format = self.name_date(value.strftime("%w")) + " %d de " + self.name_month(value.strftime("%m"))
+            format = self.name_day(value.strftime("%w")) + " %d de " + self.name_month(value.strftime("%m"))
         elif format == 'SHORT_DATETIME_FORMAT':
-            format = "%d de "+self.name_month(value.strftime("%m"))+", %H:%M hrs."
+            format = self.name_day(value.strftime("%w")) +" %d de "+self.name_month(value.strftime("%m"))+", %H:%M hrs."
         elif format == 'JUST_TIME':
             format = "HH:mm hrs"
         elif format == 'full':
