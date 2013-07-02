@@ -17,9 +17,11 @@
 from lib.imports import *
 from modules.extras.cache_flush import CacheFlush
 from modules.extras.logout import Logout
+from modules.extras.update_seasons import UpdateSeasons
 
 def main():
   LLApp([('/options/flush_cache', CacheFlush),
+    ('/options/update_seasons',UpdateSeasons),
   		('/logout',Logout),
   	])
  
