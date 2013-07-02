@@ -8,7 +8,7 @@
 	</div>
 	<div class="row">
     <div class="span8">
-  		<form method="POST" class="form-horizontal">
+  		<form method="POST" class="form">
   			<fieldset><legend>Agregar artículo</legend>
           <div class="control-group">
             <label class="control-label" for="article_title">Título</label>
@@ -16,13 +16,40 @@
               <input type="text" required name="article_title" placeholder="Título" class="input-xxlarge"/>
             </div>
           </div>
-  				<div class="control-group">
-            <label class="control-label" for="article_body">Cuerpo</label>
-            <div class="controls">
-              <textarea name="article_body" rows="10" class="input-xxlarge"></textarea>
+          <div class="control-group">
+            <label class="control-label" for="article_body">Cuerpo del artículo</label>
+          </div>
+          <div id="wysihtml5-toolbar" style="display: none;" class="btn-toolbar">
+            <div class="btn-group">
+              <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2"><i class="icon-font icon-large"></i></a>
+              <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3"><i class="icon-font"></i></a>
+
+              <a data-wysihtml5-command="bold"><i class="icon-bold icon-large"></i></a>
+              <a data-wysihtml5-command="italic"><i class="icon-italic icon-large"></i></a>
+            </div>              
+              <!-- Some wysihtml5 commands require extra parameters -->
+              <!--a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">red</a>
+              <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">green</a>
+              <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">blue</a-->
+            <div class="btn-group">  
+              <a data-wysihtml5-command="insertUnorderedList" ><i class="icon-list-ul icon-large"></i></a>
+              <a data-wysihtml5-command="insertOrderedList" ><i class="icon-list-ol icon-large"></i></a>
+            </div>
+            <div class="btn-group">
+              <!-- Some wysihtml5 commands like 'createLink' require extra paramaters specified by the user (eg. href) -->
+              <a data-wysihtml5-command="createLink"><i class="icon-link icon-large"></i></a>
+              <div data-wysihtml5-dialog="createLink" style="display: none;" class="well">
+                <label>
+                  Link:
+                  <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+                </label>
+                <a data-wysihtml5-dialog-action="save" class="btn btn-primary">OK</a> 
+                <a data-wysihtml5-dialog-action="cancel" class="btn btn-warning">Cancelar</a>
+              </div>
             </div>
           </div>
-          <p>Ayuda: Para un párrafo nuevo 2 enters. Para que quede abajo, 1 enter.</p>
+          <textarea name="article_body" id="article_body" rows="10" class="input-xxlarge"></textarea>
+  				
   			</fieldset>
   			<div class="form-actions">
   				<input type="submit" class="btn btn-primary" value="Publicar">
@@ -41,4 +68,20 @@
 	</div>
 	
 </section>
+{% endblock %}
+{% block js_activities %}
+<!-- wysihtml5 parser rules -->
+<script src="/js/editor/simple.js"></script>
+<!-- Library -->
+<script src="/js/editor/wysihtml5-0.3.0.min.js"></script>
+<script>
+$(function(){
+  var editor = new wysihtml5.Editor("article_body", { // id of textarea element
+  toolbar:      "wysihtml5-toolbar", // id of toolbar element
+  parserRules:  wysihtml5ParserRules, // defined in parser rules set 
+  useLineBreaks: false
+  });
+  $('#wysihtml5-toolbar a').addClass('btn');
+})
+</script>
 {% endblock %}
