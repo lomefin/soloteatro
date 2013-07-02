@@ -19,11 +19,9 @@ from modules.extras.cache_flush import CacheFlush
 from modules.extras.logout import Logout
 from modules.extras.update_seasons import UpdateSeasons
 
-def main():
-  LLApp([('/options/flush_cache', CacheFlush),
-    ('/options/update_seasons',UpdateSeasons),
-  		('/logout',Logout),
-  	])
- 
-if __name__ == "__main__":
-  main()
+
+
+application = LLApp([ ('/options/flush_cache', CacheFlush),
+                      ('/options/update_seasons',UpdateSeasons),
+                      ('/logout',Logout),
+                    ]).application

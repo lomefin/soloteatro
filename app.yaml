@@ -42,6 +42,8 @@ handlers:
   script: modules.content.content.application
 - url: /noticias/(.*)
   script: modules.articles.articles.application
+- url: /options/(.*)
+  script: modules.extras.extras.application
 - url: /.*
   script: modules.default.index.application
 

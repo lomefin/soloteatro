@@ -13,7 +13,7 @@ class UpdateSeasons(STHandler):
 
     for season in open_seasons:
       logging.debug (str(season.end))
-      if season.end < datetime.now:
+      if season.end < datetime.datetime.now():
         season.status = db.Category("Closed")
         season.put()
 
