@@ -12,11 +12,7 @@ class AdminArticles(llhandler.LLGAEHandler):
   def internal_post(self):
     article = STArticle()
     article.title = self.param("article_title")
-    paragraphs = self.param("article_body").split("\n\n")
-    body = ''
-    for paragraph in paragraphs:
-      body = body + '<p>' + "<br />".join(paragraph.split('\n')) + '</p>'
-    article.body  = body
+    article.body  = self.param("article_body")
     new_article = article.put()
 
     if not new_article:
