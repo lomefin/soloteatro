@@ -1,0 +1,4 @@
+cron:
+- description: Updates Seasons. Closed finished seasons.
+  url: /options/update_seasons
+  schedule: every day 23:50
