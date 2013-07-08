@@ -11,6 +11,7 @@ from modules.admin.articles import *
 application = LLApp([
       ('/admin/montages/add', AddMontage),
       ('/admin/montages/', ListMontages),
+      ('/admin/montages/(.*)/edit',EditMontage),
       ('/admin/montages/(.*)/seasons/add',AddSeasonToMontage),
       ('/admin/montages/(.*)/season/(\d*)/media/add',AddMediaToSeason),
       ('/admin/montages/(.*)/(pictures|videos)/add',AddMediaToLatestSeason),
