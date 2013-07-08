@@ -41,6 +41,7 @@ class STMontage(STModel):
 	slug = db.StringProperty()
 	description = db.TextProperty()
 	writer = db.StringProperty()
+	external_gallery = db.StringProperty()
 
 	def delete(self):
 		db.delete(self.seasons)

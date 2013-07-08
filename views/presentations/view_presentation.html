@@ -129,8 +129,12 @@
       <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
       <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div>
+    <div>
+      {%if montage.external_gallery %}
+      <a href="{{montage.external_gallery}}" class="pull-right btn" target="st-gallery-{{montage.name}}">Ver más imágenes</a>
+      {%endif%}
+    </div>
   </div>
-  
 </div>
 {% endblock content %}
 {% block js_activities %}

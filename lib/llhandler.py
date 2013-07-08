@@ -118,6 +118,11 @@ class LLDefaultHandler(webapp2.RequestHandler):
     def auth_check(self):
         return True
         
+    def redirect_to(self,url):
+        logging.debug("Redirecting to " + url + " sleeping")
+        time.sleep(1)
+        logging.debug("Ready to redirect")
+        self.redirect(url)
 
     def set(self,key,value):
 
